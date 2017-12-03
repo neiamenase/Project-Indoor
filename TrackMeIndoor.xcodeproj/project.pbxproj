@@ -12,6 +12,7 @@
 		1839405D1FD3ED5700F0DB12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1839405B1FD3ED5700F0DB12 /* Main.storyboard */; };
 		1839405F1FD3ED5700F0DB12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1839405E1FD3ED5700F0DB12 /* Assets.xcassets */; };
 		183940621FD3ED5700F0DB12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183940601FD3ED5700F0DB12 /* LaunchScreen.storyboard */; };
+		1839406A1FD3FCC100F0DB12 /* Suggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183940691FD3FCC100F0DB12 /* Suggestion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		1839405E1FD3ED5700F0DB12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		183940611FD3ED5700F0DB12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		183940631FD3ED5700F0DB12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		183940691FD3FCC100F0DB12 /* Suggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suggestion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				183940571FD3ED5700F0DB12 /* AppDelegate.swift */,
 				183940591FD3ED5700F0DB12 /* ViewController.swift */,
+				183940691FD3FCC100F0DB12 /* Suggestion.swift */,
 				1839405B1FD3ED5700F0DB12 /* Main.storyboard */,
 				1839405E1FD3ED5700F0DB12 /* Assets.xcassets */,
 				183940601FD3ED5700F0DB12 /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			files = (
 				1839405A1FD3ED5700F0DB12 /* ViewController.swift in Sources */,
 				183940581FD3ED5700F0DB12 /* AppDelegate.swift in Sources */,
+				1839406A1FD3FCC100F0DB12 /* Suggestion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
