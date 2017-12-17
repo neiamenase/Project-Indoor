@@ -11,9 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     
-    // Testing!!1234556
-    // Testing 02
-    //Testing 03
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

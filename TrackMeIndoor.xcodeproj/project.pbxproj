@@ -13,6 +13,8 @@
 		1839405F1FD3ED5700F0DB12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1839405E1FD3ED5700F0DB12 /* Assets.xcassets */; };
 		183940621FD3ED5700F0DB12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183940601FD3ED5700F0DB12 /* LaunchScreen.storyboard */; };
 		1839406A1FD3FCC100F0DB12 /* Suggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183940691FD3FCC100F0DB12 /* Suggestion.swift */; };
+		CA062EB01FE66B3200891387 /* FindMyLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EAF1FE66B3100891387 /* FindMyLocationViewController.swift */; };
+		CA062EB21FE671AA00891387 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EB11FE671AA00891387 /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		183940611FD3ED5700F0DB12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		183940631FD3ED5700F0DB12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		183940691FD3FCC100F0DB12 /* Suggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suggestion.swift; sourceTree = "<group>"; };
+		CA062EAF1FE66B3100891387 /* FindMyLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindMyLocationViewController.swift; sourceTree = "<group>"; };
+		CA062EB11FE671AA00891387 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +63,12 @@
 				183940571FD3ED5700F0DB12 /* AppDelegate.swift */,
 				183940591FD3ED5700F0DB12 /* ViewController.swift */,
 				183940691FD3FCC100F0DB12 /* Suggestion.swift */,
+				CA062EAF1FE66B3100891387 /* FindMyLocationViewController.swift */,
 				1839405B1FD3ED5700F0DB12 /* Main.storyboard */,
 				1839405E1FD3ED5700F0DB12 /* Assets.xcassets */,
 				183940601FD3ED5700F0DB12 /* LaunchScreen.storyboard */,
 				183940631FD3ED5700F0DB12 /* Info.plist */,
+				CA062EB11FE671AA00891387 /* Item.swift */,
 			);
 			path = TrackMeIndoor;
 			sourceTree = "<group>";
@@ -140,6 +146,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA062EB21FE671AA00891387 /* Item.swift in Sources */,
+				CA062EB01FE66B3200891387 /* FindMyLocationViewController.swift in Sources */,
 				1839405A1FD3ED5700F0DB12 /* ViewController.swift in Sources */,
 				183940581FD3ED5700F0DB12 /* AppDelegate.swift in Sources */,
 				1839406A1FD3FCC100F0DB12 /* Suggestion.swift in Sources */,
@@ -306,6 +314,7 @@
 				183940681FD3ED5700F0DB12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
