@@ -114,31 +114,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="A: " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="m2M-zL-8RS">
-                                <rect key="frame" x="22" y="69" width="337" height="144"/>
+                                <rect key="frame" x="19" y="366" width="337" height="281"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Im5-70-dyJ">
-                                <rect key="frame" x="164" y="505" width="53" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BHk-ab-4wP">
+                                <rect key="frame" x="37" y="37" width="300" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Refresh"/>
-                                <connections>
-                                    <action selector="refreshLocation:" destination="2v9-r8-hGm" eventType="touchUpInside" id="tLU-Iu-gpv"/>
-                                </connections>
-                            </button>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
-                        <outlet property="refreshButton" destination="Im5-70-dyJ" id="XwM-xz-R3d"/>
+                        <outlet property="floorPlanImageView" destination="BHk-ab-4wP" id="aWw-Zv-ocP"/>
                         <outlet property="testText" destination="m2M-zL-8RS" id="qgf-8s-Or9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gga-Ix-8Uj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137" y="873"/>
+            <point key="canvasLocation" x="136.80000000000001" y="872.11394302848578"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Eow-9e-6ED">
