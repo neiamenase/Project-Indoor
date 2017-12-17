@@ -53,7 +53,7 @@ class FindMyLocationViewController: UIViewController {
         let minor = 58633
         let txtName = "A"
         let name = txtName.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        let newItem = Item(name: name, icon: 0, uuid: uuid, majorValue: major, minorValue: minor)
+        let newItem = Item(name: name, icon: 0, uuid: uuid, majorValue: major, minorValue: minor, distance: 0.0)
         items.append(newItem)
         
         
@@ -93,4 +93,53 @@ class FindMyLocationViewController: UIViewController {
         }
     }
     
+    func CalLocation (_ items: [Item]) -> Position?{
+
+        let a = items.first(where: {$0.minorValue == UInt16(Constants.Beacon_A.minor)})
+        let b = items.first(where: {$0.minorValue == UInt16(Constants.Beacon_B.minor)})
+        let c = items.first(where: {$0.minorValue == UInt16(Constants.Beacon_C.minor)})
+        let d = items.first(where: {$0.minorValue == UInt16(Constants.Beacon_D.minor)})
+        
+        if (a != nil && b != nil && c != nil && d != nil) {
+            let u = Constants.u
+            let v = Constants.v
+            //     a
+            //  b     d
+            //     c
+            
+            var x = sqrt(u) + sqrt(b!.distance) - sqrt(d!.distance)
+            x = x / 2 * u
+            
+            var y = sqrt(v) + sqrt(a!.distance) - sqrt(c!.distance)
+            y = y / 2 * v
+            
+            return Position(x, y)
+
+        }
+        return nil
+        
+    }
+    
+    
+    
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
