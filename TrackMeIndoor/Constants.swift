@@ -1,20 +1,31 @@
+import CoreLocation
 
 class Constants{
     
     static let u : Double = 2.0
     static let v : Double = 2.0
     
+    //     a
+    //  b     d
+    //     c
     
-    struct Beacon_A{
+    static let major: Int = 1
+    static let uuid: UUID = UUID(uuidString: "B5b182c7-eab1-4988-aa99-b5c1517008d9")!
+    
+    struct BeaconA{
+        static let name: String = "A"
         static let minor: Int = 58633
     }
-    struct Beacon_B{
+    struct BeaconB{
+        static let name: String = "B"
         static let minor: Int = 59655
     }
-    struct Beacon_C{
+    struct BeaconC{
+        static let name: String = "C"
         static let minor: Int = 53000
     }
-    struct Beacon_D{
+    struct BeaconD{
+        static let name: String = "D"
         static let minor: Int = 47625
 //        static let VU_Distance_A = VU_Distance(10, 10)
 //        static let VU_Distance_B = VU_Distance(10, 10)

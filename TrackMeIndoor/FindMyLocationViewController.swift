@@ -60,38 +60,13 @@ class FindMyLocationViewController: UIViewController {
     }
     
     func loadItems() {
-        let txtUUID = "B5b182c7-eab1-4988-aa99-b5c1517008d9"
-        let uuidString = txtUUID.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        guard let uuid = UUID(uuidString: uuidString) else { return }
-        let major = 1
-        var minor = 58633
-        var txtName = "A"
-        var name = txtName.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        var newItem = Item(name: name, icon: 0, uuid: uuid, majorValue: major, minorValue: minor)
-        items.append(newItem)
-        startMonitoringItem(newItem)
-        
-
-        minor = 59655
-        txtName = "B"
-        name = txtName.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        newItem = Item(name: name, icon: 0, uuid: uuid, majorValue: major, minorValue: minor)
-        items.append(newItem)
-        startMonitoringItem(newItem)
-        
-        minor = 53000
-        txtName = "C"
-        name = txtName.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        newItem = Item(name: name, icon: 0, uuid: uuid, majorValue: major, minorValue: minor)
-        items.append(newItem)
-        startMonitoringItem(newItem)
-        minor = 47625
-        txtName = "D"
-        name = txtName.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        newItem = Item(name: name, icon: 0, uuid: uuid, majorValue: major, minorValue: minor)
-        items.append(newItem)
-        startMonitoringItem(newItem)
-
+        items.append(Item(name: Constants.BeaconA.name, icon: 0, uuid: Constants.uuid, majorValue: Constants.major, minorValue: Constants.BeaconA.minor, distance: 0.0))
+        items.append(Item(name: Constants.BeaconB.name, icon: 0, uuid: Constants.uuid, majorValue: Constants.major, minorValue: Constants.BeaconB.minor, distance: 0.0))
+        items.append(Item(name: Constants.BeaconC.name, icon: 0, uuid: Constants.uuid, majorValue: Constants.major, minorValue: Constants.BeaconC.minor, distance: 0.0))
+        items.append(Item(name: Constants.BeaconD.name, icon: 0, uuid: Constants.uuid, majorValue: Constants.major, minorValue: Constants.BeaconD.minor, distance: 0.0))
+        for item in items{
+            startMonitoringItem(item)
+        }
     }
     
     func drawIBeaconLocation(startingImage: UIImage) -> UIImage {
@@ -187,15 +162,55 @@ extension FindMyLocationViewController: CLLocationManagerDelegate{
                 // TODO: Determine if item is equal to ranged beacon
                 if items[row] == beacon {
                     items[row].beacon = beacon
-                    
+                    items[row].distance = beacon.accuracy
                     indexPaths += [IndexPath(row: row, section: 0)]
                 }
             }
         }
         testText.text = ""
+        
+        var position = getCoordinate(items)
+        testText.text = "x:\(position!.x)   y:\(position!.y)\n"
         for item in items {
+            
             testText.text = testText.text + "Name: \(item.name) \n" + item.locationString() + "\nRSSI: \(item.beacon?.rssi)\n\n"
         }
     }
+    
+    func getCoordinate (_ items: [Item]) -> Position?{
+        let a = items.first(where: {$0.minorValue == UInt16(Constants.BeaconA.minor)})
+        let b = items.first(where: {$0.minorValue == UInt16(Constants.BeaconB.minor)})
+        let c = items.first(where: {$0.minorValue == UInt16(Constants.BeaconC.minor)})
+        let d = items.first(where: {$0.minorValue == UInt16(Constants.BeaconD.minor)})
+        if (a != nil && b != nil && c != nil && d != nil) {
+            return Position((sqrt(Constants.u) + sqrt(b!.distance) - sqrt(d!.distance)) / 2 * Constants.u,
+                            (sqrt(Constants.v) + sqrt(a!.distance) - sqrt(c!.distance)) / 2 * Constants.v)
+
+        }else{
+            return nil
+        }
+    }
+    
+    
+    
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

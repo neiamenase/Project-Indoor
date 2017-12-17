@@ -22,7 +22,7 @@ class Item: NSObject, NSCoding {
     let uuid: UUID
     let majorValue: UInt16
     let minorValue: UInt16
-    let distance: Double
+    var distance: Double
     var beacon: CLBeacon?
     func asBeaconRegion() -> CLBeaconRegion {
         return CLBeaconRegion(proximityUUID: uuid,
