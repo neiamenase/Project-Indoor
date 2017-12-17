@@ -198,43 +198,4 @@ extension FindMyLocationViewController: CLLocationManagerDelegate{
         }
     }
 }
-class LineView : UIView {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.backgroundColor = UIColor.init(white: 0.0, alpha: 0.0)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func draw(_ rect: CGRect) {
-        if let context = UIGraphicsGetCurrentContext() {
 
-            context.setStrokeColor(UIColor.green.cgColor)
-            context.setAlpha(0.5)
-            context.setLineWidth(5.0)
-            context.addEllipse(in: CGRect(x: 150, y: 0, width: 30, height: 30))
-            context.drawPath(using: .stroke) // or .fillStroke if need filling
-            
-            context.setStrokeColor(UIColor.yellow.cgColor)
-            context.setAlpha(0.5)
-            context.setLineWidth(5.0)
-            context.addEllipse(in: CGRect(x: 30, y: 150, width: 30, height: 30))
-            context.drawPath(using: .stroke) // or .fillStroke if need filling
-            
-            context.setStrokeColor(UIColor.red.cgColor)
-            context.setAlpha(0.5)
-            context.setLineWidth(5.0)
-            context.addEllipse(in: CGRect(x: 150, y: 270, width: 30, height: 30))
-            context.drawPath(using: .stroke) // or .fillStroke if need filling
-            
-            context.setStrokeColor(UIColor.orange.cgColor)
-            context.setAlpha(0.5)
-            context.setLineWidth(5.0)
-            context.addEllipse(in: CGRect(x: 270, y: 150, width: 30, height: 30))
-            context.drawPath(using: .stroke) // or .fillStroke if need filling
-            
-        }
-    }
-}
