@@ -2,8 +2,14 @@ import CoreLocation
 
 class Constants{
     
+    
+    static let counter : Int = 12
+    
+    
     static let u : Double = 2.0
     static let v : Double = 2.0
+    static let distanceUnit : Double = u/8
+
     
     //     a
     //  b     d
@@ -15,21 +21,26 @@ class Constants{
     struct BeaconA{
         static let name: String = "A"
         static let minor: Int = 58633
+        static let locationX : Double = 4.5
+        static let locationY : Double = 0.5
     }
     struct BeaconB{
         static let name: String = "B"
         static let minor: Int = 59655
+        static let locationX : Double = 0.5
+        static let locationY : Double = 4.5
     }
     struct BeaconC{
         static let name: String = "C"
         static let minor: Int = 53000
+        static let locationX : Double = 8.5
+        static let locationY : Double = 4.5
     }
     struct BeaconD{
         static let name: String = "D"
         static let minor: Int = 47625
-//        static let VU_Distance_A = VU_Distance(10, 10)
-//        static let VU_Distance_B = VU_Distance(10, 10)
-//        static let VU_Distance_C = VU_Distance(10, 10)
+        static let locationX : Double = 4.5
+        static let locationY : Double = 8.5
     }
     
 //    struct VU_Distance {

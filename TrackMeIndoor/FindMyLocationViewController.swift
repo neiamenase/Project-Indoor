@@ -16,6 +16,9 @@ class FindMyLocationViewController: UIViewController {
     
     let locationManager = CLLocationManager()
     var items = [Item]()
+    var count = 0
+    
+    var floorPlan : UIImage = UIImage(named: "Grid")!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,12 +33,9 @@ class FindMyLocationViewController: UIViewController {
         
         //draw point on map
         
-        //let lineView = LineView(frame: floorPlanImageView.frame)
-        //floorPlanImageView.addSubview(lineView)
-        var floorPlan : UIImage = UIImage(named: "Grid")!
-        floorPlan = drawIBeaconLocation(startingImage: floorPlan)
+        floorPlan = drawImage().drawIBeaconLocation(startingImage: floorPlan)
         floorPlanImageView.image = floorPlan
-        //self.view.addSubview(floorPlanImageView!)
+
 
         
     }
@@ -68,82 +68,12 @@ class FindMyLocationViewController: UIViewController {
             startMonitoringItem(item)
         }
     }
-    
-    func drawIBeaconLocation(startingImage: UIImage) -> UIImage {
-        UIGraphicsBeginImageContext(startingImage.size)
-        
-        // Draw the starting image in the current context as background
-        startingImage.draw(at: CGPoint.zero)
-        print("width \(startingImage.size.width)   height \(startingImage.size.height)")
-        let ratio = startingImage.size.width / 10
-        
-        // Get the current context
-        let context = UIGraphicsGetCurrentContext()!
-        
-        context.setAlpha(0.5)
-        context.setLineWidth(1.0)
-        
-        
-        context.setFillColor(UIColor.green.cgColor)
-        context.addEllipse(in: CGRect(x: 4.5 * ratio, y: 0.5 * ratio, width: ratio, height: ratio))
-        context.drawPath(using: .fillStroke)
-        
-        context.setFillColor(UIColor.yellow.cgColor)
-        context.addEllipse(in: CGRect(x: ratio/2, y: 4.5 * ratio, width: ratio, height: ratio))
-        context.drawPath(using: .fillStroke)
-        
-        context.setFillColor(UIColor.red.cgColor)
-        context.addEllipse(in: CGRect(x: 4.5 * ratio, y: 8.5 * ratio, width: ratio, height: ratio))
-        context.drawPath(using: .fillStroke)
-        
-        context.setFillColor(UIColor.orange.cgColor)
-        context.addEllipse(in: CGRect(x: 8.5 * ratio, y: 4.5 * ratio, width: ratio, height: ratio))
-        context.drawPath(using: .fillStroke)
-        
-        let myImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        // Return modified image
-        return myImage!
-    }
-//    func persistItems() {
-//        var itemsData = [Data]()
-//        for item in items {
-//            let itemData = NSKeyedArchiver.archivedData(withRootObject: item)
-//            itemsData.append(itemData)
-//        }
-//        UserDefaults.standard.set(itemsData, forKey: storedItemsKey)
-//        UserDefaults.standard.synchronize()
-//    }
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "segueAdd", let viewController = segue.destination as? AddItemViewController {
-//            viewController.delegate = self
-//        }
-//    }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+ 
     
 }
 
 extension FindMyLocationViewController: CLLocationManagerDelegate{
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//
-//        let item = items[indexPath.row]
-//        let detailMessage = "UUID: \(item.uuid.uuidString)\nMajor: \(item.majorValue)\nMinor: \(item.minorValue)"
-//        let detailAlert = UIAlertController(title: "Details", message: detailMessage, preferredStyle: .alert)
-//        detailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//        self.present(detailAlert, animated: true, completion: nil)
-//    }
+
     func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
         print("Failed monitoring region: \(error.localizedDescription)")
     }
@@ -162,28 +92,35 @@ extension FindMyLocationViewController: CLLocationManagerDelegate{
                 // TODO: Determine if item is equal to ranged beacon
                 if items[row] == beacon {
                     items[row].beacon = beacon
-                    items[row].distance = beacon.accuracy
+                    items[row].distance = (items[row].distance * Double(items[row].count) + beacon.accuracy) / (Double(items[row].count) + 1)
+                    items[row].count += 1
                     indexPaths += [IndexPath(row: row, section: 0)]
+                    count += 1
                 }
             }
         }
-        testText.text = ""
         
-        var position = getCoordinate(items)
-        testText.text = "x:\(position!.x)   y:\(position!.y)\n"
-        for item in items {
-            
-            testText.text = testText.text + "Name: \(item.name) \n" + item.locationString() + "\nRSSI: \(item.beacon?.rssi)\n\n"
+        if count == Constants.counter{
+            count = 0
+            testText.text = ""
+            var coordinate = getCoordinate(items)
+            testText.text = "x:\(String(format: "%.2f",coordinate!.x))   y:\(String(format: "%.2f",coordinate!.y))\n"
+            floorPlanImageView.image = drawImage().drawMyLocation(startingImage: floorPlan, x: coordinate!.x, y: coordinate!.y)
+            for item in items {
+                item.distance = 0.0
+                item.count = 0
+                testText.text = testText.text + "Name: \(item.name) \n" + item.locationString() + "\nRSSI: \(item.beacon?.rssi)\n\n"
+            }
         }
     }
     
-    func getCoordinate (_ items: [Item]) -> Position?{
+    func getCoordinate (_ items: [Item]) -> Coordinates?{
         let a = items.first(where: {$0.minorValue == UInt16(Constants.BeaconA.minor)})
         let b = items.first(where: {$0.minorValue == UInt16(Constants.BeaconB.minor)})
         let c = items.first(where: {$0.minorValue == UInt16(Constants.BeaconC.minor)})
         let d = items.first(where: {$0.minorValue == UInt16(Constants.BeaconD.minor)})
         if (a != nil && b != nil && c != nil && d != nil) {
-            return Position((sqrt(Constants.u) + sqrt(b!.distance) - sqrt(d!.distance)) / 2 * Constants.u,
+            return Coordinates((sqrt(Constants.u) + sqrt(b!.distance) - sqrt(d!.distance)) / 2 * Constants.u,
                             (sqrt(Constants.v) + sqrt(a!.distance) - sqrt(c!.distance)) / 2 * Constants.v)
 
         }else{

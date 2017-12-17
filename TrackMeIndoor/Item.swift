@@ -23,6 +23,7 @@ class Item: NSObject, NSCoding {
     let majorValue: UInt16
     let minorValue: UInt16
     var distance: Double
+    var count: Int = 0
     var beacon: CLBeacon?
     func asBeaconRegion() -> CLBeaconRegion {
         return CLBeaconRegion(proximityUUID: uuid,
@@ -77,6 +78,7 @@ class Item: NSObject, NSCoding {
         majorValue = UInt16(aDecoder.decodeInteger(forKey: ItemConstant.majorKey))
         minorValue = UInt16(aDecoder.decodeInteger(forKey: ItemConstant.minorKey))
         distance = 0.0
+        count = 0
     }
     
     func encode(with aCoder: NSCoder) {
