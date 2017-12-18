@@ -34,7 +34,7 @@ class FindMyLocationViewController: UIViewController {
         
         //draw point on map
         
-        floorPlan = drawImage().drawIBeaconLocation(startingImage: floorPlan)
+        floorPlan = DrawImage().drawIBeaconLocation(startingImage: floorPlan)
         floorPlanImageView.image = floorPlan
 
 
@@ -45,7 +45,6 @@ class FindMyLocationViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    // MARK: Monitoring
     
     func stopMonitoringItem(_ item: Item) {
         let beaconRegion = item.asBeaconRegion()
@@ -105,7 +104,7 @@ extension FindMyLocationViewController: CLLocationManagerDelegate{
             count = 0
             let coordinate = getCoordinate(items)
             testText.text = "x:\(String(format: "%.2f",coordinate!.x))   y:\(String(format: "%.2f",coordinate!.y))\n"
-            floorPlanImageView.image = drawImage().drawMyLocation(startingImage: floorPlan, x: coordinate!.x, y: coordinate!.y)
+            floorPlanImageView.image = DrawImage().drawMyLocation(startingImage: floorPlan, x: coordinate!.x, y: coordinate!.y)
             displayMessage.text = " "
             for item in items {
                 item.distance = 0.0
@@ -116,7 +115,7 @@ extension FindMyLocationViewController: CLLocationManagerDelegate{
                 switch item.beacon?.proximity{
                 case .immediate?:
                     displayMessage.text = "You are in Location \(item.name)"
-                    floorPlanImageView.image = drawImage().drawMyLocationImmediate(startingImage: floorPlan, minor: Int(item.minorValue))
+                    floorPlanImageView.image = DrawImage().drawMyLocationImmediate(startingImage: floorPlan, minor: Int(item.minorValue))
                     //print ("\(item.name)  \(item.minorValue)")
                 default: break
                     

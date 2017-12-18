@@ -1,5 +1,5 @@
 //
-//  drawImage.swift
+//  DrawImage.swift
 //  TrackMeIndoor
 //
 //  Created by Wing yan Tsui on 18/12/2017.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class drawImage{
+class DrawImage{
     func drawIBeaconLocation(startingImage: UIImage) -> UIImage {
         UIGraphicsBeginImageContext(startingImage.size)
         
