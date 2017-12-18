@@ -42,16 +42,18 @@ class Constants{
 //    }
 //    
     struct BeaconsInfo {
-        static let Name = ["A", "B", "C", "D"]
-        static let Minor = [58633, 59655, 53000, 47625]
-        static let Color = [UIColor.green.cgColor, UIColor.yellow.cgColor, UIColor.red.cgColor, UIColor.orange.cgColor]
+        static let name = ["A", "B", "C", "D"]
+        static let minor = [58633, 59655, 53000, 47625]
+        static let color = [UIColor.green.cgColor, UIColor.yellow.cgColor, UIColor.red.cgColor, UIColor.orange.cgColor]
+        static let nodeID = [1,3,7,12]
+        static let nodeDescription = ["Room 924B","Room 924A","Toilet","Room 901"]
         
     }
     
     
-    static let FindMyLocationCoordinate = [[u/2, 0.0], [0.0,v/2], [u/2,v], [u,v/2]]
+    static let findMyLocationCoordinate = [[u/2, 0.0], [0.0,v/2], [u/2,v], [u,v/2]]
 
-    static let FindSeatBeaconCoordinate = [[0.0, u/2], [v/2,0.0], [v,u/2], [v/2,u]]
+    static let findSeatBeaconCoordinate = [[0.0, u/2], [v/2,0.0], [v,u/2], [v/2,u]]
         
     
 //    struct VU_Distance {

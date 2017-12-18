@@ -23,6 +23,7 @@
 		CA062EC01FE7D4E900891387 /* ReceiverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EBF1FE7D4E900891387 /* ReceiverViewController.swift */; };
 		CA062ED81FE8014000891387 /* FloorPlanCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062ED71FE8014000891387 /* FloorPlanCoordinates.swift */; };
 		CA062EDA1FE8065100891387 /* PlaceFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062ED91FE8065100891387 /* PlaceFinderViewController.swift */; };
+		CA062EDE1FE828E400891387 /* PlaceFinderFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EDD1FE828E400891387 /* PlaceFinderFirstViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		CA062EBF1FE7D4E900891387 /* ReceiverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverViewController.swift; sourceTree = "<group>"; };
 		CA062ED71FE8014000891387 /* FloorPlanCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorPlanCoordinates.swift; sourceTree = "<group>"; };
 		CA062ED91FE8065100891387 /* PlaceFinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFinderViewController.swift; sourceTree = "<group>"; };
+		CA062EDD1FE828E400891387 /* PlaceFinderFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFinderFirstViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				CA062EAF1FE66B3100891387 /* FindMyLocationViewController.swift */,
 				CA062EBD1FE7B6B800891387 /* EmitterViewController.swift */,
 				CA062EBF1FE7D4E900891387 /* ReceiverViewController.swift */,
+				CA062EDD1FE828E400891387 /* PlaceFinderFirstViewController.swift */,
 				CA062ED91FE8065100891387 /* PlaceFinderViewController.swift */,
 				CA062EB91FE7814E00891387 /* FindSeatViewController.swift */,
 				183940691FD3FCC100F0DB12 /* Suggestion.swift */,
@@ -190,6 +193,7 @@
 				CA062EB21FE671AA00891387 /* Item.swift in Sources */,
 				CA062EBE1FE7B6B800891387 /* EmitterViewController.swift in Sources */,
 				CA062EB01FE66B3200891387 /* FindMyLocationViewController.swift in Sources */,
+				CA062EDE1FE828E400891387 /* PlaceFinderFirstViewController.swift in Sources */,
 				CA062EBA1FE7814E00891387 /* FindSeatViewController.swift in Sources */,
 				1803513C1FE6797D001A60B3 /* Coordinates.swift in Sources */,
 				CA062EB41FE6CF8A00891387 /* DrawImage.swift in Sources */,

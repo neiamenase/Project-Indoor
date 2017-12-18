@@ -26,7 +26,7 @@ class FindMyLocationViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         
-        locationManager.requestAlwaysAuthorization()
+        
         
         locationManager.delegate = self
         loadItems()
@@ -51,19 +51,19 @@ class FindMyLocationViewController: UIViewController {
         locationManager.stopMonitoring(for: beaconRegion)
         locationManager.stopRangingBeacons(in: beaconRegion)
     }
-    
-    
+
+
     func startMonitoringItem(_ item: Item) {
         let beaconRegion = item.asBeaconRegion()
         locationManager.startMonitoring(for: beaconRegion)
         locationManager.startRangingBeacons(in: beaconRegion)
     }
-    
+
     func loadItems() {
-        for i in 0..<Constants.BeaconsInfo.Name.count {
-        items.append(Item(name: Constants.BeaconsInfo.Name[i], icon: 0, uuid: Constants.uuid, majorValue: Constants.iBeaconMajor, minorValue: Constants.BeaconsInfo.Minor[i], distance: 0.0))
+        for i in 0..<Constants.BeaconsInfo.name.count {
+        items.append(Item(name: Constants.BeaconsInfo.name[i], icon: 0, uuid: Constants.uuid, majorValue: Constants.iBeaconMajor, minorValue: Constants.BeaconsInfo.minor[i], distance: 0.0))
         }
-        items.append(Item(name: "phone", icon: 0, uuid: Constants.uuid, majorValue: Constants.iBeaconMajor, minorValue: 1, distance: 0.0))
+        
         for item in items{
             startMonitoringItem(item)
         }
@@ -127,10 +127,10 @@ extension FindMyLocationViewController: CLLocationManagerDelegate{
     }
     
     func getCoordinate (_ items: [Item]) -> Coordinates?{
-        let a = items.first(where: {$0.minorValue == UInt16(Constants.BeaconsInfo.Minor[0])})
-        let b = items.first(where: {$0.minorValue == UInt16(Constants.BeaconsInfo.Minor[1])})
-        let c = items.first(where: {$0.minorValue == UInt16(Constants.BeaconsInfo.Minor[2])})
-        let d = items.first(where: {$0.minorValue == UInt16(Constants.BeaconsInfo.Minor[3])})
+        let a = items.first(where: {$0.minorValue == UInt16(Constants.BeaconsInfo.minor[0])})
+        let b = items.first(where: {$0.minorValue == UInt16(Constants.BeaconsInfo.minor[1])})
+        let c = items.first(where: {$0.minorValue == UInt16(Constants.BeaconsInfo.minor[2])})
+        let d = items.first(where: {$0.minorValue == UInt16(Constants.BeaconsInfo.minor[3])})
         if (a != nil && b != nil && c != nil && d != nil) {
             return Coordinates((sqrt(Constants.u) + sqrt(b!.distance) - sqrt(d!.distance)) / 2 * Constants.u,
                             (sqrt(Constants.v) + sqrt(a!.distance) - sqrt(c!.distance)) / 2 * Constants.v)

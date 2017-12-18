@@ -26,9 +26,9 @@ class DrawImage{
         
         
         for i in 0..<4{
-            context.setFillColor(Constants.BeaconsInfo.Color[i])
-            let coordinateX = Constants.FindMyLocationCoordinate[i][0] / Constants.distanceUnit + 0.5
-            let coordinateY = Constants.FindMyLocationCoordinate[i][1] / Constants.distanceUnit + 0.5
+            context.setFillColor(Constants.BeaconsInfo.color[i])
+            let coordinateX = Constants.findMyLocationCoordinate[i][0] / Constants.distanceUnit + 0.5
+            let coordinateY = Constants.findMyLocationCoordinate[i][1] / Constants.distanceUnit + 0.5
             context.addEllipse(in: CGRect(x: coordinateX * ratio, y: coordinateY * ratio, width: ratio, height: ratio))
             context.drawPath(using: .fillStroke)
         }
@@ -83,10 +83,10 @@ class DrawImage{
         
         context.setAlpha(0.5)
         
-        let i = Constants.BeaconsInfo.Minor.index(of: minor)
+        let i = Constants.BeaconsInfo.minor.index(of: minor)
         context.setFillColor(UIColor.blue.cgColor)
-        let coordinateX = Constants.FindMyLocationCoordinate[i!][0] / Constants.distanceUnit + 0.5
-        let coordinateY = Constants.FindMyLocationCoordinate[i!][1] / Constants.distanceUnit + 0.5
+        let coordinateX = Constants.findMyLocationCoordinate[i!][0] / Constants.distanceUnit + 0.5
+        let coordinateY = Constants.findMyLocationCoordinate[i!][1] / Constants.distanceUnit + 0.5
         context.addEllipse(in: CGRect(x: coordinateX * ratio, y: coordinateY * ratio, width: ratio, height: ratio))
 
         context.drawPath(using: .fillStroke)
