@@ -172,17 +172,11 @@
                                 <rect key="frame" x="40" y="610" width="107" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Start Tracking"/>
-                                <connections>
-                                    <action selector="StartButtonWithSender:" destination="XKA-hL-g6D" eventType="touchUpInside" id="X9y-Xb-NT1"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWr-Cb-pex">
                                 <rect key="frame" x="203" y="610" width="95" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Stop Tracking"/>
-                                <connections>
-                                    <action selector="StopButtonWithSender:" destination="XKA-hL-g6D" eventType="touchUpInside" id="ux4-Mn-7xx"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awG-g1-nYx">
                                 <rect key="frame" x="158" y="82" width="42" height="21"/>
@@ -200,10 +194,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" title="Find Seat" id="jEq-Ec-F0N"/>
-                    <connections>
-                        <outlet property="MasterView" destination="wG4-CX-xoC" id="KFF-ls-DFd"/>
-                        <outlet property="TitleLabel" destination="awG-g1-nYx" id="KKd-rg-bIk"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W0Z-b9-Uej" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

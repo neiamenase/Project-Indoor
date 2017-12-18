@@ -21,8 +21,6 @@
 		CA062EBA1FE7814E00891387 /* FindSeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EB91FE7814E00891387 /* FindSeatViewController.swift */; };
 		CA062EBE1FE7B6B800891387 /* EmitterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EBD1FE7B6B800891387 /* EmitterViewController.swift */; };
 		CA062EC01FE7D4E900891387 /* ReceiverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EBF1FE7D4E900891387 /* ReceiverViewController.swift */; };
-		CA062EC21FE7D86600891387 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EC11FE7D86600891387 /* Tracking.swift */; };
-		CA062EC41FE7D95B00891387 /* PointLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EC31FE7D95B00891387 /* PointLine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,8 +40,6 @@
 		CA062EB91FE7814E00891387 /* FindSeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindSeatViewController.swift; sourceTree = "<group>"; };
 		CA062EBD1FE7B6B800891387 /* EmitterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmitterViewController.swift; sourceTree = "<group>"; };
 		CA062EBF1FE7D4E900891387 /* ReceiverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverViewController.swift; sourceTree = "<group>"; };
-		CA062EC11FE7D86600891387 /* Tracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracking.swift; sourceTree = "<group>"; };
-		CA062EC31FE7D95B00891387 /* PointLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointLine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +78,6 @@
 				183940691FD3FCC100F0DB12 /* Suggestion.swift */,
 				CA062EAF1FE66B3100891387 /* FindMyLocationViewController.swift */,
 				CA062EB91FE7814E00891387 /* FindSeatViewController.swift */,
-				CA062EC31FE7D95B00891387 /* PointLine.swift */,
 				1803513B1FE6797D001A60B3 /* Coordinates.swift */,
 				1839405B1FD3ED5700F0DB12 /* Main.storyboard */,
 				CA062EBD1FE7B6B800891387 /* EmitterViewController.swift */,
@@ -90,7 +85,6 @@
 				183940601FD3ED5700F0DB12 /* LaunchScreen.storyboard */,
 				183940631FD3ED5700F0DB12 /* Info.plist */,
 				CA062EB11FE671AA00891387 /* Item.swift */,
-				CA062EC11FE7D86600891387 /* Tracking.swift */,
 				CA062EBF1FE7D4E900891387 /* ReceiverViewController.swift */,
 				18B015471FE67EEC00EF29F4 /* Constants.swift */,
 			);
@@ -171,8 +165,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA062EC41FE7D95B00891387 /* PointLine.swift in Sources */,
-				CA062EC21FE7D86600891387 /* Tracking.swift in Sources */,
 				CA062EB21FE671AA00891387 /* Item.swift in Sources */,
 				CA062EBE1FE7B6B800891387 /* EmitterViewController.swift in Sources */,
 				CA062EB01FE66B3200891387 /* FindMyLocationViewController.swift in Sources */,

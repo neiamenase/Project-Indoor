@@ -15,20 +15,12 @@ class FindSeatViewController: UIViewController {
     var currentCoordinates = Coordinates(100,100)
     
     
-    var timer = Timer()
-    var pl:PointLine = PointLine()
-    var track:Tracking = Tracking()
-    
 
-    @IBOutlet weak var startTrackingButton: UIButton!
-    @IBOutlet weak var stopTrackingButton: UIButton!
-    @IBOutlet var TitleLabel: UILabel!
-    @IBOutlet weak var MasterView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        pl = PointLine(superView: MasterView)
+
     }
     
     
@@ -70,28 +62,5 @@ class FindSeatViewController: UIViewController {
 //        stopTrackAccelerometer()
 //    }
 
-    @IBAction func StartButton(sender: AnyObject) {
-        TitleLabel.text = "Running!"
-        track = Tracking()
-        pl.addLineView()
-        timer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: Selector("drawLine"), userInfo: nil, repeats: true)
-    }
-    @IBAction func StopButton(sender: AnyObject) {
-        TitleLabel.text = "Stopped!"
-        timer.invalidate()
-    }
-    
-    
-    
-    func drawLine(){
-        track.update()
-        var currentPoint:CGPoint = CGPoint(x: CGFloat(track.position_y*200+150), y: CGFloat(track.position_x*200+150))
-        pl.drawLineToPoint(point: currentPoint)
-    }
-    
-    
-    @IBAction func CleanButton(sender: AnyObject) {
-        TitleLabel.text = "Stopped!"
-        pl.cleanView()
-    }
+
 }
