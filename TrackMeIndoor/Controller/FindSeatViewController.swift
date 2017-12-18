@@ -11,6 +11,9 @@ import CoreMotion
 
 class FindSeatViewController: UIViewController {
     
+    @IBOutlet weak var statusLabel: UILabel!
+    
+    
     var motionManager = CMMotionManager()
     var currentCoordinates = Coordinates(100,100)
     
@@ -25,7 +28,7 @@ class FindSeatViewController: UIViewController {
     
     
     func startTrackAccelerometer()->Void{
-        motionManager.accelerometerUpdateInterval = 0.2
+        motionManager.accelerometerUpdateInterval = 0.5
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!){ (data, error) in
             if let accelerometerLog = data{
                 print(accelerometerLog)
@@ -55,12 +58,12 @@ class FindSeatViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-//    @IBAction func startTracking(_ sender: Any) {
-//        startTrackAccelerometer()
-//    }
-//    @IBAction func stopTracking(_ sender: Any) {
-//        stopTrackAccelerometer()
-//    }
+    @IBAction func startTracking(_ sender: Any) {
+        startTrackAccelerometer()
+    }
+    @IBAction func stopTracking(_ sender: Any) {
+        stopTrackAccelerometer()
+    }
 
 
 }

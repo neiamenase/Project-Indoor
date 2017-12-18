@@ -36,9 +36,8 @@ class EmitterViewController: UIViewController
         
 
         let minor: CLBeaconMinorValue = CLBeaconMinorValue(arc4random() % 2 + 1)
-        
         self.beacon = CLBeaconRegion(proximityUUID: Constants.uuid, major: CLBeaconMajorValue(Constants.firendMajor), minor: minor, identifier: Constants.identifier)
-        
+
         self.peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
         beaconDetails.text = "UUID: \(Constants.uuid) \n\nMajor: \(Constants.firendMajor)\n\nMinor: \(minor)"
     }

@@ -63,6 +63,7 @@ class FindMyLocationViewController: UIViewController {
         for i in 0..<Constants.BeaconsInfo.Name.count {
         items.append(Item(name: Constants.BeaconsInfo.Name[i], icon: 0, uuid: Constants.uuid, majorValue: Constants.iBeaconMajor, minorValue: Constants.BeaconsInfo.Minor[i], distance: 0.0))
         }
+        items.append(Item(name: "phone", icon: 0, uuid: Constants.uuid, majorValue: Constants.iBeaconMajor, minorValue: 1, distance: 0.0))
         for item in items{
             startMonitoringItem(item)
         }
@@ -87,6 +88,7 @@ extension FindMyLocationViewController: CLLocationManagerDelegate{
         
        // var indexPaths = [IndexPath]()
         for beacon in beacons {
+            print("minor: \(beacon.minor)")
             for row in 0..<items.count {
                 // TODO: Determine if item is equal to ranged beacon
                 if items[row] == beacon {

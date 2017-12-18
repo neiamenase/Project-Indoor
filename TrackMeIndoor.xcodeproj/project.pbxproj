@@ -21,6 +21,8 @@
 		CA062EBA1FE7814E00891387 /* FindSeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EB91FE7814E00891387 /* FindSeatViewController.swift */; };
 		CA062EBE1FE7B6B800891387 /* EmitterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EBD1FE7B6B800891387 /* EmitterViewController.swift */; };
 		CA062EC01FE7D4E900891387 /* ReceiverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EBF1FE7D4E900891387 /* ReceiverViewController.swift */; };
+		CA062ED81FE8014000891387 /* FloorPlanCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062ED71FE8014000891387 /* FloorPlanCoordinates.swift */; };
+		CA062EDA1FE8065100891387 /* PlaceFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062ED91FE8065100891387 /* PlaceFinderViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		CA062EB91FE7814E00891387 /* FindSeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindSeatViewController.swift; sourceTree = "<group>"; };
 		CA062EBD1FE7B6B800891387 /* EmitterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmitterViewController.swift; sourceTree = "<group>"; };
 		CA062EBF1FE7D4E900891387 /* ReceiverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverViewController.swift; sourceTree = "<group>"; };
+		CA062ED71FE8014000891387 /* FloorPlanCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorPlanCoordinates.swift; sourceTree = "<group>"; };
+		CA062ED91FE8065100891387 /* PlaceFinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFinderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,7 @@
 				CA062EB31FE6CF8A00891387 /* DrawImage.swift */,
 				1803513B1FE6797D001A60B3 /* Coordinates.swift */,
 				18B015471FE67EEC00EF29F4 /* Constants.swift */,
+				CA062ED71FE8014000891387 /* FloorPlanCoordinates.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -101,6 +106,7 @@
 				CA062EAF1FE66B3100891387 /* FindMyLocationViewController.swift */,
 				CA062EBD1FE7B6B800891387 /* EmitterViewController.swift */,
 				CA062EBF1FE7D4E900891387 /* ReceiverViewController.swift */,
+				CA062ED91FE8065100891387 /* PlaceFinderViewController.swift */,
 				CA062EB91FE7814E00891387 /* FindSeatViewController.swift */,
 				183940691FD3FCC100F0DB12 /* Suggestion.swift */,
 			);
@@ -190,6 +196,8 @@
 				1839405A1FD3ED5700F0DB12 /* ViewController.swift in Sources */,
 				CA062EC01FE7D4E900891387 /* ReceiverViewController.swift in Sources */,
 				18B015481FE67EEC00EF29F4 /* Constants.swift in Sources */,
+				CA062EDA1FE8065100891387 /* PlaceFinderViewController.swift in Sources */,
+				CA062ED81FE8014000891387 /* FloorPlanCoordinates.swift in Sources */,
 				183940581FD3ED5700F0DB12 /* AppDelegate.swift in Sources */,
 				1839406A1FD3FCC100F0DB12 /* Suggestion.swift in Sources */,
 			);
