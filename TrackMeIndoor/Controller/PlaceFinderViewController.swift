@@ -29,6 +29,10 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 6.0
         pathDescription.text = "curr:\(currentLocationNodeID) dest:\(destinationNodeID)"
+        
+        let (timeCost, path) = SearchPath.searchPath(currentLoctionNodeID: currentLocationNodeID, destinationNodeID: destinationNodeID, searchedNode: [currentLocationNodeID])
+        print ("Finish -- time: \(timeCost) path:\(path)\n\n")
+        
     }
 
     override func didReceiveMemoryWarning() {

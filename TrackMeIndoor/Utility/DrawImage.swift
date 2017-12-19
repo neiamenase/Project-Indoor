@@ -110,7 +110,7 @@ class DrawImage{
         let context = UIGraphicsGetCurrentContext()!
         
         
-        for coordinates in FloorPlanCoordinates.coordinates{
+        for coordinates in SearchPath.coordinates{
             context.setFillColor(UIColor.red.cgColor)
             context.addEllipse(in: CGRect(x: coordinates[0]-2, y: coordinates[1]-2, width: 4, height: 4))
             context.drawPath(using: .fillStroke)
