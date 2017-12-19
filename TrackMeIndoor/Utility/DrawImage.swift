@@ -26,7 +26,7 @@ class DrawImage{
         
         
         for i in 0..<4{
-            context.setFillColor(Constants.BeaconsInfo.color[i])
+            context.setFillColor(Constants.beaconsInfo.color[i])
             let coordinateX = Constants.findMyLocationCoordinate[i][0] / Constants.distanceUnit + 0.5
             let coordinateY = Constants.findMyLocationCoordinate[i][1] / Constants.distanceUnit + 0.5
             context.addEllipse(in: CGRect(x: coordinateX * ratio, y: coordinateY * ratio, width: ratio, height: ratio))
@@ -83,7 +83,7 @@ class DrawImage{
         
         context.setAlpha(0.5)
         
-        let i = Constants.BeaconsInfo.minor.index(of: minor)
+        let i = Constants.beaconsInfo.minor.index(of: minor)
         context.setFillColor(UIColor.blue.cgColor)
         let coordinateX = Constants.findMyLocationCoordinate[i!][0] / Constants.distanceUnit + 0.5
         let coordinateY = Constants.findMyLocationCoordinate[i!][1] / Constants.distanceUnit + 0.5

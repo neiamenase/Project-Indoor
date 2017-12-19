@@ -60,8 +60,8 @@ class FindMyLocationViewController: UIViewController {
     }
 
     func loadItems() {
-        for i in 0..<Constants.BeaconsInfo.name.count {
-        items.append(Item(name: Constants.BeaconsInfo.name[i], icon: 0, uuid: Constants.uuid, majorValue: Constants.iBeaconMajor, minorValue: Constants.BeaconsInfo.minor[i], distance: 0.0))
+        for i in 0..<Constants.beaconsInfo.name.count {
+        items.append(Item(name: Constants.beaconsInfo.name[i], icon: 0, uuid: Constants.uuid, majorValue: Constants.iBeaconMajor, minorValue: Constants.beaconsInfo.minor[i], distance: 0.0))
         }
         
         for item in items{
@@ -127,10 +127,10 @@ extension FindMyLocationViewController: CLLocationManagerDelegate{
     }
     
     func getCoordinate (_ items: [Item]) -> Coordinates?{
-        let a = items.first(where: {$0.minorValue == UInt16(Constants.BeaconsInfo.minor[0])})
-        let b = items.first(where: {$0.minorValue == UInt16(Constants.BeaconsInfo.minor[1])})
-        let c = items.first(where: {$0.minorValue == UInt16(Constants.BeaconsInfo.minor[2])})
-        let d = items.first(where: {$0.minorValue == UInt16(Constants.BeaconsInfo.minor[3])})
+        let a = items.first(where: {$0.minorValue == UInt16(Constants.beaconsInfo.minor[0])})
+        let b = items.first(where: {$0.minorValue == UInt16(Constants.beaconsInfo.minor[1])})
+        let c = items.first(where: {$0.minorValue == UInt16(Constants.beaconsInfo.minor[2])})
+        let d = items.first(where: {$0.minorValue == UInt16(Constants.beaconsInfo.minor[3])})
         if (a != nil && b != nil && c != nil && d != nil) {
             return Coordinates((pow(Double(Constants.u),2) + pow(Double(b!.distance),2) - pow(Double(d!.distance),2)) / 2 * Constants.u,
                             (pow(Double(Constants.v),2) + pow(Double(a!.distance),2) - pow(Double(c!.distance),2)) / 2 * Constants.v)

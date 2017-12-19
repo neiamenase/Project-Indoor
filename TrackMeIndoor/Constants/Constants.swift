@@ -41,11 +41,11 @@ class Constants{
 //        static let minor: Int = 47625
 //    }
 //    
-    struct BeaconsInfo {
+    struct beaconsInfo {
         static let name = ["A", "B", "C", "D"]
         static let minor = [58633, 59655, 53000, 47625]
         static let color = [UIColor.green.cgColor, UIColor.yellow.cgColor, UIColor.red.cgColor, UIColor.orange.cgColor]
-        static let nodeID = [1,3,7,12]
+        static let nodeID = [1,3,7,10]
         static let nodeDescription = ["Room 924B","Room 924A","Toilet","Room 901"]
         
     }

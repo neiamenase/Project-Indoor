@@ -14,17 +14,26 @@ class PlaceFinderFirstViewController: UIViewController, UIPickerViewDataSource, 
     
     @IBOutlet weak var currentLocationLabel: UILabel!
     @IBOutlet weak var destinationPickerView: UIPickerView!
+    @IBOutlet weak var errorMessageLabel: UILabel!
+    
+    //let placeFinderFirstVC = PlaceFinderFirstViewController()
     let locationManager = CLLocationManager()
     var items = [Item]()
-    var pickerDataSource = Constants.BeaconsInfo.nodeDescription;
+    var pickerDataSource = Constants.beaconsInfo.nodeDescription;
+    
+    var currentLocationNodeID = -1
+    var destinationNodeID = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        errorMessageLabel.isHidden = true
+        
+        
         locationManager.delegate = self
-        destinationPickerView.dataSource = self;
-        destinationPickerView.delegate = self;
+        destinationPickerView.dataSource = self
+        destinationPickerView.delegate = self
 
         loadItems()
     }
@@ -46,6 +55,11 @@ class PlaceFinderFirstViewController: UIViewController, UIPickerViewDataSource, 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         return pickerDataSource[row]
     }
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+        destinationNodeID = Constants.beaconsInfo.nodeID[row]
+        print("row:\(row) dest:\(Constants.beaconsInfo.nodeDescription[row]) id:\(Constants.beaconsInfo.nodeID[row])")
+    }
     
     // Moitoring iBeacon
     func stopMonitoringItem(_ item: Item) {
@@ -62,8 +76,8 @@ class PlaceFinderFirstViewController: UIViewController, UIPickerViewDataSource, 
     }
     
     func loadItems() {
-        for i in 0..<Constants.BeaconsInfo.name.count{
-            items.append(Item(name: Constants.BeaconsInfo.name[i], icon: 0, uuid: Constants.uuid, majorValue: Constants.iBeaconMajor, minorValue: Constants.BeaconsInfo.minor[i], distance: 0.0))
+        for i in 0..<Constants.beaconsInfo.name.count{
+            items.append(Item(name: Constants.beaconsInfo.name[i], icon: 0, uuid: Constants.uuid, majorValue: Constants.iBeaconMajor, minorValue: Constants.beaconsInfo.minor[i], distance: 0.0))
         }
         for item in items{
             startMonitoringItem(item)
@@ -78,7 +92,37 @@ class PlaceFinderFirstViewController: UIViewController, UIPickerViewDataSource, 
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is PlaceFinderViewController
+        {
+            
 
+            let vc = segue.destination as? PlaceFinderViewController
+            vc?.currentLocationNodeID = currentLocationNodeID
+            vc?.destinationNodeID = destinationNodeID
+        }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if currentLocationNodeID == -1{
+            errorMessageLabel.isHidden = false
+            errorMessageLabel.text = "Current Location Not Found"
+            return false
+        }
+        
+        destinationNodeID = Constants.beaconsInfo.nodeID[destinationPickerView.selectedRow(inComponent: 0)]
+        if currentLocationNodeID == destinationNodeID{
+            errorMessageLabel.isHidden = false
+            errorMessageLabel.text = "You already arrivaled"
+            return false
+        }
+        errorMessageLabel.isHidden = true
+        return true
+    }
+
+    
 }
 extension PlaceFinderFirstViewController: CLLocationManagerDelegate{
     
@@ -91,8 +135,13 @@ extension PlaceFinderFirstViewController: CLLocationManagerDelegate{
     }
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         
+        
+        currentLocationNodeID = -1
+        currentLocationLabel.text = "Searching..."
+        
+        
         // Find the same beacons in the table.
-
+        
         for beacon in beacons {
             for row in 0..<items.count {
                 // TODO: Determine if item is equal to ranged beacon
@@ -104,8 +153,9 @@ extension PlaceFinderFirstViewController: CLLocationManagerDelegate{
         for item in items {
             switch item.beacon?.proximity{
             case .immediate?, .near?:
-                let i = Constants.BeaconsInfo.name.index(of: item.name)
-                currentLocationLabel.text = Constants.BeaconsInfo.nodeDescription[i!]
+                let i = Constants.beaconsInfo.name.index(of: item.name)
+                currentLocationLabel.text = Constants.beaconsInfo.nodeDescription[i!]
+                currentLocationNodeID = Constants.beaconsInfo.nodeID[i!]
                 default: break
                 }
             }

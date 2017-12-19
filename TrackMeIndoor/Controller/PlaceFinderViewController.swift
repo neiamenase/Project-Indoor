@@ -13,8 +13,12 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var pathDescription: UILabel!
     
     var floorPlan : UIImage = UIImage(named: "floorPlan")!
+    
+    var currentLocationNodeID = -1
+    var destinationNodeID = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +28,7 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
         imageView.image = DrawImage().drawFloorPlanLocation(startingImage: floorPlan)
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 6.0
+        pathDescription.text = "curr:\(currentLocationNodeID) dest:\(destinationNodeID)"
     }
 
     override func didReceiveMemoryWarning() {
