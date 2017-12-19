@@ -14,17 +14,17 @@ class SearchPath{
     
     // ID + nodeName
     static let nodeName =
-    [["1", "924B_Down_Entrance"],
-     ["2", "Central_right"],
-     ["3", "924A_Up_Entrance"],
-     ["4", "922_Entrance"],
-     ["5", "921_Entrance"],
-     ["6", "Central_Left"],
-     ["7", "Toilet"],
-     ["8", "904_Entrance"],
-     ["9", "913_left_Entrance"],
-     ["10", "901_Entrance"],
-     ["11", "913_right_Entrance"],
+    [["1",  "Rm 924B Entrance"],
+     ["2",  "Terrace Right Entrance"],
+     ["3",  "Rm 924A Entrance"],
+     ["4",  "Rm 922 Entrance"],
+     ["5",  "Rm 921 Entrance"],
+     ["6",  "Terrace Left Entrance"],
+     ["7",  "Toilet"],
+     ["8",  "Rm 904 Entrance"],
+     ["9",  "Rm 913 Left Entrance"],
+     ["10", "Rm 901 Entrance"],
+     ["11", "Rm 913 Right Entrance"],
      ["12", "Corridor"]]
     
     
