@@ -108,14 +108,45 @@ class DrawImage{
         
         // Get the current context
         let context = UIGraphicsGetCurrentContext()!
-        
+        context.setFillColor(UIColor.red.cgColor)
         
         for coordinates in SearchPath.coordinates{
-            context.setFillColor(UIColor.red.cgColor)
+            
             context.addEllipse(in: CGRect(x: coordinates[0]-2, y: coordinates[1]-2, width: 4, height: 4))
             context.drawPath(using: .fillStroke)
         }
         
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        // Return modified image
+        return newImage!
+    }
+    func drawFloorPlanPathLocation(startingImage: UIImage, path: [Int]) -> UIImage {
+        UIGraphicsBeginImageContext(startingImage.size)
+        
+        // Draw the starting image in the current context as background
+        startingImage.draw(at: CGPoint.zero)
+        print("width \(startingImage.size.width)   height \(startingImage.size.height)")
+        
+        // Get the current context
+        let context = UIGraphicsGetCurrentContext()!
+        context.setLineWidth(2.0)
+        context.setStrokeColor(UIColor.red.cgColor)
+        
+        let startPoint = CGPoint(x: SearchPath.coordinates[path[0]-1][0], y: SearchPath.coordinates[path[0]-1][1])
+  
+        context.move(to: CGPoint(x: startPoint.x, y: startPoint.y))
+        
+        for i in 1..<path.count{
+            let endPoint = CGPoint(x: SearchPath.coordinates[path[i]-1][0], y: SearchPath.coordinates[path[i]-1][1])
+            context.addLine(to: CGPoint(x: endPoint.x, y: endPoint.y))
+            
+           // print("start:\(path[i])  \(startPoint)  end:\(path[i+1])  \(endPoint)")
+            //context.addLines(between: [startPoint,endPoint])
+            
+        }
+        context.strokePath()
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         

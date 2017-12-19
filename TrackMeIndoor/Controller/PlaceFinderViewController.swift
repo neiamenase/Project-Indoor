@@ -25,13 +25,15 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
 
         // Do any additional setup after loading the view.
         
-        imageView.image = DrawImage().drawFloorPlanLocation(startingImage: floorPlan)
+        //imageView.image = DrawImage().drawFloorPlanLocation(startingImage: floorPlan)
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 6.0
         pathDescription.text = "curr:\(currentLocationNodeID) dest:\(destinationNodeID)"
         
         let (timeCost, path) = SearchPath.searchPath(currentLoctionNodeID: currentLocationNodeID, destinationNodeID: destinationNodeID, searchedNode: [currentLocationNodeID])
         print ("Finish -- time: \(timeCost) path:\(path)\n\n")
+        
+        imageView.image = DrawImage().drawFloorPlanPathLocation(startingImage: floorPlan, path: path)
         
     }
 
