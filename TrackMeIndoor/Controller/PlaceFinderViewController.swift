@@ -13,11 +13,15 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
+    
+    var floorPlan : UIImage = UIImage(named: "floorPlan")!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-
+        
+        imageView.image = DrawImage().drawFloorPlanLocation(startingImage: floorPlan)
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 6.0
     }

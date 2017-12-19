@@ -98,4 +98,28 @@ class DrawImage{
         // Return modified image
         return newImage!
     }
+    
+    func drawFloorPlanLocation(startingImage: UIImage) -> UIImage {
+        UIGraphicsBeginImageContext(startingImage.size)
+        
+        // Draw the starting image in the current context as background
+        startingImage.draw(at: CGPoint.zero)
+        print("width \(startingImage.size.width)   height \(startingImage.size.height)")
+        
+        // Get the current context
+        let context = UIGraphicsGetCurrentContext()!
+        
+        
+        for coordinates in FloorPlanCoordinates.coordinates{
+            context.setFillColor(UIColor.red.cgColor)
+            context.addEllipse(in: CGRect(x: coordinates[0]-2, y: coordinates[1]-2, width: 4, height: 4))
+            context.drawPath(using: .fillStroke)
+        }
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        // Return modified image
+        return newImage!
+    }
 }

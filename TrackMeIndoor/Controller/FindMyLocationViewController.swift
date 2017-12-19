@@ -132,8 +132,8 @@ extension FindMyLocationViewController: CLLocationManagerDelegate{
         let c = items.first(where: {$0.minorValue == UInt16(Constants.BeaconsInfo.minor[2])})
         let d = items.first(where: {$0.minorValue == UInt16(Constants.BeaconsInfo.minor[3])})
         if (a != nil && b != nil && c != nil && d != nil) {
-            return Coordinates((sqrt(Constants.u) + sqrt(b!.distance) - sqrt(d!.distance)) / 2 * Constants.u,
-                            (sqrt(Constants.v) + sqrt(a!.distance) - sqrt(c!.distance)) / 2 * Constants.v)
+            return Coordinates((pow(Double(Constants.u),2) + pow(Double(b!.distance),2) - pow(Double(d!.distance),2)) / 2 * Constants.u,
+                            (pow(Double(Constants.v),2) + pow(Double(a!.distance),2) - pow(Double(c!.distance),2)) / 2 * Constants.v)
 
         }else{
             return Coordinates(-10,-10)

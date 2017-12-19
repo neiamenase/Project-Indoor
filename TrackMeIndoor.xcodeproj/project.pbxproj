@@ -81,6 +81,7 @@
 				CA062ED61FE7F09900891387 /* Controller */,
 				CA062ED51FE7F07F00891387 /* Utility */,
 				183940571FD3ED5700F0DB12 /* AppDelegate.swift */,
+				CA062EDF1FE8A47600891387 /* Constants */,
 				1839405B1FD3ED5700F0DB12 /* Main.storyboard */,
 				1839405E1FD3ED5700F0DB12 /* Assets.xcassets */,
 				183940601FD3ED5700F0DB12 /* LaunchScreen.storyboard */,
@@ -95,8 +96,6 @@
 				CA062EB11FE671AA00891387 /* Item.swift */,
 				CA062EB31FE6CF8A00891387 /* DrawImage.swift */,
 				1803513B1FE6797D001A60B3 /* Coordinates.swift */,
-				18B015471FE67EEC00EF29F4 /* Constants.swift */,
-				CA062ED71FE8014000891387 /* FloorPlanCoordinates.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -114,6 +113,15 @@
 				183940691FD3FCC100F0DB12 /* Suggestion.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA062EDF1FE8A47600891387 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				18B015471FE67EEC00EF29F4 /* Constants.swift */,
+				CA062ED71FE8014000891387 /* FloorPlanCoordinates.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
