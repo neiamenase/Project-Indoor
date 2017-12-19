@@ -35,8 +35,11 @@ class PlaceFinderFirstViewController: UIViewController, UIPickerViewDataSource, 
         locationManager.delegate = self
         destinationPickerView.dataSource = self
         destinationPickerView.delegate = self
-
-        loadItems()
+        if items.isEmpty{
+            loadItems()
+            
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,11 +101,11 @@ class PlaceFinderFirstViewController: UIViewController, UIPickerViewDataSource, 
     {
         if segue.destination is PlaceFinderViewController
         {
-            
-
             let vc = segue.destination as? PlaceFinderViewController
             vc?.currentLocationNodeID = currentLocationNodeID
             vc?.destinationNodeID = destinationNodeID
+            vc?.locationManager = locationManager
+            vc?.items = items
         }
     }
     
@@ -153,7 +156,7 @@ extension PlaceFinderFirstViewController: CLLocationManagerDelegate{
         }
         for item in items {
             switch item.beacon?.proximity{
-            case .immediate?, .near?:
+            case .immediate?:
                 let i = Constants.beaconsInfo.name.index(of: item.name)
                 currentLocationLabel.text = Constants.beaconsInfo.nodeDescription[i!]
                 currentLocationNodeID = Constants.beaconsInfo.nodeID[i!]
