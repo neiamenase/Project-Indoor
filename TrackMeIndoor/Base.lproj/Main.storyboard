@@ -68,7 +68,7 @@
             </objects>
             <point key="canvasLocation" x="297.5" y="147.5"/>
         </scene>
-        <!--Place Finder First View Controller-->
+        <!--Find Path-->
         <scene sceneID="XIS-Ay-ewu">
             <objects>
                 <viewController id="fqz-JQ-Z2M" customClass="PlaceFinderFirstViewController" customModule="TrackMeIndoor" customModuleProvider="target" sceneMemberID="viewController">
@@ -121,7 +121,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" id="cDC-2i-WG3"/>
+                    <navigationItem key="navigationItem" title="Find Path" id="cDC-2i-WG3"/>
                     <connections>
                         <outlet property="currentLocationLabel" destination="s2o-Wy-Xb8" id="1uB-MO-ukt"/>
                         <outlet property="destinationPickerView" destination="6HK-ss-RIr" id="6Fs-hm-LIP"/>
@@ -141,10 +141,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" id="xmw-0o-mFQ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="450"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
                                 <subviews>
-                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="floorPlan" id="JF8-av-mtA">
-                                        <rect key="frame" x="0.0" y="-64" width="375" height="500"/>
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="floorPlanF9" id="JF8-av-mtA">
+                                        <rect key="frame" x="0.0" y="-4" width="375" height="340"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
@@ -152,30 +152,43 @@
                                     <outlet property="delegate" destination="VEO-a5-qWM" id="CvD-Wz-9NX"/>
                                 </connections>
                             </scrollView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You are in xxx now" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="QIh-gu-kNt">
-                                <rect key="frame" x="0.0" y="482" width="375" height="185"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You are in xxx now" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="c4x-jR-09T">
-                                <rect key="frame" x="0.0" y="449" width="375" height="32"/>
+                                <rect key="frame" x="0.0" y="408" width="375" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" id="PSf-o6-FXt">
+                                <rect key="frame" x="0.0" y="436" width="375" height="231"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" id="9Ho-nP-CXN"/>
+                    <navigationItem key="navigationItem" id="9Ho-nP-CXN">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" id="0AR-JN-Muj">
+                            <rect key="frame" x="157" y="7.5" width="61" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="F5"/>
+                                <segment title="F9"/>
+                            </segments>
+                            <connections>
+                                <action selector="floorChanged:" destination="VEO-a5-qWM" eventType="valueChanged" id="8oE-Qs-jT4"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
                     <connections>
+                        <outlet property="floorSegmentedControl" destination="0AR-JN-Muj" id="5nD-UK-1wa"/>
                         <outlet property="imageView" destination="JF8-av-mtA" id="db9-Ng-Ls0"/>
                         <outlet property="infoMessageLabel" destination="c4x-jR-09T" id="Ln1-vd-ePQ"/>
-                        <outlet property="pathDetailsLabel" destination="QIh-gu-kNt" id="Jyw-TJ-q6C"/>
+                        <outlet property="pathDescriptionTextView" destination="PSf-o6-FXt" id="aOq-ue-Izh"/>
                         <outlet property="scrollView" destination="xmw-0o-mFQ" id="3VZ-iE-Mkv"/>
                     </connections>
                 </viewController>
@@ -482,6 +495,6 @@
         <image name="FindFirends" width="119" height="176"/>
         <image name="FindMyLocation" width="1240" height="1036"/>
         <image name="FindSeat" width="150" height="150"/>
-        <image name="floorPlan" width="375" height="343"/>
+        <image name="floorPlanF9" width="768" height="704"/>
     </resources>
 </document>

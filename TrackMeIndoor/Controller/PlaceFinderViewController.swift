@@ -14,16 +14,20 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var infoMessageLabel: UILabel!
-    @IBOutlet weak var pathDetailsLabel: UILabel!
+    @IBOutlet weak var pathDescriptionTextView: UITextView!
+    @IBOutlet weak var floorSegmentedControl: UISegmentedControl!
     
-    var floorPlan : UIImage = UIImage(named: "floorPlanF9")!
-    
+
+    var floorPlan :[UIImage] = [UIImage(named: "floorPlanF5")!, UIImage(named: "floorPlanF9")!]
     var currentLocationNodeID = -1
     var destinationNodeID = -1
     var locationManager = CLLocationManager()
     var items = [Item]()
     var path = [Int]()
     var timeCost = 0
+    var startFloor = 0
+    var endFloor = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,35 +43,62 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
 
         (timeCost, path ) = SearchPath.search(currentLoctionNodeID: currentLocationNodeID, destinationNodeID: destinationNodeID,
                                             searchedPath: [currentLocationNodeID], costSoFar: 0, minCostSoFar: -1)
+        
         if !path.isEmpty {
             print ("Finish -- time: \(timeCost) path:\(path)\n\n")
-            
-            imageView.image = DrawImage().drawFloorPlanPathLocation(startingImage: floorPlan, path: path)
-            
-            pathDetailsLabel.text = ""
-            
-            var terraceEnterFlag : Int = 0
-            let actionWord = ["Enter", "Leave"]
-            for i in 1..<path.count-1{
-                if path.contains(2) && path.contains(6){
-                    if path[i] == 2 || path[i] == 6 {
-                        pathDetailsLabel.text = pathDetailsLabel.text! + "\t\(i). \(actionWord[terraceEnterFlag]) Terrace\n"
-                        terraceEnterFlag += 1
-                    }else{
-                        pathDetailsLabel.text = pathDetailsLabel.text! + "\t\(i). Pass through \(SearchPath.nodeName[path[i]-1][1])\n"
-                    }
-                }else{
-                    pathDetailsLabel.text = pathDetailsLabel.text! + "\t\(i). Pass through \(SearchPath.nodeName[path[i]-1][1])\n"
+
+            for i in 0..<SearchPath.nodeInfoOnEachFloor.nodeRange.count{
+                if path[0] >= SearchPath.nodeInfoOnEachFloor.nodeRange[i][0] && path[0] <= SearchPath.nodeInfoOnEachFloor.nodeRange[i][1]{
+                    startFloor = i
+                    floorSegmentedControl.selectedSegmentIndex = i
                 }
-                
+                if path[path.count-1] >= SearchPath.nodeInfoOnEachFloor.nodeRange[i][0] && path[path.count-1] <= SearchPath.nodeInfoOnEachFloor.nodeRange[i][1]{
+                    endFloor = i
+                }
             }
-            pathDetailsLabel.text = pathDetailsLabel.text! + "\t\(path.count-1). Arrival \(SearchPath.nodeName[path.last!-1][1])\n"
+            
+            if startFloor != endFloor{
+                let changeFloorAtIndex = path.index(of: SearchPath.nodeInfoOnEachFloor.nodeRange[endFloor][0])!
+                let firstPath = Array(path[0..<changeFloorAtIndex])
+                drawPath(floor: startFloor, path: firstPath)
+                let secondPath = Array(path[changeFloorAtIndex...])
+                drawPath(floor: endFloor, path: secondPath)
+            }else{
+                drawPath(floor: startFloor, path: path)
+            }
+            pathDescription()
+            imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]
+            
+            
         }
-        
 
         
     }
+    func drawPath(floor: Int, path: [Int]) -> Void{
+        floorPlan[floor] = DrawImage().drawFloorPlanPathLocation(startingImage: floorPlan[floor], path: path)
 
+    }
+    
+    func pathDescription() -> Void{
+        pathDescriptionTextView.text = ""
+        
+        var terraceEnterFlag : Int = 0
+        let actionWord = ["Enter", "Leave"]
+        for i in 1..<path.count-1{
+            if path.contains(2) && path.contains(6){
+                if path[i] == 2 || path[i] == 6 {
+                    pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(i). \(actionWord[terraceEnterFlag]) Terrace\n"
+                    terraceEnterFlag += 1
+                }else{
+                    pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(i). Pass through \(SearchPath.nodeName[path[i]-1][1])\n"
+                }
+            }else{
+                pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(i). Pass through \(SearchPath.nodeName[path[i]-1][1])\n"
+            }
+            
+        }
+        pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(path.count-1). Arrival \(SearchPath.nodeName[path.last!-1][1])\n"
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -86,7 +117,11 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func floorChanged(_ sender: UISegmentedControl) {
+        imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]
+        
+    }
+    
 }
 //
 //extension PlaceFinderViewController: CLLocationManagerDelegate{

@@ -12,6 +12,12 @@ import Foundation
 class SearchPath{
 
     
+    struct nodeInfoOnEachFloor {
+        static let nodeRange = [[14, 30], [1,13]]
+        static let floorName = [5,9]
+        static let floorChangedNodes = [14, 12]
+    }
+    
     // ID + nodeName
     static let nodeName =
     [["1",  "Rm 924B Entrance"],
@@ -25,7 +31,26 @@ class SearchPath{
      ["9",  "Rm 913 Left Entrance"],
      ["10", "Rm 901 Entrance"],
      ["11", "Rm 913 Right Entrance"],
-     ["12", "Corridor"]]
+     ["12", "F9 Lift Lobby"],
+     ["13", "Corridor"],
+     ["14",  "F5 Lift Lobby"],
+     ["15",  "Corridor"],
+     ["16",  "Rm 503 Entrance"],
+     ["17",  "Rm 504 Entrance"],
+     ["18",  "Rm 505 Entrance"],
+     ["19",  "Covered Terrace Entrance"],
+     ["20",  "Covered Treace"],
+     ["21",  "Covered Terrace Entrance"],
+     ["22",  "Foyer"],
+     ["23",  "Foyer Entrance"],
+     ["24",  "Corner"],
+     ["25",  "Stair Entrance"],
+     ["26",  "Foyer to Rm 508"],
+     ["27",  "Rm 508 Inner Left Entrance"],
+     ["28",  "Rm 508"],
+     ["29",  "Rm 508 Inner Right Entrance"],
+     ["30",  "Foyer to Rm 508"]]
+    
     
     
 //    static let coordinates = [[263,271],
@@ -42,7 +67,9 @@ class SearchPath{
 //                              [126,271],
 //                              ]
     
-    static let coordinates = [[536, 552], [536, 464], [536, 386], [536, 496], [260, 528], [260, 464], [260, 498], [260, 350], [260, 266], [260, 406], [536, 266], [260, 552]]
+    static let coordinates = [[536, 552], [536, 464], [536, 386], [536, 496], [260, 528], [260, 464], [260, 498], [260, 350], [260, 266], [260, 406], [536, 266], [260, 552], [398, 552],
+                              [278, 456], [423, 456], [571, 456], [571, 359], [571, 290], [278, 393], [278, 296], [278, 146], [423, 146], [535, 146], [535, 185], [571, 185],
+                              [341, 146], [341, 230], [423, 230], [505, 230], [505, 146]]
     //Connect - Relations
     
     // from node, to node, time cost
@@ -83,7 +110,7 @@ class SearchPath{
 //                            [11,3,60],
 //                            [12,1,137],
 //                            [12,5,12]]
-   static let connects = [[1, 4, 56], [1, 12, 274],
+   static let connects = [[1, 4, 56], [1, 13, 137],
                           [2, 3, 78], [2, 4, 32], [2, 6, 274],
                           [3, 2, 78], [3, 11, 120],
                           [4, 1, 56], [4, 2, 32],
@@ -93,7 +120,28 @@ class SearchPath{
                           [8, 9, 84], [8, 10, 56],
                           [9, 8, 84], [10, 6, 58],
                           [10, 8, 56], [11, 3, 120],
-                          [12, 1, 274], [12, 5, 24]]
+                          [12, 13, 137], [12, 5, 24],[12, 14, 200],
+                          [13, 1, 137], [13, 12, 137],
+                            [14, 12, 200],
+                            [14, 15, 148], [14, 19, 63],
+                            [15, 14, 148], [15, 16, 145],
+                            [16, 15, 145], [16, 17, 97],
+                            [17,16, 97], [17, 18, 69],
+                            [18, 17, 69], [18, 25, 105],
+                            [19, 14, 63], [19, 20, 97],
+                            [20, 19, 97], [20, 21, 150],
+                            [21, 20, 150], [21, 26, 63],
+                            [22, 21, 145], [22, 30, 82],
+                            [23, 22, 112], [23, 24, 39],
+                            [24,23, 39], [24, 25, 36],
+                            [25, 18, 105], [25, 24, 36],
+                            [26, 21, 63], [26, 22, 82], [26, 27, 84],
+                            [27, 26, 84], [27, 28, 82],
+                            [28, 27, 82], [28, 29, 82],
+                            [29, 28, 82], [29, 30, 84],
+                            [30, 22, 82], [30, 29, 84], [30, 23, 30]]
+    
+
 
     static var minPath = [Int]()
     static func search (currentLoctionNodeID: Int, destinationNodeID: Int, searchedPath: [Int], costSoFar: Int, minCostSoFar: Int) -> (Int, [Int]){

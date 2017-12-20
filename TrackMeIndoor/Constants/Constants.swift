@@ -42,14 +42,15 @@ class Constants{
 //    }
 //    
     struct beaconsInfo {
-        static let name = ["A", "B", "C", "D"]
-        static let minor = [58633, 59655, 53000, 47625]
-        static let color = [UIColor.green.cgColor, UIColor.yellow.cgColor, UIColor.red.cgColor, UIColor.orange.cgColor]
-        static let nodeID = [1,3,7,10]
-        static let nodeDescription = ["Room 924B","Room 924A","Toilet","Room 901"]
+        static let name = ["A", "B", "C", "D", "E", "F", "G", "H"]
+        static let minor = [58633, 59655, 53000, 47625, 1, 2, 3, 4]
+        static let color = [UIColor.green.cgColor, UIColor.yellow.cgColor, UIColor.red.cgColor, UIColor.orange.cgColor, UIColor.brown.cgColor]
+        static let nodeID = [1, 3, 7, 10, 14, 18, 22, 28]
+        static let nodeDescription = ["Room 924B","Room 924A","Toilet","Room 901", "F5 Lift Lobby","Room 505", "Foyer", "Room 508"]
         
     }
     
+
     
     static let findMyLocationCoordinate = [[u/2, 0.0], [0.0,v/2], [u/2,v], [u,v/2]]
 
