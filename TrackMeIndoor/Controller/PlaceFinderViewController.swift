@@ -16,7 +16,7 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var infoMessageLabel: UILabel!
     @IBOutlet weak var pathDetailsLabel: UILabel!
     
-    var floorPlan : UIImage = UIImage(named: "floorPlan")!
+    var floorPlan : UIImage = UIImage(named: "floorPlanF9")!
     
     var currentLocationNodeID = -1
     var destinationNodeID = -1
@@ -31,37 +31,40 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
         // Do any additional setup after loading the view.
        // locationManager.delegate = self
         
-        
-        
-        //imageView.image = DrawImage().drawFloorPlanLocation(startingImage: floorPlan)
+
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 6.0
         infoMessageLabel.text = "curr:\(currentLocationNodeID) dest:\(destinationNodeID)"
         
-        (timeCost, path) = SearchPath.searchPath(currentLoctionNodeID: currentLocationNodeID, destinationNodeID: destinationNodeID, searchedNode: [currentLocationNodeID])
-        path = path.reversed()
-        print ("Finish -- time: \(timeCost) path:\(path)\n\n")
-        
-        imageView.image = DrawImage().drawFloorPlanPathLocation(startingImage: floorPlan, path: path)
-        
-        pathDetailsLabel.text = ""
-        
-        var terraceEnterFlag : Int = 0
-        let actionWord = ["Enter", "Leave"]
-        for i in 1..<path.count-1{
-            if path.contains(2) && path.contains(6){
-                if path[i] == 2 || path[i] == 6 {
-                    pathDetailsLabel.text = pathDetailsLabel.text! + "\t\(i). \(actionWord[terraceEnterFlag]) Terrace\n"
-                    terraceEnterFlag += 1
+
+        (timeCost, path ) = SearchPath.search(currentLoctionNodeID: currentLocationNodeID, destinationNodeID: destinationNodeID,
+                                            searchedPath: [currentLocationNodeID], costSoFar: 0, minCostSoFar: -1)
+        if !path.isEmpty {
+            print ("Finish -- time: \(timeCost) path:\(path)\n\n")
+            
+            imageView.image = DrawImage().drawFloorPlanPathLocation(startingImage: floorPlan, path: path)
+            
+            pathDetailsLabel.text = ""
+            
+            var terraceEnterFlag : Int = 0
+            let actionWord = ["Enter", "Leave"]
+            for i in 1..<path.count-1{
+                if path.contains(2) && path.contains(6){
+                    if path[i] == 2 || path[i] == 6 {
+                        pathDetailsLabel.text = pathDetailsLabel.text! + "\t\(i). \(actionWord[terraceEnterFlag]) Terrace\n"
+                        terraceEnterFlag += 1
+                    }else{
+                        pathDetailsLabel.text = pathDetailsLabel.text! + "\t\(i). Pass through \(SearchPath.nodeName[path[i]-1][1])\n"
+                    }
                 }else{
                     pathDetailsLabel.text = pathDetailsLabel.text! + "\t\(i). Pass through \(SearchPath.nodeName[path[i]-1][1])\n"
                 }
-            }else{
-                pathDetailsLabel.text = pathDetailsLabel.text! + "\t\(i). Pass through \(SearchPath.nodeName[path[i]-1][1])\n"
+                
             }
-            
+            pathDetailsLabel.text = pathDetailsLabel.text! + "\t\(path.count-1). Arrival \(SearchPath.nodeName[path.last!-1][1])\n"
         }
-        pathDetailsLabel.text = pathDetailsLabel.text! + "\t\(path.count-1). Arrival \(SearchPath.nodeName[path.last!-1][1])\n"
+        
+
         
     }
 

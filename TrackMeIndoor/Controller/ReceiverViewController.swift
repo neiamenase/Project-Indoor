@@ -1,205 +1,124 @@
 //
 //  ReceiverViewController.swift
-//  iBeacon Demo
+//  TrackMeIndoor
 //
-//  Created by Darktt on 15/01/31.
-//  Copyright (c) 2015年 Darktt. All rights reserved.
+//  Created by Wing yan Tsui on 19/12/2017.
+//  Copyright © 2017 Team 22. All rights reserved.
 //
 
 import UIKit
 import CoreLocation
-import CoreBluetooth
 
-class ReceiverViewController: UIViewController
-{
-    @IBOutlet fileprivate weak var tableView: UITableView!
-    fileprivate weak var refreshControl: UIRefreshControl?
+class ReceiverViewController: UIViewController {
+
+    @IBOutlet weak var phoneBeaconInfoLabel: UILabel!
+    @IBOutlet weak var targetMinorTextField: UITextField!
+    @IBOutlet weak var receivedMessageLabel: UILabel!
+    @IBOutlet weak var startListenButton: UIButton!
     
-    fileprivate var beacons: [CLBeacon] = []
-    fileprivate var location: CLLocationManager?
+    let locationManager = CLLocationManager()
+    var startingListen = false
+    var items = [Item]()
     
-    override func viewWillAppear(_ animated: Bool)
-    {
-        super.viewWillAppear(animated)
-        
-        self.refreshControl!.beginRefreshing()
-        self.refreshBeacons(sender: self.refreshControl!)
-    }
-    
-    override func viewDidAppear(_ animated: Bool)
-    {
-        super.viewDidAppear(animated)
-        
-        self.setNeedsStatusBarAppearanceUpdate()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool)
-    {
-        super.viewDidDisappear(animated)
-        
-        self.refreshControl!.endRefreshing()
-    }
-    
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
         
-        //self.navigationController?.navigationBar.barTintColor = UIColor.iOS7BlueColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        phoneBeaconInfoLabel.text = "UUID: \(Constants.uuid) \n\nMajor: \(Constants.firendMajor)\n\nMinor:"
+        receivedMessageLabel.text = "~ Not Strat ~"
         
-        self.location = CLLocationManager()
-        self.location!.delegate = self
-        self.location!.requestAlwaysAuthorization()
-        
-       // let attributes: [String: AnyObject] = [NSForegroundColorAttributeName: UIColor.iOS7BlueColor()]
-//        let attributedTitle: NSAttributedString = NSAttributedString(string: "Receiving Beacon", attributes: attributes)
-        
-        let refreshControl: UIRefreshControl = UIRefreshControl()
-//        refreshControl.attributedTitle = attributedTitle
-        refreshControl.addTarget(self, action: #selector(ReceiverViewController.refreshBeacons), for: UIControlEvents.valueChanged)
-        
-        self.refreshControl = refreshControl
-        self.tableView.addSubview(refreshControl)
+         locationManager.delegate = self
     }
-    
-    deinit
-    {
-        self.location = nil
-    }
-    
-    override func didReceiveMemoryWarning()
-    {
+
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-}
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+        super.touchesBegan(touches, with: event)
+    }
+    func stopMonitoringItem(_ item: Item) {
+        let beaconRegion = item.asBeaconRegion()
+        locationManager.stopMonitoring(for: beaconRegion)
+        locationManager.stopRangingBeacons(in: beaconRegion)
+    }
+    
+    
+    func startMonitoringItem(_ item: Item) {
+        let beaconRegion = item.asBeaconRegion()
+        locationManager.startMonitoring(for: beaconRegion)
+        locationManager.startRangingBeacons(in: beaconRegion)
+    }
 
-// MARK: - Status Bar -
+    /*
+    // MARK: - Navigation
 
-extension ReceiverViewController
-{
-    override var preferredStatusBarStyle: UIStatusBarStyle
-    {
-        return .lightContent
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
-    
-    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation
-    {
-        return .none
-    }
-    
-    override var prefersStatusBarHidden: Bool
-    {
-        return false
-    }
-}
-
-// MARK: - Actions -
-
-extension ReceiverViewController
-{
-    @objc
-    fileprivate func refreshBeacons(sender: UIRefreshControl) -> Void
-    {
-        // This uuid must same as broadcaster.
-        let UUID: UUID = Constants.uuid
-        
-        let beaconRegion: CLBeaconRegion = CLBeaconRegion(proximityUUID: UUID, identifier: Constants.identifier)
-        
-        self.location!.startMonitoring(for: beaconRegion)
-    }
-    
-    //MARK: - Other Method
-    
-    private func notifiBluetoothOff()
-    {
-        let OKAction: UIAlertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        
-        let alert: UIAlertController = UIAlertController(title: "Bluetooth OFF", message: "Please power on your Bluetooth!", preferredStyle: .alert)
-        alert.addAction(OKAction)
-        
-        self.present(alert, animated: true, completion: nil)
-    }
-}
-// MARK: - UITableView DataSource Methods
-
-extension ReceiverViewController: UITableViewDataSource, UITableViewDelegate
-{
-    func numberOfSections(in tableView: UITableView) -> Int
-    {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        return self.beacons.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
-        let CellIdentifier: String = "CellIdentifier"
-        
-        var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: CellIdentifier)
-        if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: CellIdentifier)
+    */
+    @IBAction func startReceivingSignal(_ sender: Any) {
+        if !startingListen {
+            if (targetMinorTextField.text?.isEmpty)!{
+                return
+            }
+            let targetMinor = Int(targetMinorTextField.text!)!
+            if targetMinor > 0 && targetMinor < 65535 {
+                let item = Item(name: "phoneBeacon", icon: 0, uuid: Constants.uuid, majorValue: Constants.firendMajor, minorValue: targetMinor, distance: 0.0)
+                startMonitoringItem(item)
+                items.append(item)
+                receivedMessageLabel.text = "Recevior started"
+                startListenButton.setTitle("Stop Listen", for: UIControlState.normal)
+                startingListen = !startingListen
+            }
+        }else{
+            for item in items{
+                self.stopMonitoringItem(item)
+            }
+            items.removeAll()
+            receivedMessageLabel.text = "Recevior stopped"
+            startListenButton.setTitle("Start Listen", for: UIControlState.normal)
         }
         
-        let row: Int = indexPath.row
-        let beacon: CLBeacon = self.beacons[row]
-        let detailText: String = "Major: " + "\(beacon.major)" + "\tMinor: " + "\(beacon.minor)"
-        let beaconUUID: String = beacon.proximityUUID.uuidString
         
-        cell?.textLabel?.text = detailText
-        cell?.detailTextLabel?.text = beaconUUID
-        
-        return cell!
     }
     
-    //MARK: - UITableView Delegate Methods
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
 }
-
-//MARK: - CLocationManager Delegate Methods
-
-extension ReceiverViewController: CLLocationManagerDelegate
-{
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
-    {
-        guard status == .authorizedAlways else {
-            print("******** User not authorized !!!!")
-            return
+extension ReceiverViewController: CLLocationManagerDelegate{
+    
+    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
+        print("Failed monitoring region: \(error.localizedDescription)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Location manager failed: \(error.localizedDescription)")
+    }
+    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+        
+        // Find the same beacons in the table.
+        
+        
+        // var indexPaths = [IndexPath]()
+        for beacon in beacons {
+            print("minor: \(beacon.minor)")
+            for row in 0..<items.count {
+                // TODO: Determine if item is equal to ranged beacon
+                if items[row] == beacon {
+                    items[row].beacon = beacon
+                    print(items[row].name)
+                    print(beacon.minor)
+                }
+            }
         }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion)
-    {
-        manager.requestState(for: region)
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion)
-    {
-        if state == .inside {
-            manager.startRangingBeacons(in: region as! CLBeaconRegion)
-            return
+        
+        for item in items{
+            receivedMessageLabel.text = item.locationString()
         }
-        
-        manager.stopRangingBeacons(in: region as! CLBeaconRegion)
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion)
-    {
-        self.beacons = beacons
-        
-        print("\(self.beacons.first)")
-        
-        manager.stopRangingBeacons(in: region)
-        self.refreshControl?.endRefreshing()
-        
-        self.tableView.reloadData()
     }
 }
 

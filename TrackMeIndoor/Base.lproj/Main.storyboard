@@ -80,7 +80,7 @@
                                 <rect key="frame" x="0.0" y="585" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <state key="normal" title="Go~"/>
+                                <state key="normal" title="Comfirm"/>
                                 <connections>
                                     <segue destination="VEO-a5-qWM" kind="push" id="ors-sk-4q8"/>
                                 </connections>
@@ -360,33 +360,56 @@
             <point key="canvasLocation" x="1358.5" y="1104.5"/>
         </scene>
         <!--Receiver-->
-        <scene sceneID="NlP-Dt-a1h">
+        <scene sceneID="w9X-FT-6nx">
             <objects>
-                <tableViewController id="g0C-Ur-m4x" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="S7E-Jf-C6n">
+                <viewController id="Hcr-S4-ke6" customClass="ReceiverViewController" customModule="TrackMeIndoor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LW8-VW-tHC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="k9E-QF-arO">
+                                <rect key="frame" x="139" y="246" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="big-c0-zRd">
+                                <rect key="frame" x="0.0" y="93" width="375" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hts-i4-KQq">
+                                <rect key="frame" x="0.0" y="306" width="375" height="196"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ek0-Yr-xGa">
+                                <rect key="frame" x="0.0" y="555" width="375" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Start Listen"/>
+                                <connections>
+                                    <action selector="startReceivingSignal:" destination="Hcr-S4-ke6" eventType="touchUpInside" id="Zac-zs-Dp3"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="UHu-E8-vpQ">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UHu-E8-vpQ" id="AeI-en-SVg">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="g0C-Ur-m4x" id="bfo-iW-f1g"/>
-                            <outlet property="delegate" destination="g0C-Ur-m4x" id="pUf-co-AhG"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Receiver" id="v9Z-Vj-A5h"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="meI-d0-aL5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Receiver" id="xu1-vE-xUr"/>
+                    <connections>
+                        <outlet property="phoneBeaconInfoLabel" destination="big-c0-zRd" id="ePT-21-hkO"/>
+                        <outlet property="receivedMessageLabel" destination="Hts-i4-KQq" id="htN-r8-Dpe"/>
+                        <outlet property="startListenButton" destination="ek0-Yr-xGa" id="XHg-ar-soY"/>
+                        <outlet property="targetMinorTextField" destination="k9E-QF-arO" id="eA3-Fq-vV8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O3O-7b-F7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1358.75" y="1945.4166666666665"/>
+            <point key="canvasLocation" x="1347.5" y="1974.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Eow-9e-6ED">
@@ -446,7 +469,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="1pm-jm-sbP" kind="relationship" relationship="viewControllers" id="Vgi-GH-5Fs"/>
-                        <segue destination="g0C-Ur-m4x" kind="relationship" relationship="viewControllers" id="0hV-Yw-aUu"/>
+                        <segue destination="Hcr-S4-ke6" kind="relationship" relationship="viewControllers" id="Bfn-gE-JvH"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="27U-OO-sLh" userLabel="First Responder" sceneMemberID="firstResponder"/>

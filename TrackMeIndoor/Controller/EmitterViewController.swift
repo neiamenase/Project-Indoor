@@ -35,7 +35,7 @@ class EmitterViewController: UIViewController
         //self.view.backgroundColor = UIColor.iOS7WhiteColor()
         
 
-        let minor: CLBeaconMinorValue = CLBeaconMinorValue(arc4random() % 2 + 1)
+        let minor: CLBeaconMinorValue = CLBeaconMinorValue(arc4random() % 20 + 1)
         self.beacon = CLBeaconRegion(proximityUUID: Constants.uuid, major: CLBeaconMajorValue(Constants.firendMajor), minor: minor, identifier: Constants.identifier)
 
         self.peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
@@ -110,7 +110,7 @@ extension EmitterViewController
        // sender.setTitleColor(buttonTitleColor, for: UIControlState.normal)
         
         let labelTextFromStatus: () -> String = {
-            let text: String = (self.broadcasting) ? "~ Not Broadcast ~" : "~ Broadcasting... ~"
+            let text: String = (self.broadcasting) ? "Not Broadcast" : "Broadcasting..."
             
             return text
         }

@@ -28,19 +28,21 @@ class SearchPath{
      ["12", "Corridor"]]
     
     
-    static let coordinates = [[263,271],
-                              [263,227],
-                              [263,188],
-                              [263,243],
-                              [126,259],
-                              [126,227],
-                              [126,244],
-                              [126,170],
-                              [126,128],
-                              [126,198],
-                              [263,128],
-                              [126,271],
-                              ]
+//    static let coordinates = [[263,271],
+//                              [263,227],
+//                              [263,188],
+//                              [263,243],
+//                              [126,259],
+//                              [126,227],
+//                              [126,244],
+//                              [126,170],
+//                              [126,128],
+//                              [126,198],
+//                              [263,128],
+//                              [126,271],
+//                              ]
+    
+    static let coordinates = [[536, 552], [536, 464], [536, 386], [536, 496], [260, 528], [260, 464], [260, 498], [260, 350], [260, 266], [260, 406], [536, 266], [260, 552]]
     //Connect - Relations
     
     // from node, to node, time cost
@@ -57,69 +59,80 @@ class SearchPath{
 //                   [11,3,0],[12,1,0],
 //                   [12,5,0]]
     
-    static let connects = [[1,4,28],
-                           [1,12,137],
-                            [2,3,39] ,
-                            [2,4,16],
-                            [2,6,137],
-                            [3,2,39],
-                            [3,11,60],
-                            [4,1,28],
-                            [4,2,16],
-                            [5,7,15],
-                            [5,12,12],
-                            [6,2,137],
-                            [6,7,17],
-                            [6,10,29],
-                            [7,5,15],
-                            [7,6,17],
-                            [8,9,42],
-                            [8,10,28],
-                            [9,8,42],
-                            [10,6,29],
-                            [10,8,28],
-                            [11,3,60],
-                            [12,1,137],
-                            [12,5,12]]
-    
-    
-    static func searchPath (currentLoctionNodeID: Int, destinationNodeID: Int, searchedNode: [Int]) -> (Int, [Int]){
-        var minTimeCost = 1000
-        var minPath = [Int]()
+//    static let connects = [[1,4,28],
+//                           [1,12,137],
+//                            [2,3,39] ,
+//                            [2,4,16],
+//                            [2,6,137],
+//                            [3,2,39],
+//                            [3,11,60],
+//                            [4,1,28],
+//                            [4,2,16],
+//                            [5,7,15],
+//                            [5,12,12],
+//                            [6,2,137],
+//                            [6,7,17],
+//                            [6,10,29],
+//                            [7,5,15],
+//                            [7,6,17],
+//                            [8,9,42],
+//                            [8,10,28],
+//                            [9,8,42],
+//                            [10,6,29],
+//                            [10,8,28],
+//                            [11,3,60],
+//                            [12,1,137],
+//                            [12,5,12]]
+   static let connects = [[1, 4, 56], [1, 12, 274],
+                          [2, 3, 78], [2, 4, 32], [2, 6, 274],
+                          [3, 2, 78], [3, 11, 120],
+                          [4, 1, 56], [4, 2, 32],
+                          [5, 7, 30], [5, 12, 24],
+                          [6, 2, 274], [6, 7, 34], [6, 10, 58],
+                          [7, 5, 30], [7, 6, 34],
+                          [8, 9, 84], [8, 10, 56],
+                          [9, 8, 84], [10, 6, 58],
+                          [10, 8, 56], [11, 3, 120],
+                          [12, 1, 274], [12, 5, 24]]
+
+    static var minPath = [Int]()
+    static func search (currentLoctionNodeID: Int, destinationNodeID: Int, searchedPath: [Int], costSoFar: Int, minCostSoFar: Int) -> (Int, [Int]){
+        let nodes = connects.filter({$0[0] == currentLoctionNodeID})
+        var minCostSoFarV = minCostSoFar
         
-        var newSearchedPath = searchedNode
-
-        for connect in connects{
-            if connect[0] == currentLoctionNodeID {
-                
-                // continue if searched
-                if searchedNode.contains(connect[1]){
-                    continue
-                }
-                //print("\(connect) \(searchedNode)")
-                //return if match
-                if connect[1] == destinationNodeID{
-                 //   print("Match  -- start:\(currentLoctionNodeID) end:\(destinationNodeID) time cost: \(connect[2]) path:\(minPath)")
-                    return (connect[2], [connect[1], connect[0]])
+        
+       // print("Begin: searchedPath \(searchedPath) costSoFar: \(costSoFar) minCost:\(minCostSoFar)")
+        for node in nodes{
+            let costSoFarV = costSoFar + node[2]
+            if costSoFarV < minCostSoFarV || minCostSoFarV < 0{
+                var searchedPathV = searchedPath
+                if searchedPath.contains(node[1]){
+                    continue // Avoid re-loop
                 }
                 
-                //
-                newSearchedPath.append(connect[1])
-                let (tempTimeCost, tempPath ) = searchPath(currentLoctionNodeID: connect[1], destinationNodeID: destinationNodeID, searchedNode: newSearchedPath)
-                //print("Min  -- time cost: \(minTimeCost) path:\(minPath)")
-
-                if tempTimeCost < minTimeCost {
-                    minTimeCost = tempTimeCost + connect[2]
+                searchedPathV.append(node[1])
+                if destinationNodeID == node[1]{
+                    return (costSoFarV, searchedPathV) // Base case
+                }
+                let (minCost, tempPath ) = search(currentLoctionNodeID: node[1], destinationNodeID: destinationNodeID,
+                                                        searchedPath: searchedPathV, costSoFar: costSoFarV, minCostSoFar: minCostSoFarV)
+                
+                if (minCost < minCostSoFarV ){
+                    minCostSoFarV = minCost
                     minPath = tempPath
+                    //print("2: cost \(cost), minCost \(minCost) minCostSoFar \(minCostSoFarV) minPath:\(minPath) searched \(searchedPathV)")
+                }else if (minCost > 0 ){
+                    minCostSoFarV = minCost
+                    minPath = tempPath
+                    //print("1: cost \(cost), minCost \(minCost) minCostSoFar \(minCostSoFarV) minPath:\(minPath) searched \(searchedPathV)")
                 }
                 
-            }else if connect[0] > currentLoctionNodeID {
-                break
             }
         }
-        minPath.append(currentLoctionNodeID)
-        return (minTimeCost, minPath)
+        //print("3: minCostSoFar \(minCostSoFarV)  minPath \(minPath) nodes:\(nodes)")
+        return (minCostSoFarV, minPath)
     }
+    
 
    
 }

@@ -110,7 +110,7 @@ class DrawImage{
         let context = UIGraphicsGetCurrentContext()!
         context.setFillColor(color)
 
-        context.addEllipse(in: CGRect(x: x-3, y: y-3, width: 6, height: 6))
+        context.addEllipse(in: CGRect(x: x-5, y: y-5, width: 10, height: 10))
         context.drawPath(using: .fillStroke)
 
         
@@ -134,7 +134,7 @@ class DrawImage{
         
         // Get the current context
         let context = UIGraphicsGetCurrentContext()!
-        context.setLineWidth(2.0)
+        context.setLineWidth(5.0)
         context.setStrokeColor(UIColor.red.cgColor)
         
         startPoint = CGPoint(x: SearchPath.coordinates[path[0]-1][0], y: SearchPath.coordinates[path[0]-1][1])
