@@ -58,11 +58,21 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
             }
             
             if startFloor != endFloor{
-                let changeFloorAtIndex = path.index(of: SearchPath.nodeInfoOnEachFloor.nodeRange[endFloor][0])!
-                let firstPath = Array(path[0..<changeFloorAtIndex])
-                drawPath(floor: startFloor, path: firstPath)
-                let secondPath = Array(path[changeFloorAtIndex...])
-                drawPath(floor: endFloor, path: secondPath)
+                for liftNum in 0..<SearchPath.nodeInfoOnEachFloor.floorChangedNodes[0].count{
+                    let liftStartNode = path.index(of: SearchPath.nodeInfoOnEachFloor.floorChangedNodes[startFloor][liftNum])
+                    let liftEndNode = path.index(of: SearchPath.nodeInfoOnEachFloor.floorChangedNodes[endFloor][liftNum])
+                    if liftStartNode != nil && liftEndNode != nil{
+                        if liftStartNode == liftEndNode! - 1{
+                            let firstPath = Array(path[0..<liftEndNode!])
+                            drawPath(floor: startFloor, path: firstPath)
+                            let secondPath = Array(path[liftEndNode!...])
+                            drawPath(floor: endFloor, path: secondPath)
+                            break
+                        }
+                    }
+                }
+//                let changeFloorAtIndex = path.index(of: SearchPath.nodeInfoOnEachFloor.nodeRange[endFloor][0])!
+                
             }else{
                 drawPath(floor: startFloor, path: path)
             }

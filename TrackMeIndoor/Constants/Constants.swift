@@ -45,7 +45,7 @@ class Constants{
         static let name = ["A", "B", "C", "D", "E", "F", "G", "H"]
         static let minor = [58633, 59655, 53000, 47625, 1, 2, 3, 4]
         static let color = [UIColor.green.cgColor, UIColor.yellow.cgColor, UIColor.red.cgColor, UIColor.orange.cgColor, UIColor.brown.cgColor]
-        static let nodeID = [1, 3, 7, 10, 14, 18, 22, 28]
+        static let nodeID = [1, 3, 7, 10, 15, 19, 23, 29]
         static let nodeDescription = ["Room 924B","Room 924A","Toilet","Room 901", "F5 Lift Lobby","Room 505", "Foyer", "Room 508"]
         
     }
