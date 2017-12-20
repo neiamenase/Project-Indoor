@@ -15,7 +15,7 @@ class DrawImage{
         
         // Draw the starting image in the current context as background
         startingImage.draw(at: CGPoint.zero)
-        print("width \(startingImage.size.width)   height \(startingImage.size.height)")
+        //print("width \(startingImage.size.width)   height \(startingImage.size.height)")
         let ratio :Double = Double(startingImage.size.width / 10)
         
         // Get the current context
@@ -104,7 +104,7 @@ class DrawImage{
         
         // Draw the starting image in the current context as background
         startingImage.draw(at: CGPoint.zero)
-        print("width \(startingImage.size.width)   height \(startingImage.size.height)")
+        //print("width \(startingImage.size.width)   height \(startingImage.size.height)")
         
         // Get the current context
         let context = UIGraphicsGetCurrentContext()!
@@ -113,7 +113,6 @@ class DrawImage{
         context.addEllipse(in: CGRect(x: x-5, y: y-5, width: 10, height: 10))
         context.drawPath(using: .fillStroke)
 
-        
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
@@ -130,7 +129,7 @@ class DrawImage{
         
         // Draw the starting image in the current context as background
         startingImage.draw(at: CGPoint.zero)
-        print("width \(startingImage.size.width)   height \(startingImage.size.height)")
+        //print("width \(startingImage.size.width)   height \(startingImage.size.height)")
         
         // Get the current context
         let context = UIGraphicsGetCurrentContext()!

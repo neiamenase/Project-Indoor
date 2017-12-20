@@ -188,6 +188,15 @@ extension PlaceFinderViewController: CLLocationManagerDelegate{
             switch item.beacon?.proximity{
             case .immediate?:
                 let i = Constants.beaconsInfo.name.index(of: item.name)
+//                for j in 0 ..< SearchPath.nodeInfoOnEachFloor.nodeRange.count{
+//                    if SearchPath.nodeInfoOnEachFloor.nodeRange[j][0] <= i && SearchPath.nodeInfoOnEachFloor.nodeRange[j][1) >= Inti {
+//                        if j != floorSegmentedControl.selectedSegmentIndex {
+//                            floorSegmentedControl.selectedSegmentIndex = j
+//                        imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]
+//                        }
+//                    }
+//                }
+                
                 if Constants.beaconsInfo.nodeID[i!] == destinationNodeID{
                     infoMessageLabel.text = "Arrivaled \(Constants.beaconsInfo.nodeDescription[i!])"
                 }else if Constants.beaconsInfo.nodeID[i!] == currentLocationNodeID{

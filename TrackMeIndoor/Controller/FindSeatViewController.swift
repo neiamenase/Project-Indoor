@@ -9,10 +9,14 @@
 import UIKit
 import CoreMotion
 
-class FindSeatViewController: UIViewController {
+class FindSeatViewController: UIViewController,UIScrollViewDelegate {
     
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var startTrackingButton: UIButton!
+    @IBOutlet weak var stopTrackingButton: UIButton!
     
     var motionManager = CMMotionManager()
     var currentCoordinates = Coordinates(100,100)
@@ -23,6 +27,14 @@ class FindSeatViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+       // startTrackingButton
+        self.scrollView.minimumZoomScale = 1.0
+        self.scrollView.maximumZoomScale = 6.0
+        self.startTrackingButton.layer.borderWidth = 2
+        self.startTrackingButton.layer.borderColor = UIColor.blue.cgColor
+        self.stopTrackingButton.layer.borderWidth = 2
+        self.stopTrackingButton.layer.borderColor = UIColor.blue.cgColor
+        
 
     }
     
@@ -48,7 +60,9 @@ class FindSeatViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func viewForZooming(in scrollview: UIScrollView) -> UIView? {
+        return self.imageView
+    }
     /*
     // MARK: - Navigation
 
