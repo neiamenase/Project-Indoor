@@ -173,9 +173,10 @@
                     <navigationItem key="navigationItem" id="9Ho-nP-CXN">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" id="0AR-JN-Muj">
-                            <rect key="frame" x="157" y="7.5" width="61" height="29"/>
+                            <rect key="frame" x="140" y="7.5" width="95" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
+                                <segment title="GF"/>
                                 <segment title="F5"/>
                                 <segment title="F9"/>
                             </segments>

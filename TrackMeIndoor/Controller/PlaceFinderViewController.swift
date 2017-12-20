@@ -18,7 +18,7 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var floorSegmentedControl: UISegmentedControl!
     
 
-    var floorPlan :[UIImage] = [UIImage(named: "floorPlanF5")!, UIImage(named: "floorPlanF9")!]
+    var floorPlan :[UIImage] = [UIImage(named: "floorPlanGF")!,UIImage(named: "floorPlanF5")!, UIImage(named: "floorPlanF9")!]
     var currentLocationNodeID = -1
     var destinationNodeID = -1
     var locationManager = CLLocationManager()
@@ -81,8 +81,11 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
             
             
         }
-
-        
+//        for a in 32..<SearchPath.coordinates.count{
+//            print(SearchPath.coordinates[a])
+//        floorPlan[0] = DrawImage().drawPointOnFloorPlan(startingImage: floorPlan[0], x: SearchPath.coordinates[a][0], y: SearchPath.coordinates[a][1], color: UIColor.red.cgColor)
+//        }
+//        imageView.image = floorPlan[0]
     }
     func drawPath(floor: Int, path: [Int]) -> Void{
         floorPlan[floor] = DrawImage().drawFloorPlanPathLocation(startingImage: floorPlan[floor], path: path)
