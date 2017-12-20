@@ -246,7 +246,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="A: " textAlignment="natural" id="m2M-zL-8RS">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="A: " textAlignment="natural" id="m2M-zL-8RS">
                                 <rect key="frame" x="0.0" y="499" width="375" height="168"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -328,7 +328,7 @@
             </objects>
             <point key="canvasLocation" x="320.5" y="1107.5"/>
         </scene>
-        <!--Track Your Kids-->
+        <!--Track Others-->
         <scene sceneID="zjT-vI-0dw">
             <objects>
                 <viewController id="1pm-jm-sbP" customClass="EmitterViewController" customModule="TrackMeIndoor" customModuleProvider="target" sceneMemberID="viewController">
@@ -370,7 +370,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Boradcast" id="P1b-i3-9Sw"/>
-                    <navigationItem key="navigationItem" title="Track Your Kids" id="9WQ-hb-4KC"/>
+                    <navigationItem key="navigationItem" title="Track Others" id="9WQ-hb-4KC"/>
                     <connections>
                         <outlet property="beaconDetails" destination="hwt-1d-SD9" id="bKm-v6-9wi"/>
                         <outlet property="beaconPickerView" destination="FG5-83-ugr" id="BBH-6S-RzB"/>

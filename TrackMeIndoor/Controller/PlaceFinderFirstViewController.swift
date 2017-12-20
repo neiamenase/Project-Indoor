@@ -17,7 +17,7 @@ class PlaceFinderFirstViewController: UIViewController, UIPickerViewDataSource, 
     @IBOutlet weak var errorMessageLabel: UILabel!
     
     //let placeFinderFirstVC = PlaceFinderFirstViewController()
-    let locationManager = CLLocationManager()
+    let locationManagerPlaceFinder1 = CLLocationManager()
     var items = [Item]()
     var pickerDataSource = Constants.beaconsInfo.nodeDescription;
     
@@ -32,7 +32,7 @@ class PlaceFinderFirstViewController: UIViewController, UIPickerViewDataSource, 
         errorMessageLabel.isHidden = true
         
         
-        locationManager.delegate = self
+        locationManagerPlaceFinder1.delegate = self
         destinationPickerView.dataSource = self
         destinationPickerView.delegate = self
         if items.isEmpty{
@@ -68,15 +68,15 @@ class PlaceFinderFirstViewController: UIViewController, UIPickerViewDataSource, 
     // Moitoring iBeacon
     func stopMonitoringItem(_ item: Item) {
         let beaconRegion = item.asBeaconRegion()
-        locationManager.stopMonitoring(for: beaconRegion)
-        locationManager.stopRangingBeacons(in: beaconRegion)
+        locationManagerPlaceFinder1.stopMonitoring(for: beaconRegion)
+        locationManagerPlaceFinder1.stopRangingBeacons(in: beaconRegion)
     }
     
     
     func startMonitoringItem(_ item: Item) {
         let beaconRegion = item.asBeaconRegion()
-        locationManager.startMonitoring(for: beaconRegion)
-        locationManager.startRangingBeacons(in: beaconRegion)
+        locationManagerPlaceFinder1.startMonitoring(for: beaconRegion)
+        locationManagerPlaceFinder1.startRangingBeacons(in: beaconRegion)
     }
     
     func loadItems() {
@@ -104,8 +104,6 @@ class PlaceFinderFirstViewController: UIViewController, UIPickerViewDataSource, 
             let vc = segue.destination as? PlaceFinderViewController
             vc?.currentLocationNodeID = currentLocationNodeID
             vc?.destinationNodeID = destinationNodeID
-            vc?.locationManager = locationManager
-            vc?.items = items
         }
     }
     

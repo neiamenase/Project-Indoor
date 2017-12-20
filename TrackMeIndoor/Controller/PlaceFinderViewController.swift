@@ -33,7 +33,7 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-       // locationManager.delegate = self
+       locationManager.delegate = self
         
 
         self.scrollView.minimumZoomScale = 1.0
@@ -79,6 +79,10 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
             pathDescription()
             imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]
             
+            if items.isEmpty{
+                loadItems()
+                
+            }
             
         }
 //        for a in 32..<SearchPath.coordinates.count{
@@ -134,48 +138,70 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
         imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]
         
     }
+    // Moitoring iBeacon
+    func stopMonitoringItem(_ item: Item) {
+        let beaconRegion = item.asBeaconRegion()
+        locationManager.stopMonitoring(for: beaconRegion)
+        locationManager.stopRangingBeacons(in: beaconRegion)
+    }
     
+    
+    func startMonitoringItem(_ item: Item) {
+        let beaconRegion = item.asBeaconRegion()
+        locationManager.startMonitoring(for: beaconRegion)
+        locationManager.startRangingBeacons(in: beaconRegion)
+    }
+    
+    func loadItems() {
+        for i in 0..<Constants.beaconsInfo.name.count{
+            items.append(Item(name: Constants.beaconsInfo.name[i], icon: 0, uuid: Constants.uuid, majorValue: Constants.iBeaconMajor, minorValue: Constants.beaconsInfo.minor[i], distance: 0.0))
+        }
+        for item in items{
+            startMonitoringItem(item)
+        }
+    }
 }
 //
-//extension PlaceFinderViewController: CLLocationManagerDelegate{
-//
-//    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
-//        print("Failed monitoring region: \(error.localizedDescription)")
-//    }
-//
-//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-//        print("Location manager failed: \(error.localizedDescription)")
-//    }
-//    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-//
-//
-//        // Find the same beacons in the table.
-//
-//        for beacon in beacons {
-//            for row in 0..<items.count {
-//                // TODO: Determine if item is equal to ranged beacon
-//                if items[row] == beacon {
-//                    items[row].beacon = beacon
-//                }
-//            }
-//        }
-//        for item in items {
-//            switch item.beacon?.proximity{
-//            case .immediate?:
-//                let i = Constants.beaconsInfo.name.index(of: item.name)
-//                if Constants.beaconsInfo.nodeID[i!] == destinationNodeID{
-//                    infoMessageLabel.text = "Arrivaled \(Constants.beaconsInfo.nodeDescription[i!])"
-//                }else if Constants.beaconsInfo.nodeID[i!] == currentLocationNodeID{
-//                    continue
-//                }
-//                else if path.contains(Constants.beaconsInfo.nodeID[i!]) {
-//                    infoMessageLabel.text = "You are in \(Constants.beaconsInfo.nodeDescription[i!])"
-//                }else {
-//                    infoMessageLabel.text = "Wrong Direction! "
-//                }
-//            default: break
-//            }
-//        }
-//    }
-//}
-//
+extension PlaceFinderViewController: CLLocationManagerDelegate{
+
+    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
+        print("Failed monitoring region: \(error.localizedDescription)")
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Location manager failed: \(error.localizedDescription)")
+    }
+    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+
+
+        // Find the same beacons in the table.
+
+        for beacon in beacons {
+            for row in 0..<items.count {
+                // TODO: Determine if item is equal to ranged beacon
+                if items[row] == beacon {
+                    items[row].beacon = beacon
+                }
+            }
+        }
+        for item in items {
+            switch item.beacon?.proximity{
+            case .immediate?:
+                let i = Constants.beaconsInfo.name.index(of: item.name)
+                if Constants.beaconsInfo.nodeID[i!] == destinationNodeID{
+                    infoMessageLabel.text = "Arrivaled \(Constants.beaconsInfo.nodeDescription[i!])"
+                }else if Constants.beaconsInfo.nodeID[i!] == currentLocationNodeID{
+                    continue
+                }
+                else if path.contains(Constants.beaconsInfo.nodeID[i!]) {
+                    infoMessageLabel.text = "You are in \(Constants.beaconsInfo.nodeDescription[i!])"
+                }else {
+                    infoMessageLabel.text = "Wrong Direction! "
+                }
+            default: break
+            }
+        }
+    }
+}
+
+
