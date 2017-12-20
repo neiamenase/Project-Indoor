@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import CoreBluetooth
 
-class EmitterViewController: UIViewController
+class EmitterViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
 {
     fileprivate var broadcasting: Bool = false
     
@@ -19,7 +19,11 @@ class EmitterViewController: UIViewController
     
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var triggerButton: UIButton!
-    @IBOutlet weak var beaconDetails: UILabel!
+    @IBOutlet weak var beaconDetails: UITextView!
+    @IBOutlet weak var beaconPickerView: UIPickerView!
+    
+    var pickerDataSource = Constants.beaconsInfo.nodeDescription;
+   // var tabBarController: Int beaconID = 0
     
     override func viewDidAppear(_ animated: Bool)
     {
@@ -32,14 +36,11 @@ class EmitterViewController: UIViewController
     {
         super.viewDidLoad()
         
-        //self.view.backgroundColor = UIColor.iOS7WhiteColor()
+        beaconPickerView.dataSource = self
+        beaconPickerView.delegate = self
         
-
-        let minor: CLBeaconMinorValue = CLBeaconMinorValue(arc4random() % 20 + 1)
-        self.beacon = CLBeaconRegion(proximityUUID: Constants.uuid, major: CLBeaconMajorValue(Constants.firendMajor), minor: minor, identifier: Constants.identifier)
-
-        self.peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
-        beaconDetails.text = "UUID: \(Constants.uuid) \n\nMajor: \(Constants.firendMajor)\n\nMinor: \(minor)"
+        pickerDataSource.append("My Phone")
+        
     }
     
     deinit
@@ -52,6 +53,34 @@ class EmitterViewController: UIViewController
     {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // Picker View
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerDataSource.count;
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        return pickerDataSource[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+        let major: CLBeaconMajorValue, minor:CLBeaconMinorValue
+        if row < Constants.beaconsInfo.name.count {
+            major = CLBeaconMajorValue(Constants.iBeaconMajor)
+            minor = CLBeaconMinorValue(Constants.beaconsInfo.minor[row])
+        }else{
+            major = CLBeaconMajorValue(Constants.firendMajor)
+            minor = CLBeaconMinorValue(arc4random() % 20 + 1)
+        }
+        self.beacon = CLBeaconRegion(proximityUUID: Constants.uuid, major: major, minor: minor, identifier: Constants.identifier)
+        self.peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
+        beaconDetails.text = "UUID: \n\(Constants.uuid) \n\nMajor: \(major)\n\nMinor: \(minor)"
+        
     }
 }
 
