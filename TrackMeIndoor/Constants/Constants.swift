@@ -21,7 +21,7 @@ class Constants{
     static let uuid: UUID = UUID(uuidString: "B5b182c7-eab1-4988-aa99-b5c1517008d9")!
     static let iBeaconMajor: Int = 1
     static let firendMajor: Int = 2
-    static let identifier = "trackMeIndoor"
+    //static let identifier = "trackMeIndoor"
     
 //    struct BeaconA{
 //        static let name: String = "A"
@@ -42,11 +42,11 @@ class Constants{
 //    }
 //    
     struct beaconsInfo {
-        static let name = ["A", "B", "C", "D", "E", "F", "G", "H", "I","J","K",]
+        //static let nodeDescription = ["A", "B", "C", "D", "E", "F", "G", "H", "I","J","K",]
         static let minor = [58633, 59655, 53000, 47625, 1, 2, 3, 4, 5, 6, 7]
         static let color = [UIColor.green.cgColor, UIColor.yellow.cgColor, UIColor.red.cgColor, UIColor.orange.cgColor, UIColor.brown.cgColor]
         static let nodeID = [1, 3, 7, 10, 15, 19, 23, 29, 34, 37,39]
-        static let nodeDescription = ["Room 924B","Room 924A","Toilet","Room 901", "F5 Lift Lobby","Room 505", "Foyer", "Room 508","GF Entrance Lobby", "Car Park", "ERB 4F Entrance"]
+        static let name = ["Room 924B","Room 924A","Toilet","Room 901", "F5 Lift Lobby","Room 505", "Foyer", "Room 508","GF Entrance Lobby", "Car Park", "ERB 4F Entrance"]
         
     }
     

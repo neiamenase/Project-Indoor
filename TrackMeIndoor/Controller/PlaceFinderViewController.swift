@@ -198,12 +198,12 @@ extension PlaceFinderViewController: CLLocationManagerDelegate{
 //                }
                 
                 if Constants.beaconsInfo.nodeID[i!] == destinationNodeID{
-                    infoMessageLabel.text = "Arrivaled \(Constants.beaconsInfo.nodeDescription[i!])"
+                    infoMessageLabel.text = "Arrivaled \(Constants.beaconsInfo.name[i!])"
                 }else if Constants.beaconsInfo.nodeID[i!] == currentLocationNodeID{
                     continue
                 }
                 else if path.contains(Constants.beaconsInfo.nodeID[i!]) {
-                    infoMessageLabel.text = "You are in \(Constants.beaconsInfo.nodeDescription[i!])"
+                    infoMessageLabel.text = "You are in \(Constants.beaconsInfo.name[i!])"
                 }else {
                     infoMessageLabel.text = "Wrong Direction! "
                 }

@@ -15,8 +15,8 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     
-    @IBOutlet weak var startTrackingButton: UIButton!
-    @IBOutlet weak var stopTrackingButton: UIButton!
+    @IBOutlet weak var trackingButton: UIButton!
+
     
     var motionManager = CMMotionManager()
     var currentCoordinates = Coordinates(100,100)
@@ -30,10 +30,8 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
        // startTrackingButton
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 6.0
-        self.startTrackingButton.layer.borderWidth = 2
-        self.startTrackingButton.layer.borderColor = UIColor.blue.cgColor
-        self.stopTrackingButton.layer.borderWidth = 2
-        self.stopTrackingButton.layer.borderColor = UIColor.blue.cgColor
+        self.trackingButton.layer.borderWidth = 2
+        self.trackingButton.layer.borderColor = UIColor.blue.cgColor
         
 
     }

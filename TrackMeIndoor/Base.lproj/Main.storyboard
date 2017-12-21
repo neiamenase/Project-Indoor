@@ -328,8 +328,8 @@
                     <connections>
                         <outlet property="imageView" destination="YaB-Yt-RM8" id="i7a-dt-aRi"/>
                         <outlet property="scrollView" destination="Z9o-Zh-IJ7" id="CqT-4Q-cZG"/>
-                        <outlet property="startTrackingButton" destination="hWb-dN-REF" id="utM-jO-4tb"/>
                         <outlet property="statusLabel" destination="Bas-1D-4A2" id="7Zg-HQ-9Mn"/>
+                        <outlet property="trackingButton" destination="hWb-dN-REF" id="utM-jO-4tb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W0Z-b9-Uej" userLabel="First Responder" sceneMemberID="firstResponder"/>

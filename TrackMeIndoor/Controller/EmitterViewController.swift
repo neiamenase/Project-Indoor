@@ -22,7 +22,7 @@ class EmitterViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var beaconDetails: UITextView!
     @IBOutlet weak var beaconPickerView: UIPickerView!
     
-    var pickerDataSource = Constants.beaconsInfo.nodeDescription;
+    var pickerDataSource = Constants.beaconsInfo.name;
    // var tabBarController: Int beaconID = 0
     
     override func viewDidAppear(_ animated: Bool)
@@ -77,7 +77,7 @@ class EmitterViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             major = CLBeaconMajorValue(Constants.firendMajor)
             minor = CLBeaconMinorValue(arc4random() % 20 + 1)
         }
-        self.beacon = CLBeaconRegion(proximityUUID: Constants.uuid, major: major, minor: minor, identifier: Constants.identifier)
+        self.beacon = CLBeaconRegion(proximityUUID: Constants.uuid, major: major, minor: minor, identifier: pickerDataSource[row])
         self.peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
         beaconDetails.text = "UUID: \n\(Constants.uuid) \n\nMajor: \(major)\n\nMinor: \(minor)"
         

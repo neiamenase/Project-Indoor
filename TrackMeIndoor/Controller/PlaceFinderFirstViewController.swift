@@ -19,7 +19,7 @@ class PlaceFinderFirstViewController: UIViewController, UIPickerViewDataSource, 
     //let placeFinderFirstVC = PlaceFinderFirstViewController()
     let locationManagerPlaceFinder1 = CLLocationManager()
     var items = [Item]()
-    var pickerDataSource = Constants.beaconsInfo.nodeDescription;
+    var pickerDataSource = Constants.beaconsInfo.name;
     
     var currentLocationNodeID = -1
     var destinationNodeID = -1
@@ -62,7 +62,7 @@ class PlaceFinderFirstViewController: UIViewController, UIPickerViewDataSource, 
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         destinationNodeID = Constants.beaconsInfo.nodeID[row]
-        print("row:\(row) dest:\(Constants.beaconsInfo.nodeDescription[row]) id:\(Constants.beaconsInfo.nodeID[row])")
+        print("row:\(row) dest:\(Constants.beaconsInfo.name[row]) id:\(Constants.beaconsInfo.nodeID[row])")
     }
     
     // Moitoring iBeacon
@@ -156,7 +156,7 @@ extension PlaceFinderFirstViewController: CLLocationManagerDelegate{
             switch item.beacon?.proximity{
             case .immediate?:
                 let i = Constants.beaconsInfo.name.index(of: item.name)
-                currentLocationLabel.text = Constants.beaconsInfo.nodeDescription[i!]
+                currentLocationLabel.text = Constants.beaconsInfo.name[i!]
                 currentLocationNodeID = Constants.beaconsInfo.nodeID[i!]
                 default: break
                 }
