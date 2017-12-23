@@ -1,15 +1,17 @@
 //
-//  Suggestion.swift
+//  SuggestionTableViewCell.swift
 //  TrackMeIndoor
 //
-//  Created by apple on 3/12/2017.
+//  Created by Wing yan Tsui on 23/12/2017.
 //  Copyright © 2017 Team 22. All rights reserved.
 //
 
 import UIKit
 
-class Suggestion: UITableViewCell {
+class SuggestionTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var storeName: UILabel!
+    @IBOutlet weak var storeImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

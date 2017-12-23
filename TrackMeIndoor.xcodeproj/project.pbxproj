@@ -13,7 +13,6 @@
 		1839405D1FD3ED5700F0DB12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1839405B1FD3ED5700F0DB12 /* Main.storyboard */; };
 		1839405F1FD3ED5700F0DB12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1839405E1FD3ED5700F0DB12 /* Assets.xcassets */; };
 		183940621FD3ED5700F0DB12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183940601FD3ED5700F0DB12 /* LaunchScreen.storyboard */; };
-		1839406A1FD3FCC100F0DB12 /* Suggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183940691FD3FCC100F0DB12 /* Suggestion.swift */; };
 		18B015481FE67EEC00EF29F4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B015471FE67EEC00EF29F4 /* Constants.swift */; };
 		CA062EB01FE66B3200891387 /* FindMyLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EAF1FE66B3100891387 /* FindMyLocationViewController.swift */; };
 		CA062EB21FE671AA00891387 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EB11FE671AA00891387 /* Item.swift */; };
@@ -24,6 +23,9 @@
 		CA062EDA1FE8065100891387 /* PlaceFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062ED91FE8065100891387 /* PlaceFinderViewController.swift */; };
 		CA062EDE1FE828E400891387 /* PlaceFinderFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EDD1FE828E400891387 /* PlaceFinderFirstViewController.swift */; };
 		CAFA50421FE938570083C7E9 /* ReceiverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFA50411FE938570083C7E9 /* ReceiverViewController.swift */; };
+		CAFA50441FEE027A0083C7E9 /* SuggestionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFA50431FEE027A0083C7E9 /* SuggestionTableViewController.swift */; };
+		CAFA50461FEE02AA0083C7E9 /* SuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFA50451FEE02AA0083C7E9 /* SuggestionTableViewCell.swift */; };
+		CAFA50481FEE03B70083C7E9 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFA50471FEE03B70083C7E9 /* Store.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +37,6 @@
 		1839405E1FD3ED5700F0DB12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		183940611FD3ED5700F0DB12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		183940631FD3ED5700F0DB12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		183940691FD3FCC100F0DB12 /* Suggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suggestion.swift; sourceTree = "<group>"; };
 		18B015471FE67EEC00EF29F4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CA062EAF1FE66B3100891387 /* FindMyLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindMyLocationViewController.swift; sourceTree = "<group>"; };
 		CA062EB11FE671AA00891387 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -46,6 +47,9 @@
 		CA062ED91FE8065100891387 /* PlaceFinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFinderViewController.swift; sourceTree = "<group>"; };
 		CA062EDD1FE828E400891387 /* PlaceFinderFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFinderFirstViewController.swift; sourceTree = "<group>"; };
 		CAFA50411FE938570083C7E9 /* ReceiverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverViewController.swift; sourceTree = "<group>"; };
+		CAFA50431FEE027A0083C7E9 /* SuggestionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionTableViewController.swift; sourceTree = "<group>"; };
+		CAFA50451FEE02AA0083C7E9 /* SuggestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionTableViewCell.swift; sourceTree = "<group>"; };
+		CAFA50471FEE03B70083C7E9 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,7 @@
 				CA062EB11FE671AA00891387 /* Item.swift */,
 				CA062EB31FE6CF8A00891387 /* DrawImage.swift */,
 				1803513B1FE6797D001A60B3 /* Coordinates.swift */,
+				CAFA50471FEE03B70083C7E9 /* Store.swift */,
 				CA062ED71FE8014000891387 /* SearchPath.swift */,
 			);
 			path = Utility;
@@ -105,13 +110,14 @@
 			isa = PBXGroup;
 			children = (
 				183940591FD3ED5700F0DB12 /* ViewController.swift */,
+				CAFA50431FEE027A0083C7E9 /* SuggestionTableViewController.swift */,
+				CAFA50451FEE02AA0083C7E9 /* SuggestionTableViewCell.swift */,
 				CA062EAF1FE66B3100891387 /* FindMyLocationViewController.swift */,
 				CA062EBD1FE7B6B800891387 /* EmitterViewController.swift */,
 				CAFA50411FE938570083C7E9 /* ReceiverViewController.swift */,
 				CA062EDD1FE828E400891387 /* PlaceFinderFirstViewController.swift */,
 				CA062ED91FE8065100891387 /* PlaceFinderViewController.swift */,
 				CA062EB91FE7814E00891387 /* FindSeatViewController.swift */,
-				183940691FD3FCC100F0DB12 /* Suggestion.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -200,7 +206,10 @@
 			files = (
 				CA062EB21FE671AA00891387 /* Item.swift in Sources */,
 				CA062EBE1FE7B6B800891387 /* EmitterViewController.swift in Sources */,
+				CAFA50461FEE02AA0083C7E9 /* SuggestionTableViewCell.swift in Sources */,
+				CAFA50481FEE03B70083C7E9 /* Store.swift in Sources */,
 				CA062EB01FE66B3200891387 /* FindMyLocationViewController.swift in Sources */,
+				CAFA50441FEE027A0083C7E9 /* SuggestionTableViewController.swift in Sources */,
 				CAFA50421FE938570083C7E9 /* ReceiverViewController.swift in Sources */,
 				CA062EDE1FE828E400891387 /* PlaceFinderFirstViewController.swift in Sources */,
 				CA062EBA1FE7814E00891387 /* FindSeatViewController.swift in Sources */,
@@ -211,7 +220,6 @@
 				CA062EDA1FE8065100891387 /* PlaceFinderViewController.swift in Sources */,
 				CA062ED81FE8014000891387 /* SearchPath.swift in Sources */,
 				183940581FD3ED5700F0DB12 /* AppDelegate.swift in Sources */,
-				1839406A1FD3FCC100F0DB12 /* Suggestion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

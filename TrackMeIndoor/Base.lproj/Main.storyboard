@@ -202,16 +202,16 @@
             </objects>
             <point key="canvasLocation" x="1399.5" y="147.5"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Suggestion Table View Controller-->
         <scene sceneID="xnW-le-KCk">
             <objects>
-                <tableViewController id="zzU-Vn-rgA" sceneMemberID="viewController">
+                <tableViewController id="zzU-Vn-rgA" customClass="SuggestionTableViewController" customModule="TrackMeIndoor" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="XOK-Qz-E1g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="90" id="h8x-Fc-Cny">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="90" id="h8x-Fc-Cny" customClass="SuggestionTableViewCell" customModule="TrackMeIndoor" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h8x-Fc-Cny" id="4QG-WV-fc3">
@@ -231,6 +231,10 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="storeImage" destination="vzo-mF-eON" id="Rbq-2w-vG2"/>
+                                    <outlet property="storeName" destination="jIh-HA-4OF" id="zEr-Mh-a4N"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
