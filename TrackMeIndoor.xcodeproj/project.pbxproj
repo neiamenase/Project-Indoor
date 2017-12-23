@@ -13,6 +13,7 @@
 		1839405D1FD3ED5700F0DB12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1839405B1FD3ED5700F0DB12 /* Main.storyboard */; };
 		1839405F1FD3ED5700F0DB12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1839405E1FD3ED5700F0DB12 /* Assets.xcassets */; };
 		183940621FD3ED5700F0DB12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183940601FD3ED5700F0DB12 /* LaunchScreen.storyboard */; };
+		1866A8DF1FEE911400212E13 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866A8DE1FEE911400212E13 /* SettingViewController.swift */; };
 		18B015481FE67EEC00EF29F4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B015471FE67EEC00EF29F4 /* Constants.swift */; };
 		CA062EB01FE66B3200891387 /* FindMyLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EAF1FE66B3100891387 /* FindMyLocationViewController.swift */; };
 		CA062EB21FE671AA00891387 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EB11FE671AA00891387 /* Item.swift */; };
@@ -37,6 +38,7 @@
 		1839405E1FD3ED5700F0DB12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		183940611FD3ED5700F0DB12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		183940631FD3ED5700F0DB12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1866A8DE1FEE911400212E13 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		18B015471FE67EEC00EF29F4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CA062EAF1FE66B3100891387 /* FindMyLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindMyLocationViewController.swift; sourceTree = "<group>"; };
 		CA062EB11FE671AA00891387 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				CA062EDD1FE828E400891387 /* PlaceFinderFirstViewController.swift */,
 				CA062ED91FE8065100891387 /* PlaceFinderViewController.swift */,
 				CA062EB91FE7814E00891387 /* FindSeatViewController.swift */,
+				1866A8DE1FEE911400212E13 /* SettingViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				CAFA50461FEE02AA0083C7E9 /* SuggestionTableViewCell.swift in Sources */,
 				CAFA50481FEE03B70083C7E9 /* Store.swift in Sources */,
 				CA062EB01FE66B3200891387 /* FindMyLocationViewController.swift in Sources */,
+				1866A8DF1FEE911400212E13 /* SettingViewController.swift in Sources */,
 				CAFA50441FEE027A0083C7E9 /* SuggestionTableViewController.swift in Sources */,
 				CAFA50421FE938570083C7E9 /* ReceiverViewController.swift in Sources */,
 				CA062EDE1FE828E400891387 /* PlaceFinderFirstViewController.swift in Sources */,
