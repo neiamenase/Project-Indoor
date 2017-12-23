@@ -20,10 +20,10 @@ class SearchPath{
     
     // ID + nodeName
     static let nodeName =
-    [["1",  "Rm 924B Entrance"],
-     ["2",  "Terrace Right Entrance"],
-     ["3",  "Rm 924A Entrance"],
-     ["4",  "Rm 922 Entrance"],
+    [["1",  "Rm 924B Entrance", "restaurants"],
+     ["2",  "Terrace Right Entrance", "Entrance"],
+     ["3",  "Rm 924A Entrance", "Supermarket"],
+     ["4",  "Rm 922 Entrance", "clothes"],
      ["5",  "Rm 921 Entrance"],
      ["6",  "Terrace Left Entrance"],
      ["7",  "Toilet"],
