@@ -18,9 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="center" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" id="fb2-7Q-h07">
-                                <rect key="frame" x="16" y="192" width="158" height="125"/>
+                                <rect key="frame" x="16" y="178" width="158" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-7"/>
                                 <state key="normal" title="Find my Location" backgroundImage="FindMyLocation">
                                     <color key="titleColor" red="0.0" green="0.47934520244598389" blue="0.99908632040023804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -29,9 +30,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nDi-Ei-zZg">
-                                <rect key="frame" x="182" y="360" width="169" height="143"/>
+                                <rect key="frame" x="182" y="326" width="156" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-7"/>
                                 <state key="normal" title="Track Others" backgroundImage="FindFirends"/>
                                 <connections>
                                     <segue destination="bUH-w9-3Yi" kind="push" id="nia-9j-wV6"/>
@@ -41,6 +43,7 @@
                                 <rect key="frame" x="182" y="153" width="156" height="165"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-7"/>
                                 <state key="normal" title="Path Finder" backgroundImage="pathFinder">
                                     <color key="titleColor" red="0.0" green="0.4793452024" blue="0.99908632040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -49,9 +52,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ulj-p7-ZSM">
-                                <rect key="frame" x="16" y="360" width="158" height="143"/>
+                                <rect key="frame" x="16" y="325" width="158" height="144"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-7"/>
                                 <state key="normal" title="Find Seat" backgroundImage="FindSeat"/>
                                 <connections>
                                     <segue destination="XKA-hL-g6D" kind="push" id="oIg-h4-wkS"/>
@@ -64,10 +68,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aDh-ZX-O8F">
-                                <rect key="frame" x="44" y="568" width="102" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bOW-nH-fV8">
+                                <rect key="frame" x="182" y="477" width="156" height="135"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Suggestion"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-155"/>
+                                <state key="normal" title="Setting" backgroundImage="setting"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aDh-ZX-O8F">
+                                <rect key="frame" x="16" y="477" width="158" height="135"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-155"/>
+                                <state key="normal" title="Suggestion" backgroundImage="suggestion"/>
                                 <connections>
                                     <segue destination="zzU-Vn-rgA" kind="push" id="2Ap-Ov-5eC"/>
                                 </connections>
@@ -544,5 +555,7 @@
         <image name="RM924" width="361" height="463"/>
         <image name="floorPlanF9" width="768" height="704"/>
         <image name="pathFinder" width="256" height="256"/>
+        <image name="setting" width="256" height="256"/>
+        <image name="suggestion" width="1024" height="1024"/>
     </resources>
 </document>

@@ -8,8 +8,8 @@ class Constants{
     
     
     
-    static let u : Double = 2.0
-    static let v : Double = 2.0
+    static var u : Double = 2.0
+    static var v : Double = 2.0
     static let distanceUnit : Double = u/8
 
     
