@@ -52,10 +52,16 @@ class Constants{
     
 
     
+    static let filterType = ["All", "Restaurant", "Clothing", "Facility"]
+    
     static let findMyLocationCoordinate = [[u/2, 0.0], [0.0,v/2], [u/2,v], [u,v/2]]
 
     static let findSeatBeaconCoordinate = [[0.0, u/2], [v/2,0.0], [v,u/2], [v/2,u]]
-        
+    
+    
+    
+    
+    
     
 //    struct VU_Distance {
 //        var u: Double = 0.0
