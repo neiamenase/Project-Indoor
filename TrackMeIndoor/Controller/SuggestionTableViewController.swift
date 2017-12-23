@@ -12,6 +12,9 @@ class SuggestionTableViewController: UITableViewController {
 
     
     var stores = [Store]()
+    var filteredStores = [Store]()
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +27,16 @@ class SuggestionTableViewController: UITableViewController {
         
         loadStore()
         
+        // Setup the Search Controller
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Stores"
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+        } else {
+            // Fallback on earlier versions
+        }
+        definesPresentationContext = true
         
     }
     
@@ -34,7 +47,23 @@ class SuggestionTableViewController: UITableViewController {
         }
         
     }
-
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        // Returns true if the text is empty or nil
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        filteredStores = stores.filter({( store : Store) -> Bool in
+            return store.name.lowercased().contains(searchText.lowercased())
+        })
+        
+        tableView.reloadData()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -49,26 +78,40 @@ class SuggestionTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        
+        if isFiltering() {
+            return filteredStores.count
+        }
+        
         return stores.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "SuggestionTableViewCell"
+//        let cellIdentifier = "SuggestionTableViewCell"
+//
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SuggestionTableViewCell  else {
+//            fatalError("The dequeued cell is not an instance of SuggestionTableViewCell.")
+//        }
+//        let store  = stores[indexPath.row]
+//
+//        cell.storeName.text = store.name
+//        cell.storeImage.image = store.image
+//        cell.storeDetails.text = String(store.distance)
+//
+
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SuggestionTableViewCell  else {
-            fatalError("The dequeued cell is not an instance of SuggestionTableViewCell.")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SuggestionTableViewCell", for: indexPath)
+        let store: Store
+        if isFiltering() {
+            store = filteredStores[indexPath.row]
+        } else {
+            store = stores[indexPath.row]
         }
-        let store  = stores[indexPath.row]
-        
-        cell.storeName.text = store.name
-        cell.storeImage.image = store.image
-        cell.storeDetails.text = String(store.distance)
-        
-
-        // Configure the cell...
-
+        cell.textLabel!.text = store.name
+       // cell.detailTextLabel!.text = String(store.nodeID)
         return cell
+
     }
     
 
@@ -117,4 +160,11 @@ class SuggestionTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension SuggestionTableViewController: UISearchResultsUpdating {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController) {
+        // TODO
+    }
 }
