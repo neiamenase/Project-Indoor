@@ -12,6 +12,7 @@ class SuggestionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var storeName: UILabel!
     @IBOutlet weak var storeImage: UIImageView!
+    @IBOutlet weak var storeDetails: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

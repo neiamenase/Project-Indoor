@@ -10,6 +10,9 @@ import UIKit
 
 class SuggestionTableViewController: UITableViewController {
 
+    
+    var stores = [Store]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +21,18 @@ class SuggestionTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        loadStore()
+        
+        
+    }
+    
+    private func loadStore() {
+        for i in 0..<SearchPath.nodeName.count{
+            let store = Store(name: SearchPath.nodeName[i][1], image: UIImage(named: "Default"), nodeID: Int(SearchPath.nodeName[i][0])!, coordinates: Coordinates(Double(SearchPath.coordinates[i][0]), Double(SearchPath.coordinates[i][1])), distance: 0)
+            stores.append(store!)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,23 +44,33 @@ class SuggestionTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return stores.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cellIdentifier = "SuggestionTableViewCell"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SuggestionTableViewCell  else {
+            fatalError("The dequeued cell is not an instance of SuggestionTableViewCell.")
+        }
+        let store  = stores[indexPath.row]
+        
+        cell.storeName.text = store.name
+        cell.storeImage.image = store.image
+        cell.storeDetails.text = String(store.distance)
+        
 
         // Configure the cell...
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

@@ -37,6 +37,17 @@
                                     <segue destination="bUH-w9-3Yi" kind="push" id="nia-9j-wV6"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" id="1zn-m3-MZ0">
+                                <rect key="frame" x="182" y="153" width="156" height="165"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Path Finder" backgroundImage="pathFinder">
+                                    <color key="titleColor" red="0.0" green="0.4793452024" blue="0.99908632040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="fqz-JQ-Z2M" kind="push" id="fRT-Gd-q3Q"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ulj-p7-ZSM">
                                 <rect key="frame" x="16" y="360" width="158" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -53,15 +64,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" id="1zn-m3-MZ0">
-                                <rect key="frame" x="182" y="153" width="156" height="165"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aDh-ZX-O8F">
+                                <rect key="frame" x="44" y="568" width="102" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="Path Finder" backgroundImage="pathFinder">
-                                    <color key="titleColor" red="0.0" green="0.4793452024" blue="0.99908632040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                                <state key="normal" title="Suggestion"/>
                                 <connections>
-                                    <segue destination="fqz-JQ-Z2M" kind="push" id="fRT-Gd-q3Q"/>
+                                    <segue destination="zzU-Vn-rgA" kind="push" id="2Ap-Ov-5eC"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -211,7 +219,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="90" id="h8x-Fc-Cny" customClass="SuggestionTableViewCell" customModule="TrackMeIndoor" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SuggestionTableViewCell" rowHeight="90" id="h8x-Fc-Cny" customClass="SuggestionTableViewCell" customModule="TrackMeIndoor" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h8x-Fc-Cny" id="4QG-WV-fc3">
@@ -222,8 +230,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="89" height="89"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jIh-HA-4OF">
-                                            <rect key="frame" x="97" y="8" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jIh-HA-4OF">
+                                            <rect key="frame" x="97" y="8" width="278" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Details" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Oua-iR-gzK">
+                                            <rect key="frame" x="97" y="34" width="278" height="56"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -232,6 +247,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="storeDetails" destination="Oua-iR-gzK" id="Isk-hF-IzC"/>
                                     <outlet property="storeImage" destination="vzo-mF-eON" id="Rbq-2w-vG2"/>
                                     <outlet property="storeName" destination="jIh-HA-4OF" id="zEr-Mh-a4N"/>
                                 </connections>
@@ -242,10 +258,11 @@
                             <outlet property="delegate" destination="zzU-Vn-rgA" id="C8G-jg-MGs"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="M50-42-die"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1tr-ke-Elo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="412.5" y="-854.87166666666656"/>
+            <point key="canvasLocation" x="412.5" y="-855.5"/>
         </scene>
         <!--Find My Location-->
         <scene sceneID="eAA-zL-OLV">
