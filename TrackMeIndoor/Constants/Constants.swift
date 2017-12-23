@@ -50,8 +50,8 @@ class Constants{
         
     }
     
-
     
+    static let storeTypeImage = [UIImage(named:"Default"), UIImage(named:"Restaurant"), UIImage(named:"Clothing"), UIImage(named:"Facility")]
     static let filterType = ["All", "Restaurant", "Clothing", "Facility"]
     
     static let findMyLocationCoordinate = [[u/2, 0.0], [0.0,v/2], [u/2,v], [u,v/2]]

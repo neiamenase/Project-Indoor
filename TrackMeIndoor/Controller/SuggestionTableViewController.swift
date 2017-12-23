@@ -44,8 +44,9 @@ class SuggestionTableViewController: UITableViewController {
     }
     
     private func loadStore() {
+        
         for i in 0..<SearchPath.nodeName.count{
-            let store = Store(name: SearchPath.nodeName[i][1], image: UIImage(named: "Default"), nodeID: Int(SearchPath.nodeName[i][0])!, coordinates: Coordinates(Double(SearchPath.coordinates[i][0]), Double(SearchPath.coordinates[i][1])), distance: 0, category: SearchPath.nodeName[i][2])
+            let store = Store(name: SearchPath.nodeName[i][1], image: Constants.storeTypeImage[Constants.filterType.index(of: SearchPath.nodeName[i][2])!], nodeID: Int(SearchPath.nodeName[i][0])!, coordinates: Coordinates(Double(SearchPath.coordinates[i][0]), Double(SearchPath.coordinates[i][1])), distance: 0, category: SearchPath.nodeName[i][2])
             stores.append(store!)
         }
         
@@ -104,16 +105,29 @@ class SuggestionTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SuggestionTableViewCell", for: indexPath)
-        let store: Store
+        
+        let cellIdentifier = "SuggestionTableViewCell"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SuggestionTableViewCell  else {
+            fatalError("The dequeued cell is not an instance of SuggestionTableViewCell.")
+        }
+        
+        // Fetches the appropriate meal for the data source layout.
+        var store = stores[indexPath.row]
+        
         if isFiltering() {
             store = filteredStores[indexPath.row]
         } else {
             store = stores[indexPath.row]
         }
-        cell.textLabel!.text = store.name
-       // cell.detailTextLabel!.text = String(store.nodeID)
+        
+        cell.storeName.text = store.name
+        cell.storeImage.image = store.image
+       cell.storeDetails.text = store.category
+        
         return cell
+        
+
 
     }
     
@@ -162,7 +176,10 @@ class SuggestionTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+        super.touchesBegan(touches, with: event)
+    }
 }
 
 extension SuggestionTableViewController: UISearchResultsUpdating {
