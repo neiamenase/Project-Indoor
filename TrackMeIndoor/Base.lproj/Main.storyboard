@@ -74,7 +74,7 @@
                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-155"/>
                                 <state key="normal" title="Setting" backgroundImage="setting"/>
                                 <connections>
-                                    <segue destination="560-VR-ruf" kind="push" id="peM-AN-N2i"/>
+                                    <segue destination="cyB-Ge-bZF" kind="push" id="Zd0-dE-lTa"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aDh-ZX-O8F">
@@ -157,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gFH-LM-aUh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1059" y="148"/>
+            <point key="canvasLocation" x="1059" y="398"/>
         </scene>
         <!--Place Finder View Controller-->
         <scene sceneID="m07-l0-MBA">
@@ -222,7 +222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEd-Wy-nFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1664" y="148"/>
+            <point key="canvasLocation" x="1664" y="398"/>
         </scene>
         <!--Suggestion Table View Controller-->
         <scene sceneID="xnW-le-KCk">
@@ -296,7 +296,42 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1059" y="-680"/>
+            <point key="canvasLocation" x="1059" y="-360"/>
+        </scene>
+        <!--Setting-->
+        <scene sceneID="97g-kb-RPy">
+            <objects>
+                <viewController id="cyB-Ge-bZF" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OdB-Q8-IZ5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="5LY-EH-ses">
+                                <rect key="frame" x="16" y="173" width="245" height="151"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="Gjs-Nf-5gn">
+                                <rect key="frame" x="103" y="117" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="GUE-mr-xZe">
+                                <rect key="frame" x="281" y="233" width="49" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Setting" id="gY3-gW-KTe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SQY-wM-Om3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-589.5" y="1334.5"/>
         </scene>
         <!--Find My Location-->
         <scene sceneID="eAA-zL-OLV">
@@ -452,18 +487,6 @@
             </objects>
             <point key="canvasLocation" x="1664" y="1335"/>
         </scene>
-        <!--Setting-->
-        <scene sceneID="qKq-Ok-ZyV">
-            <objects>
-                <viewController id="560-VR-ruf" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Setting" id="KL3-51-vdf">
-                        <barButtonItem key="backBarButtonItem" title="43" id="nbr-FG-CmC"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bb3-MU-00P" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-575" y="1335"/>
-        </scene>
         <!--Receiver-->
         <scene sceneID="w9X-FT-6nx">
             <objects>
@@ -541,7 +564,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jnz-uz-P98" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1664" y="-681"/>
+            <point key="canvasLocation" x="1664" y="-361"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="APz-Vr-nLM">
