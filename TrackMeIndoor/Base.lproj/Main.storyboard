@@ -229,12 +229,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="YWg-vq-ipZ">
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="PR1-Cw-3xd">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
-                                <outlet property="delegate" destination="zzU-Vn-rgA" id="P1n-6b-lva"/>
+                                <outlet property="delegate" destination="zzU-Vn-rgA" id="s6U-h0-gcX"/>
                             </connections>
                         </searchBar>
                         <prototypes>
@@ -247,7 +247,7 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default" id="vzo-mF-eON">
                                             <rect key="frame" x="0.0" y="0.0" width="89" height="89"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jIh-HA-4OF">
                                             <rect key="frame" x="97" y="8" width="278" height="21"/>
@@ -272,24 +272,20 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="zzU-Vn-rgA" id="wVH-pU-Tcy"/>
-                            <outlet property="delegate" destination="zzU-Vn-rgA" id="C8G-jg-MGs"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="M50-42-die"/>
                     <connections>
-                        <outlet property="searchDisplayController" destination="cxk-7O-NXM" id="a8k-x3-0Nr"/>
+                        <outlet property="searchDisplayController" destination="00V-dx-Lsf" id="QvH-rw-4oQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1tr-ke-Elo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="cxk-7O-NXM">
+                <searchDisplayController id="00V-dx-Lsf">
                     <connections>
-                        <outlet property="delegate" destination="zzU-Vn-rgA" id="qXe-CK-mFP"/>
-                        <outlet property="searchBar" destination="YWg-vq-ipZ" id="QCd-Fv-5SD"/>
-                        <outlet property="searchContentsController" destination="zzU-Vn-rgA" id="Dj3-1f-jxd"/>
-                        <outlet property="searchResultsDataSource" destination="zzU-Vn-rgA" id="i3r-sJ-rTi"/>
-                        <outlet property="searchResultsDelegate" destination="zzU-Vn-rgA" id="JqW-bE-f2c"/>
+                        <outlet property="delegate" destination="zzU-Vn-rgA" id="oEH-vE-xV0"/>
+                        <outlet property="searchBar" destination="PR1-Cw-3xd" id="meQ-nK-L8W"/>
+                        <outlet property="searchContentsController" destination="zzU-Vn-rgA" id="Gmt-sF-0WJ"/>
+                        <outlet property="searchResultsDataSource" destination="zzU-Vn-rgA" id="wNI-e7-w2q"/>
+                        <outlet property="searchResultsDelegate" destination="zzU-Vn-rgA" id="JMe-em-L0F"/>
                     </connections>
                 </searchDisplayController>
             </objects>

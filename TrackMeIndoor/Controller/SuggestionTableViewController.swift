@@ -9,12 +9,16 @@
 import UIKit
 
 class SuggestionTableViewController: UITableViewController {
+    
+    
 
     
     var stores = [Store]()
     var filteredStores = [Store]()
     
     let searchController = UISearchController(searchResultsController: nil)
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,30 +30,31 @@ class SuggestionTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         loadStore()
+        filteredStores = stores
         
         // Setup the Search Controller
         searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Stores"
-        if #available(iOS 11.0, *) {
-            navigationItem.searchController = searchController
-        } else {
-            // Fallback on earlier versions
-        }
-        definesPresentationContext = true
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        tableView.tableHeaderView = searchController.searchBar
+        
+        searchController.searchBar.scopeButtonTitles = Constants.filterType
+        searchController.searchBar.delegate = self
         
     }
     
     private func loadStore() {
         for i in 0..<SearchPath.nodeName.count{
-            let store = Store(name: SearchPath.nodeName[i][1], image: UIImage(named: "Default"), nodeID: Int(SearchPath.nodeName[i][0])!, coordinates: Coordinates(Double(SearchPath.coordinates[i][0]), Double(SearchPath.coordinates[i][1])), distance: 0)
+            let store = Store(name: SearchPath.nodeName[i][1], image: UIImage(named: "Default"), nodeID: Int(SearchPath.nodeName[i][0])!, coordinates: Coordinates(Double(SearchPath.coordinates[i][0]), Double(SearchPath.coordinates[i][1])), distance: 0, category: SearchPath.nodeName[i][2])
             stores.append(store!)
         }
         
     }
     
     func isFiltering() -> Bool {
-        return searchController.isActive && !searchBarIsEmpty()
+        let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
+        return searchController.isActive && (!searchBarIsEmpty() || searchBarScopeIsFiltering)
+       
     }
     
     func searchBarIsEmpty() -> Bool {
@@ -57,13 +62,23 @@ class SuggestionTableViewController: UITableViewController {
         return searchController.searchBar.text?.isEmpty ?? true
     }
     
+    
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         filteredStores = stores.filter({( store : Store) -> Bool in
-            return store.name.lowercased().contains(searchText.lowercased())
+            let doesCategoryMatch = (scope == "All") || (store.category == scope)
+            
+            if searchBarIsEmpty() {
+                return doesCategoryMatch
+            } else {
+                return doesCategoryMatch && store.name.lowercased().contains(searchText.lowercased())
+            }
         })
-        
         tableView.reloadData()
     }
+    
+
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -88,18 +103,6 @@ class SuggestionTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cellIdentifier = "SuggestionTableViewCell"
-//
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SuggestionTableViewCell  else {
-//            fatalError("The dequeued cell is not an instance of SuggestionTableViewCell.")
-//        }
-//        let store  = stores[indexPath.row]
-//
-//        cell.storeName.text = store.name
-//        cell.storeImage.image = store.image
-//        cell.storeDetails.text = String(store.distance)
-//
-
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "SuggestionTableViewCell", for: indexPath)
         let store: Store
@@ -164,7 +167,19 @@ class SuggestionTableViewController: UITableViewController {
 
 extension SuggestionTableViewController: UISearchResultsUpdating {
     // MARK: - UISearchResultsUpdating Delegate
+
     func updateSearchResults(for searchController: UISearchController) {
-        // TODO
+        let searchBar = searchController.searchBar
+        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
+        filterContentForSearchText(searchController.searchBar.text!, scope: scope)
     }
 }
+
+
+extension SuggestionTableViewController: UISearchBarDelegate {
+    // MARK: - UISearchBar Delegate
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
+    }
+}
+
