@@ -15,7 +15,8 @@ class SettingViewController: UIViewController {
     @IBAction func barSaveButton(_ sender: Any) {
         Constants.v = acValue.text != nil ? Double(acValue.text!)!:2
         Constants.u = bdValue.text != nil ? Double(bdValue.text!)!:2
-        dismiss(animated: true, completion: nil)
+        _ = navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     
@@ -34,7 +35,8 @@ class SettingViewController: UIViewController {
     @IBAction func backToDefault(_ sender: Any) {
             Constants.u = 2
             Constants.v = 2
-            dismiss(animated: true, completion: nil)
+        _ = navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
     }
     
 
