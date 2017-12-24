@@ -444,19 +444,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWb-dN-REF">
-                                <rect key="frame" x="0.0" y="608" width="188" height="60"/>
+                                <rect key="frame" x="0.0" y="607" width="125" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Start Tracking"/>
                                 <connections>
-                                    <action selector="startTracking:" destination="XKA-hL-g6D" eventType="touchUpInside" id="zag-u8-8AB"/>
+                                    <action selector="trackingAction:" destination="XKA-hL-g6D" eventType="touchUpInside" id="zag-u8-8AB"/>
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z9o-Zh-IJ7">
-                                <rect key="frame" x="0.0" y="64" width="375" height="248"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="540"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="F9Terrace" translatesAutoresizingMaskIntoConstraints="NO" id="YaB-Yt-RM8">
-                                        <rect key="frame" x="8" y="8" width="351" height="232"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="F9Terrace" translatesAutoresizingMaskIntoConstraints="NO" id="YaB-Yt-RM8">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="530"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
@@ -465,9 +465,9 @@
                                 </connections>
                             </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Seat: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bas-1D-4A2">
-                                <rect key="frame" x="196" y="608" width="179" height="48"/>
+                                <rect key="frame" x="133" y="607" width="242" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -484,7 +484,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W0Z-b9-Uej" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="826" y="1176"/>
+            <point key="canvasLocation" x="825.5" y="1175.5"/>
         </scene>
         <!--Track Others-->
         <scene sceneID="zjT-vI-0dw">
@@ -725,7 +725,7 @@
     </scenes>
     <resources>
         <image name="Default" width="116" height="108"/>
-        <image name="F9Terrace" width="1410" height="291"/>
+        <image name="F9Terrace" width="291" height="1410"/>
         <image name="FindFirends" width="112" height="112"/>
         <image name="FindMyLocation" width="1240" height="1036"/>
         <image name="FindSeat" width="150" height="150"/>

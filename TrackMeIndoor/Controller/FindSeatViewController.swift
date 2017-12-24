@@ -21,6 +21,7 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
     var motionManager = CMMotionManager()
     var currentCoordinates = Coordinates(100,100)
     
+    var isTracking = false
     
 
     override func viewDidLoad() {
@@ -30,8 +31,7 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
        // startTrackingButton
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 6.0
-        self.trackingButton.layer.borderWidth = 2
-        self.trackingButton.layer.borderColor = UIColor.blue.cgColor
+        
         
 
     }
@@ -70,11 +70,23 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func startTracking(_ sender: Any) {
-        startTrackAccelerometer()
+    @IBAction func trackingAction(_ sender: Any) {
+        if !isTracking {
+            trackingButton.backgroundColor = self.view.tintColor
+            trackingButton.setTitleColor(UIColor.white, for: .normal)
+            trackingButton.setTitle("Stop Tracking", for: .normal)
+            startTrackAccelerometer()
+        }else{
+            trackingButton.backgroundColor = UIColor.white
+            trackingButton.setTitleColor(self.view.tintColor, for: .normal)
+            trackingButton.setTitle("Start Tracking", for: .normal)
+            stopTrackAccelerometer()
+        }
+        isTracking = !isTracking
+        
     }
     @IBAction func stopTracking(_ sender: Any) {
-        stopTrackAccelerometer()
+        
     }
 
 
