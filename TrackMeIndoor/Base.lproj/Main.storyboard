@@ -74,7 +74,7 @@
                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-155"/>
                                 <state key="normal" title="Setting" backgroundImage="setting"/>
                                 <connections>
-                                    <segue destination="560-VR-ruf" kind="push" id="peM-AN-N2i"/>
+                                    <segue destination="cyB-Ge-bZF" kind="push" id="Zd0-dE-lTa"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aDh-ZX-O8F">
@@ -157,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gFH-LM-aUh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1059" y="148"/>
+            <point key="canvasLocation" x="1059" y="398"/>
         </scene>
         <!--Place Finder View Controller-->
         <scene sceneID="m07-l0-MBA">
@@ -222,7 +222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEd-Wy-nFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1664" y="148"/>
+            <point key="canvasLocation" x="1664" y="398"/>
         </scene>
         <!--Suggestion Table View Controller-->
         <scene sceneID="xnW-le-KCk">
@@ -293,7 +293,71 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1059" y="-680"/>
+            <point key="canvasLocation" x="1059" y="-360"/>
+        </scene>
+        <!--Setting-->
+        <scene sceneID="97g-kb-RPy">
+            <objects>
+                <viewController id="cyB-Ge-bZF" customClass="SettingViewController" customModule="TrackMeIndoor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OdB-Q8-IZ5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="uvValue" id="5LY-EH-ses">
+                                <rect key="frame" x="52" y="113" width="248" height="217"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" id="Gjs-Nf-5gn">
+                                <rect key="frame" x="105" y="206" width="42" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Distance of AC and BD in Meter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1qi-5p-chr">
+                                <rect key="frame" x="52" y="84" width="248" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" id="Trf-4M-TGn">
+                                <rect key="frame" x="154" y="164" width="45" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aCL-P6-Z4V">
+                                <rect key="frame" x="89" y="338" width="175" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0082122795283794403" green="0.66813409328460693" blue="0.99641591310501099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Back to Default Setting">
+                                    <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="backToDefault:" destination="cyB-Ge-bZF" eventType="touchUpInside" id="vpX-N6-dpF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Setting" id="gY3-gW-KTe">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="IdL-7j-ktv">
+                            <connections>
+                                <action selector="barSaveButton:" destination="cyB-Ge-bZF" id="YNt-6b-O0l"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="acValue" destination="Trf-4M-TGn" id="kCo-hi-dDa"/>
+                        <outlet property="backToDefault" destination="aCL-P6-Z4V" id="aV8-zL-dl2"/>
+                        <outlet property="bdValue" destination="Gjs-Nf-5gn" id="McC-9K-1T4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SQY-wM-Om3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-589.5" y="1334.5"/>
         </scene>
         <!--Find My Location-->
         <scene sceneID="eAA-zL-OLV">
@@ -448,18 +512,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h6S-Rb-Ivu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1664" y="1335"/>
-        </scene>
-        <!--Setting-->
-        <scene sceneID="qKq-Ok-ZyV">
-            <objects>
-                <viewController id="560-VR-ruf" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Setting" id="KL3-51-vdf">
-                        <barButtonItem key="backBarButtonItem" title="43" id="nbr-FG-CmC"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bb3-MU-00P" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-575" y="1335"/>
         </scene>
         <!--Receiver-->
         <scene sceneID="w9X-FT-6nx">
@@ -620,5 +672,6 @@
         <image name="pathFinder" width="256" height="256"/>
         <image name="setting" width="256" height="256"/>
         <image name="suggestion" width="1024" height="1024"/>
+        <image name="uvValue" width="639" height="642"/>
     </resources>
 </document>
