@@ -633,7 +633,7 @@
                                 <rect key="frame" x="330" y="69" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
-                                <state key="normal" image="goImage"/>
+                                <state key="normal" image="goButton"/>
                                 <connections>
                                     <action selector="planPath:" destination="ecH-JF-ar5" eventType="touchUpInside" id="0BI-6s-boe"/>
                                 </connections>
@@ -715,12 +715,12 @@
     </scenes>
     <resources>
         <image name="Default" width="116" height="108"/>
-        <image name="F9Terrace" width="1443" height="321"/>
+        <image name="F9Terrace" width="1410" height="291"/>
         <image name="FindFirends" width="112" height="112"/>
         <image name="FindMyLocation" width="1240" height="1036"/>
         <image name="FindSeat" width="150" height="150"/>
         <image name="floorPlanF9" width="768" height="704"/>
-        <image name="goImage" width="60" height="60"/>
+        <image name="goButton" width="60" height="60"/>
         <image name="pathFinder" width="256" height="256"/>
         <image name="setting" width="256" height="256"/>
         <image name="suggestion" width="1024" height="1024"/>
