@@ -68,8 +68,10 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
             let alert = UIAlertController(title: "Current Location Not Found", message: "Please try again", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-            return
-        }else{
+            
+            currentLocationNodeID = 39
+//            return
+//        }else{
             (timeCost, path ) = SearchPath.search(currentLoctionNodeID: currentLocationNodeID, destinationNodeID: destinationNodeID,
                                                   searchedPath: [currentLocationNodeID], costSoFar: 0, minCostSoFar: -1)
             
