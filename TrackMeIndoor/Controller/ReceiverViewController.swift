@@ -26,7 +26,7 @@ class ReceiverViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         phoneBeaconInfoLabel.text = "UUID: \(Constants.uuid) \n\nMajor: \(Constants.firendMajor)\n\nMinor:"
-        receivedMessageLabel.text = "~ Not Strat ~"
+        receivedMessageLabel.text = "Not Strat"
         
          locationManager.delegate = self
     }

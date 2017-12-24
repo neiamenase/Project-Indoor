@@ -185,7 +185,7 @@ extension EmitterViewController
             
             // Why NSMutableDictionary can not convert to Dictionary<String, Any> 😂
             var peripheralData: Dictionary<String, Any> = self.beacon!.peripheralData(withMeasuredPower: 1)  as NSDictionary as! Dictionary<String, Any>
-            peripheralData[CBAdvertisementDataLocalNameKey] = "iBeacon Demo"
+            peripheralData[CBAdvertisementDataLocalNameKey] = "iBeacon"
             peripheralData[CBAdvertisementDataServiceUUIDsKey] = serviceUUIDs
             
             self.peripheralManager!.startAdvertising(peripheralData)
