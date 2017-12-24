@@ -40,7 +40,10 @@ class Constants{
 //        static let name: String = "D"
 //        static let minor: Int = 47625
 //    }
-//    
+//
+    
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let SettingArchiveURL = DocumentsDirectory.appendingPathComponent("setting")
     struct beaconsInfo {
         //static let nodeDescription = ["A", "B", "C", "D", "E", "F", "G", "H", "I","J","K",]
         static let minor = [58633, 59655, 53000, 47625, 1, 2, 3, 4, 5, 6, 7]
