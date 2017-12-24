@@ -51,6 +51,7 @@ class Constants{
     
     enum NodeType : String {
         case Restaurant, Facility, Clothing, None
+        static let allValues = [Restaurant, Facility, Clothing]
     }
     
     
