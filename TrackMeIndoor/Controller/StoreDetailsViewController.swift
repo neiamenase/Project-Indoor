@@ -64,18 +64,20 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func planPath(_ sender: Any) {
+        floorPlan = Constants.floorPlanImage
         if currentLocationNodeID == -1{
             let alert = UIAlertController(title: "Current Location Not Found", message: "Please try again", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             
             currentLocationNodeID = 39
+        }
 //            return
 //        }else{
             (timeCost, path ) = SearchPath.search(currentLoctionNodeID: currentLocationNodeID, destinationNodeID: destinationNodeID,
                                                   searchedPath: [currentLocationNodeID], costSoFar: 0, minCostSoFar: -1)
             
-        }
+//        }
         if !path.isEmpty {
             print ("Finish -- time: \(timeCost) path:\(path)\n\n")
             
