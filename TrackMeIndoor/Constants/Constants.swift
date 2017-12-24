@@ -3,10 +3,10 @@ import UIKit
 
 class Constants{
     
-    static let counter : Int = 8
+    //static let counter : Int = 8
     static var u : Double = 2.0
     static var v : Double = 2.0
-    static let distanceUnit : Double = u/8
+    static let distanceUnit : Double = 0.5
 
     
     //     a
@@ -103,7 +103,7 @@ class Constants{
     static let floorPlanIndex = [0,5,9]
     
     
-    static let findMyLocationCoordinate = [[u/2, 0.0], [0.0,v/2], [u/2,v], [u,v/2]]
+    
 
     static let findSeatBeaconCoordinate = [[0.0, u/2], [v/2,0.0], [v,u/2], [v/2,u]]
     

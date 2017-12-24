@@ -66,7 +66,7 @@ class FindMyLocationViewController: UIViewController , UIScrollViewDelegate {
     }
 
     func loadItems() {
-        for i in 0..<Constants.beaconsInfo.name.count {
+        for i in 0..<4 {
         items.append(Item(name: Constants.beaconsInfo.name[i], icon: 0, uuid: Constants.uuid, majorValue: Constants.iBeaconMajor, minorValue: Constants.beaconsInfo.minor[i], distance: 0.0))
         }
         
@@ -94,27 +94,28 @@ extension FindMyLocationViewController: CLLocationManagerDelegate{
         
        // var indexPaths = [IndexPath]()
         for beacon in beacons {
-            print("minor: \(beacon.minor)")
             for row in 0..<items.count {
                 // TODO: Determine if item is equal to ranged beacon
                 if items[row] == beacon {
+                    
                     items[row].beacon = beacon
-                    //items[row].distance = beacon.accuracy
                     items[row].distance = (items[row].distance * Double(items[row].count) + beacon.accuracy) / (Double(items[row].count) + 1)
                     items[row].count += 1
-                   // indexPaths += [IndexPath(row: row, section: 0)]
+
                     count += 1
                 }
             }
         }
         
-        if count == Constants.counter{
+        if count == 8{
+            
             count = 0
             let coordinate = getCoordinate(items)
             testText.text = "x:\(String(format: "%.2f",coordinate!.x))   y:\(String(format: "%.2f",coordinate!.y))\n"
             floorPlanImageView.image = DrawImage().drawMyLocation(startingImage: floorPlan, x: coordinate!.x, y: coordinate!.y)
             displayMessage.text = " "
             for item in items {
+                print("minor: \(item.minorValue), name: \(item.name), distance: \(item.distance)")
                 item.distance = 0.0
                 item.count = 0
                 
@@ -123,12 +124,12 @@ extension FindMyLocationViewController: CLLocationManagerDelegate{
                 switch item.beacon?.proximity{
                 case .immediate?:
                     displayMessage.text = "You are in Location \(item.name)"
-                    floorPlanImageView.image = DrawImage().drawMyLocationImmediate(startingImage: floorPlan, minor: Int(item.minorValue))
-                    //print ("\(item.name)  \(item.minorValue)")
                 default: break
                     
                 }
             }
+            
+
         }
     }
     
@@ -138,8 +139,8 @@ extension FindMyLocationViewController: CLLocationManagerDelegate{
         let c = items.first(where: {$0.minorValue == UInt16(Constants.beaconsInfo.minor[2])})
         let d = items.first(where: {$0.minorValue == UInt16(Constants.beaconsInfo.minor[3])})
         if (a != nil && b != nil && c != nil && d != nil) {
-            return Coordinates((pow(Double(Constants.u),2) + pow(Double(b!.distance),2) - pow(Double(d!.distance),2)) / 2 * Constants.u,
-                            (pow(Double(Constants.v),2) + pow(Double(a!.distance),2) - pow(Double(c!.distance),2)) / 2 * Constants.v)
+            return Coordinates((pow(Double(Constants.u),2) + pow(Double(b!.distance),2) - pow(Double(d!.distance),2)) / (2 * Constants.u),
+                            (pow(Double(Constants.v),2) + pow(Double(c!.distance),2) - pow(Double(a!.distance),2)) / (2 * Constants.v))
 
         }else{
             return Coordinates(-10,-10)
