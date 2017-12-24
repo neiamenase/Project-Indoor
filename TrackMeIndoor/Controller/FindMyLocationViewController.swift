@@ -9,8 +9,9 @@
 import UIKit
 import CoreLocation
 
-class FindMyLocationViewController: UIViewController {
-
+class FindMyLocationViewController: UIViewController , UIScrollViewDelegate {
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var testText: UITextView!
     @IBOutlet weak var floorPlanImageView: UIImageView!
     @IBOutlet weak var displayMessage: UILabel!
@@ -26,7 +27,8 @@ class FindMyLocationViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         
-        
+        self.scrollView.minimumZoomScale = 1.0
+        self.scrollView.maximumZoomScale = 6.0
         
         locationManager.delegate = self
         loadItems()
@@ -44,6 +46,10 @@ class FindMyLocationViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func viewForZooming(in scrollview: UIScrollView) -> UIView? {
+        return self.floorPlanImageView
     }
     
     func stopMonitoringItem(_ item: Item) {
