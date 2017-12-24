@@ -49,10 +49,54 @@ class Constants{
         static let name = ["Room 924B","Room 924A","Toilet","Room 901", "F5 Lift Lobby","Room 505", "Foyer", "Room 508","GF Entrance Lobby", "Car Park", "ERB 4F Entrance"]
         
     }
-    
+    //0:nodeID, 1:name, 2:category, 3: floor, 4:key feature point
+    static let storesDB =
+        [["1",  "Rm 924B Entrance", "Restaurant","9", "1"],
+         ["2",  "Terrace Right Entrance", "Facility","9", "1"],
+         ["3",  "Rm 924A Entrance", "Restaurant","9", "1"],
+         ["4",  "Rm 922 Entrance", "Clothing","9", "1"],
+         ["5",  "Rm 921 Entrance", "Clothing","9", "1"],
+         ["6",  "Terrace Left Entrance", "Facility","9", "1"],
+         ["7",  "Toilet", "Facility","9", "1"],
+         ["8",  "Rm 904 Entrance", "Clothing","9", "1"],
+         ["9",  "Rm 913 Left Entrance", "Restaurant","9", "1"],
+         ["10", "Rm 901 Entrance", "Clothing","9", "1"],
+         ["11", "Rm 913 Right Entrance", "Restaurant","9", "1"],
+         ["12", "F9 Lift Lobby", "Facility","9", "1"],
+         ["13", "Corridor", "Facility","9", "0"],
+         ["14", "F9 Cargo Lift Lobby", "Facility","9", "1"],
+         ["15",  "F5 Lift Lobby", "Facility","5", "1"],
+         ["16",  "Corridor", "Facility","5", "0"],
+         ["17",  "Rm 503 Entrance", "Restaurant","5", "1"],
+         ["18",  "Rm 504 Entrance", "Restaurant","5", "1"],
+         ["19",  "Rm 505 Entrance", "Restaurant","5", "1"],
+         ["20",  "Covered Terrace Entrance", "Facility","5", "0"],
+         ["21",  "Covered Treace", "Facility","5", "1"],
+         ["22",  "Covered Terrace Entrance", "Facility","5", "0"],
+         ["23",  "Foyer", "Facility","5", "1"],
+         ["24",  "Foyer Entrance", "Facility","5", "0"],
+         ["25",  "Corner", "Facility","5", "0"],
+         ["26",  "Stair Entrance", "Facility","5", "0"],
+         ["27",  "Foyer to Rm 508", "Facility","5", "1"],
+         ["28",  "Rm 508 Inner Left Entrance", "Restaurant","5", "0"],
+         ["29",  "Rm 508", "Restaurant","5", "1"],
+         ["30",  "Rm 508 Inner Right Entrance", "Restaurant","5", "0"],
+         ["31",  "Foyer to Rm 508", "Facility","5", "1"],
+         ["32",  "F5 Cargo Lift Lobby", "Facility","5", "1"],
+         ["33",  "GF Lift Lobby", "Facility","0", "1"],
+         ["34",  "GF Entrance Lobby", "Facility","0", "1"],
+         ["35",  "Cargo Lift Lobby Entrance", "Facility","0", "0"],
+         ["36",  "Cargo Lift Lobby", "Facility","0", "1"],
+         ["37",  "Car Park", "Facility","0", "1"],
+         ["38",  "Car Entrance", "Facility","0", "1"],
+         ["39",  "ERB 4F Entrance", "Facility","0", "1"]]
     
     static let storeTypeImage = [UIImage(named:"Default"), UIImage(named:"Restaurant"), UIImage(named:"Clothing"), UIImage(named:"Facility")]
     static let filterType = ["All", "Restaurant", "Clothing", "Facility"]
+    
+    static let floorPlanImage = [UIImage(named:"floorPlanGF"), UIImage(named:"floorPlanF5"), UIImage(named:"floorPlanF9")]
+    static let floorPlanIndex = [0,5,9]
+    
     
     static let findMyLocationCoordinate = [[u/2, 0.0], [0.0,v/2], [u/2,v], [u,v/2]]
 

@@ -241,15 +241,15 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SuggestionTableViewCell" rowHeight="90" id="h8x-Fc-Cny" customClass="SuggestionTableViewCell" customModule="TrackMeIndoor" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SuggestionTableViewCell" rowHeight="90" id="h8x-Fc-Cny" customClass="SuggestionTableViewCell" customModule="TrackMeIndoor" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h8x-Fc-Cny" id="4QG-WV-fc3">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default" id="vzo-mF-eON">
-                                            <rect key="frame" x="0.0" y="0.0" width="89" height="89"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="81" height="89"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jIh-HA-4OF">
@@ -272,6 +272,7 @@
                                     <outlet property="storeDetails" destination="Oua-iR-gzK" id="Isk-hF-IzC"/>
                                     <outlet property="storeImage" destination="vzo-mF-eON" id="Rbq-2w-vG2"/>
                                     <outlet property="storeName" destination="jIh-HA-4OF" id="zEr-Mh-a4N"/>
+                                    <segue destination="ecH-JF-ar5" kind="push" identifier="storeView" id="3cp-jj-V3i"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -512,32 +513,62 @@
             </objects>
             <point key="canvasLocation" x="1059" y="2281"/>
         </scene>
-        <!--View Controller-->
+        <!--Store Details View Controller-->
         <scene sceneID="Eow-9e-6ED">
             <objects>
-                <viewController id="ecH-JF-ar5" sceneMemberID="viewController">
+                <viewController id="ecH-JF-ar5" customClass="StoreDetailsViewController" customModule="TrackMeIndoor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="98I-kV-T8L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="U0J-KJ-2EV">
-                                <rect key="frame" x="0.0" y="64" width="375" height="508"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="store address and infomation" textAlignment="natural" id="iSF-aV-N3W">
-                                <rect key="frame" x="0.0" y="580" width="375" height="87"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" text="store address and infomation" textAlignment="natural" id="iSF-aV-N3W">
+                                <rect key="frame" x="0.0" y="490" width="375" height="177"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TYP-pg-o6f">
+                                <rect key="frame" x="0.0" y="69" width="330" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" id="FIH-ud-X0z">
+                                <rect key="frame" x="0.0" y="110" width="375" height="375"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="0Bp-v6-0cJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" id="B9x-Jq-DZT">
+                                <rect key="frame" x="330" y="69" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <state key="normal" image="goImage"/>
+                                <connections>
+                                    <action selector="planPath:" destination="ecH-JF-ar5" eventType="touchUpInside" id="0BI-6s-boe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <navigationItem key="navigationItem" id="CxT-9g-2vw"/>
+                    <connections>
+                        <outlet property="currentLocationLabel" destination="TYP-pg-o6f" id="jdF-wJ-2A1"/>
+                        <outlet property="goButton" destination="B9x-Jq-DZT" id="nDX-fY-jOE"/>
+                        <outlet property="scrollView" destination="FIH-ud-X0z" id="LWT-aa-XGm"/>
+                        <outlet property="storeDetailsTextView" destination="iSF-aV-N3W" id="qyI-gr-QfZ"/>
+                        <outlet property="storeMapImageView" destination="0Bp-v6-0cJ" id="bSs-aO-wlY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jnz-uz-P98" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1664" y="-681"/>
+            <point key="canvasLocation" x="1663.5" y="-681.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="APz-Vr-nLM">
@@ -585,6 +616,7 @@
         <image name="FindMyLocation" width="1240" height="1036"/>
         <image name="FindSeat" width="150" height="150"/>
         <image name="floorPlanF9" width="768" height="704"/>
+        <image name="goImage" width="60" height="60"/>
         <image name="pathFinder" width="256" height="256"/>
         <image name="setting" width="256" height="256"/>
         <image name="suggestion" width="1024" height="1024"/>

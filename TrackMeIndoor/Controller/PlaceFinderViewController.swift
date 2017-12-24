@@ -18,15 +18,17 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var floorSegmentedControl: UISegmentedControl!
     
 
-    var floorPlan :[UIImage] = [UIImage(named: "floorPlanGF")!,UIImage(named: "floorPlanF5")!, UIImage(named: "floorPlanF9")!]
+    var floorPlan = Constants.floorPlanImage
     var currentLocationNodeID = -1
     var destinationNodeID = -1
-    var locationManager = CLLocationManager()
+    
     var items = [Item]()
     var path = [Int]()
     var timeCost = 0
     var startFloor = 0
     var endFloor = 0
+    
+    var locationManager = CLLocationManager()
     
     
     override func viewDidLoad() {
@@ -92,7 +94,7 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
 //        imageView.image = floorPlan[0]
     }
     func drawPath(floor: Int, path: [Int]) -> Void{
-        floorPlan[floor] = DrawImage().drawFloorPlanPathLocation(startingImage: floorPlan[floor], path: path)
+        floorPlan[floor] = DrawImage().drawFloorPlanPathLocation(startingImage: floorPlan[floor]!, path: path)
 
     }
     
@@ -107,14 +109,14 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
                     pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(i). \(actionWord[terraceEnterFlag]) Terrace\n"
                     terraceEnterFlag += 1
                 }else{
-                    pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(i). Pass through \(SearchPath.nodeName[path[i]-1][1])\n"
+                    pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(i). Pass through \(Constants.storesDB[path[i]-1][1])\n"
                 }
             }else{
-                pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(i). Pass through \(SearchPath.nodeName[path[i]-1][1])\n"
+                pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(i). Pass through \(Constants.storesDB[path[i]-1][1])\n"
             }
             
         }
-        pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(path.count-1). Arrival \(SearchPath.nodeName[path.last!-1][1])\n"
+        pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(path.count-1). Arrival \(Constants.storesDB[path.last!-1][1])\n"
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

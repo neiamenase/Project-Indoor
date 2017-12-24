@@ -15,6 +15,7 @@ class SuggestionTableViewController: UITableViewController {
     
     var stores = [Store]()
     var filteredStores = [Store]()
+    var selectedStore = [Store]()
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -45,8 +46,11 @@ class SuggestionTableViewController: UITableViewController {
     
     private func loadStore() {
         
-        for i in 0..<SearchPath.nodeName.count{
-            let store = Store(name: SearchPath.nodeName[i][1], image: Constants.storeTypeImage[Constants.filterType.index(of: SearchPath.nodeName[i][2])!], nodeID: Int(SearchPath.nodeName[i][0])!, coordinates: Coordinates(Double(SearchPath.coordinates[i][0]), Double(SearchPath.coordinates[i][1])), distance: 0, category: SearchPath.nodeName[i][2])
+        for i in 0..<Constants.storesDB.count{
+            if Constants.storesDB[i][4] == "0" {
+                continue
+            }
+            let store = Store(name: Constants.storesDB[i][1], image: Constants.storeTypeImage[Constants.filterType.index(of: Constants.storesDB[i][2])!], nodeID: Int(Constants.storesDB[i][0])!, coordinates: Coordinates(Double(SearchPath.coordinates[i][0]), Double(SearchPath.coordinates[i][1])), distance: 0, category: Constants.storesDB[i][2], floor: Int(Constants.storesDB[i][3])!)
             stores.append(store!)
         }
         
@@ -180,6 +184,21 @@ class SuggestionTableViewController: UITableViewController {
         self.view.endEditing(true)
         super.touchesBegan(touches, with: event)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is StoreDetailsViewController {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let vc = segue.destination as? StoreDetailsViewController
+                //let value = values[.row]
+                print (stores[indexPath.row].name)
+                vc?.store = stores[indexPath.row]
+            //    vc?.storeDetailsTextView.text = stores[indexPath.row].category
+            }
+    }
+    }
+    
+    
 }
 
 extension SuggestionTableViewController: UISearchResultsUpdating {

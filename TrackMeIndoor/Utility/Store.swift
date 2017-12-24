@@ -16,8 +16,9 @@ class Store {
     var coordinates : Coordinates
     var distance : Int
     var category : String
+    var floor : Int
     
-    init?(name: String, image: UIImage?, nodeID: Int, coordinates: Coordinates, distance: Int, category: String) {
+    init?(name: String, image: UIImage?, nodeID: Int, coordinates: Coordinates, distance: Int, category: String, floor: Int) {
         if name.isEmpty  {
             return nil
         }
@@ -27,6 +28,7 @@ class Store {
         self.coordinates = coordinates
         self.distance = distance
         self.category = category
+        self.floor = floor
     }
     
     
