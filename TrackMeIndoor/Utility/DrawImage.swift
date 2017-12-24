@@ -152,9 +152,7 @@ class DrawImage{
         var newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        newImage = drawPointOnFloorPlan(startingImage: newImage!, x: Int(startPoint.x), y: Int(startPoint.y), color: UIColor.green.cgColor)
-        newImage = drawPointOnFloorPlan(startingImage: newImage!, x: Int(endPoint.x), y: Int(endPoint.y), color: UIColor.red.cgColor)
-        
+
         // Return modified image
         return newImage!
     }

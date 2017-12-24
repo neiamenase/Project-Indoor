@@ -112,6 +112,10 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
             }else{
                 drawPath(floor: startFloor, path: path)
             }
+            
+            floorPlan[startFloor] = DrawImage().drawPointOnFloorPlan(startingImage: floorPlan[startFloor]!, x: SearchPath.coordinates[path[0]-1][0], y: SearchPath.coordinates[path[0]-1][1], color: UIColor.green.cgColor)
+            floorPlan[endFloor] = DrawImage().drawPointOnFloorPlan(startingImage: floorPlan[endFloor]!, x: SearchPath.coordinates[path[path.count-1]-1][0], y: SearchPath.coordinates[path[path.count-1]-1][1], color: UIColor.red.cgColor)
+            
             pathDescription()
             imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]
             
@@ -125,6 +129,8 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
     }
     func drawPath(floor: Int, path: [Int]) -> Void{
         floorPlan[floor] = DrawImage().drawFloorPlanPathLocation(startingImage: floorPlan[floor]!, path: path)
+        
+        
         
     }
     func pathDescription() -> Void{
