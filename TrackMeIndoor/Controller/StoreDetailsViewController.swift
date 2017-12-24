@@ -13,7 +13,7 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var currentLocationLabel: UILabel!
-    @IBOutlet weak var storeMapImageView: UIImageView!
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var storeDetailsTextView: UITextView!
     @IBOutlet weak var floorSegmentedControl: UISegmentedControl!
     @IBOutlet weak var goButton: UIButton!
@@ -56,9 +56,10 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
         self.title = store?.name
         currentLocationLabel.text = "Current Location: Searching..."
         destinationNodeID = (store?.nodeID)!
-        var targetFloor : UIImage = floorPlan[Constants.floorPlanIndex.index(of:(store?.floor)!)!]!
-        targetFloor = DrawImage().drawPointOnFloorPlan(startingImage: targetFloor, x: SearchPath.coordinates[(store?.nodeID)!-1][0], y: SearchPath.coordinates[(store?.nodeID)!-1][1], color: UIColor.red.cgColor)
-        storeMapImageView.image = targetFloor
+        floorSegmentedControl.selectedSegmentIndex = Constants.floorPlanIndex.index(of:(store?.floor)!)!
+        //var targetFloor : UIImage = floorPlan[floorSegmentedControl.selectedSegmentIndex]!
+        floorPlan[floorSegmentedControl.selectedSegmentIndex]! = DrawImage().drawPointOnFloorPlan(startingImage: floorPlan[floorSegmentedControl.selectedSegmentIndex]!, x: SearchPath.coordinates[(store?.nodeID)!-1][0], y: SearchPath.coordinates[(store?.nodeID)!-1][1], color: UIColor.red.cgColor)
+        imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]!
         storeDetailsTextView.text = store?.category
     }
     
@@ -69,12 +70,77 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
             self.present(alert, animated: true, completion: nil)
             return
         }else{
-            currentLocationLabel.text = "startPlan"
+            (timeCost, path ) = SearchPath.search(currentLoctionNodeID: currentLocationNodeID, destinationNodeID: destinationNodeID,
+                                                  searchedPath: [currentLocationNodeID], costSoFar: 0, minCostSoFar: -1)
+            
+        }
+        if !path.isEmpty {
+            print ("Finish -- time: \(timeCost) path:\(path)\n\n")
+            
+            for i in 0..<SearchPath.nodeInfoOnEachFloor.nodeRange.count{
+                if path[0] >= SearchPath.nodeInfoOnEachFloor.nodeRange[i][0] && path[0] <= SearchPath.nodeInfoOnEachFloor.nodeRange[i][1]{
+                    startFloor = i
+                    floorSegmentedControl.selectedSegmentIndex = i
+                }
+                if path[path.count-1] >= SearchPath.nodeInfoOnEachFloor.nodeRange[i][0] && path[path.count-1] <= SearchPath.nodeInfoOnEachFloor.nodeRange[i][1]{
+                    endFloor = i
+                }
+            }
+            
+            if startFloor != endFloor{
+                for liftNum in 0..<SearchPath.nodeInfoOnEachFloor.floorChangedNodes[0].count{
+                    let liftStartNode = path.index(of: SearchPath.nodeInfoOnEachFloor.floorChangedNodes[startFloor][liftNum])
+                    let liftEndNode = path.index(of: SearchPath.nodeInfoOnEachFloor.floorChangedNodes[endFloor][liftNum])
+                    if liftStartNode != nil && liftEndNode != nil{
+                        if liftStartNode == liftEndNode! - 1{
+                            let firstPath = Array(path[0..<liftEndNode!])
+                            drawPath(floor: startFloor, path: firstPath)
+                            let secondPath = Array(path[liftEndNode!...])
+                            drawPath(floor: endFloor, path: secondPath)
+                            break
+                        }
+                    }
+                }
+                //                let changeFloorAtIndex = path.index(of: SearchPath.nodeInfoOnEachFloor.nodeRange[endFloor][0])!
+                
+            }else{
+                drawPath(floor: startFloor, path: path)
+            }
+            pathDescription()
+            imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]
+            
+            if items.isEmpty{
+                loadItems()
+                
+            }
+            
         }
         
+    }
+    func drawPath(floor: Int, path: [Int]) -> Void{
+        floorPlan[floor] = DrawImage().drawFloorPlanPathLocation(startingImage: floorPlan[floor]!, path: path)
         
     }
-    
+    func pathDescription() -> Void{
+        storeDetailsTextView.text = ""
+        
+        var terraceEnterFlag : Int = 0
+        let actionWord = ["Enter", "Leave"]
+        for i in 1..<path.count-1{
+            if path.contains(2) && path.contains(6){
+                if path[i] == 2 || path[i] == 6 {
+                    storeDetailsTextView.text = storeDetailsTextView.text! + "\(i). \(actionWord[terraceEnterFlag]) Terrace\n"
+                    terraceEnterFlag += 1
+                }else{
+                    storeDetailsTextView.text = storeDetailsTextView.text! + "\(i). Pass through \(Constants.storesDB[path[i]-1][1])\n"
+                }
+            }else{
+                storeDetailsTextView.text = storeDetailsTextView.text! + "\(i). Pass through \(Constants.storesDB[path[i]-1][1])\n"
+            }
+            
+        }
+        storeDetailsTextView.text = storeDetailsTextView.text! + "\(path.count-1). Arrival \(Constants.storesDB[path.last!-1][1])\n"
+    }
     /*
     // MARK: - Navigation
 
@@ -85,6 +151,14 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
     }
     */
     
+    
+    @IBAction func floorChanged(_ sender: UISegmentedControl) {
+        imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]
+        
+    }
+    func viewForZooming(in scrollview: UIScrollView) -> UIView? {
+        return self.imageView
+    }
     
     // Moitoring iBeacon
     func stopMonitoringItem(_ item: Item) {

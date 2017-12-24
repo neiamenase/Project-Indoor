@@ -110,7 +110,7 @@ class DrawImage{
         let context = UIGraphicsGetCurrentContext()!
         context.setFillColor(color)
 
-        context.addEllipse(in: CGRect(x: x-5, y: y-5, width: 10, height: 10))
+        context.addEllipse(in: CGRect(x: x-10, y: y-10, width: 20, height: 20))
         context.drawPath(using: .fillStroke)
 
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -124,8 +124,7 @@ class DrawImage{
         UIGraphicsBeginImageContext(startingImage.size)
         
 
-        var startPoint = CGPoint(x:0,y:0)
-        var endPoint = CGPoint(x:0,y:0)
+        
         
         // Draw the starting image in the current context as background
         startingImage.draw(at: CGPoint.zero)
@@ -136,8 +135,11 @@ class DrawImage{
         context.setLineWidth(5.0)
         context.setStrokeColor(UIColor.red.cgColor)
         
-        startPoint = CGPoint(x: SearchPath.coordinates[path[0]-1][0], y: SearchPath.coordinates[path[0]-1][1])
-  
+
+        
+        var startPoint = CGPoint(x: SearchPath.coordinates[path[0]-1][0], y: SearchPath.coordinates[path[0]-1][1])
+        var endPoint = startPoint
+        
         context.move(to: CGPoint(x: startPoint.x, y: startPoint.y))
         
         for i in 1..<path.count{
