@@ -42,6 +42,8 @@ class SuggestionTableViewController: UITableViewController {
         searchController.searchBar.scopeButtonTitles = Constants.filterType
         searchController.searchBar.delegate = self
         
+        self.definesPresentationContext = true
+        
     }
     
     private func loadStore() {
@@ -53,6 +55,7 @@ class SuggestionTableViewController: UITableViewController {
             let store = Store(name: Constants.storesDB[i][1], image: Constants.storeTypeImage[Constants.filterType.index(of: Constants.storesDB[i][2])!], nodeID: Int(Constants.storesDB[i][0])!, coordinates: Coordinates(Double(SearchPath.coordinates[i][0]), Double(SearchPath.coordinates[i][1])), distance: 0, category: Constants.storesDB[i][2], floor: Int(Constants.storesDB[i][3])!)
             stores.append(store!)
         }
+        stores = stores.sorted{$0.name < $1.name}
         
     }
     

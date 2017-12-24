@@ -24,6 +24,7 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
     var floorPlan = Constants.floorPlanImage
     var currentLocationNodeID = -1
     var destinationNodeID = -1
+    var pathPlanned = false
     
     var items = [Item]()
     var path = [Int]()
@@ -64,17 +65,22 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func planPath(_ sender: Any) {
+        floorPlan = Constants.floorPlanImage
         if currentLocationNodeID == -1{
             let alert = UIAlertController(title: "Current Location Not Found", message: "Please try again", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-            return
-        }else{
+            
+            currentLocationNodeID = 39
+        }
+//            return
+//        }else{
             (timeCost, path ) = SearchPath.search(currentLoctionNodeID: currentLocationNodeID, destinationNodeID: destinationNodeID,
                                                   searchedPath: [currentLocationNodeID], costSoFar: 0, minCostSoFar: -1)
             
-        }
+//        }
         if !path.isEmpty {
+            pathPlanned = true
             print ("Finish -- time: \(timeCost) path:\(path)\n\n")
             
             for i in 0..<SearchPath.nodeInfoOnEachFloor.nodeRange.count{
@@ -195,9 +201,6 @@ extension StoreDetailsViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         
         
-        currentLocationNodeID = -1
-        currentLocationLabel.text = "Current Location: Searching..."
-        
         
         // Find the same beacons in the table.
         
@@ -213,8 +216,19 @@ extension StoreDetailsViewController: CLLocationManagerDelegate{
             switch item.beacon?.proximity{
             case .immediate?:
                 let i = Constants.beaconsInfo.name.index(of: item.name)
-                currentLocationLabel.text = ("Current Location: \(Constants.beaconsInfo.name[i!])")
-                currentLocationNodeID = Constants.beaconsInfo.nodeID[i!]
+                if pathPlanned{
+                    if destinationNodeID == Constants.beaconsInfo.nodeID[i!]{
+                        currentLocationLabel.text = ("Arrivaled \(Constants.beaconsInfo.name[i!])")
+                    }else if !path.contains(Constants.beaconsInfo.nodeID[i!]) {
+                        currentLocationLabel.text = ("Wrong Direction! Please Plan Again!")
+                    }else {
+                        currentLocationLabel.text = ("Current Location: \(Constants.beaconsInfo.name[i!])")
+                        currentLocationNodeID = Constants.beaconsInfo.nodeID[i!]
+                    }
+                }else{
+                    currentLocationLabel.text = ("Current Location: \(Constants.beaconsInfo.name[i!])")
+                    currentLocationNodeID = Constants.beaconsInfo.nodeID[i!]
+                }
             default: break
             }
         }
