@@ -14,6 +14,7 @@
 		1839405F1FD3ED5700F0DB12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1839405E1FD3ED5700F0DB12 /* Assets.xcassets */; };
 		183940621FD3ED5700F0DB12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183940601FD3ED5700F0DB12 /* LaunchScreen.storyboard */; };
 		18661F681FEF665C00EFF5DD /* StoreDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18661F671FEF665C00EFF5DD /* StoreDetailsViewController.swift */; };
+		18661F6A1FEF6AF800EFF5DD /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18661F691FEF6AF800EFF5DD /* Setting.swift */; };
 		1866A8DF1FEE911400212E13 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866A8DE1FEE911400212E13 /* SettingViewController.swift */; };
 		18B015481FE67EEC00EF29F4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B015471FE67EEC00EF29F4 /* Constants.swift */; };
 		CA062EB01FE66B3200891387 /* FindMyLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EAF1FE66B3100891387 /* FindMyLocationViewController.swift */; };
@@ -40,6 +41,7 @@
 		183940611FD3ED5700F0DB12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		183940631FD3ED5700F0DB12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18661F671FEF665C00EFF5DD /* StoreDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailsViewController.swift; sourceTree = "<group>"; };
+		18661F691FEF6AF800EFF5DD /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		1866A8DE1FEE911400212E13 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		18B015471FE67EEC00EF29F4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CA062EAF1FE66B3100891387 /* FindMyLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindMyLocationViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				1803513B1FE6797D001A60B3 /* Coordinates.swift */,
 				CAFA50471FEE03B70083C7E9 /* Store.swift */,
 				CA062ED71FE8014000891387 /* SearchPath.swift */,
+				18661F691FEF6AF800EFF5DD /* Setting.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				1839405A1FD3ED5700F0DB12 /* ViewController.swift in Sources */,
 				18B015481FE67EEC00EF29F4 /* Constants.swift in Sources */,
 				CA062EDA1FE8065100891387 /* PlaceFinderViewController.swift in Sources */,
+				18661F6A1FEF6AF800EFF5DD /* Setting.swift in Sources */,
 				CA062ED81FE8014000891387 /* SearchPath.swift in Sources */,
 				183940581FD3ED5700F0DB12 /* AppDelegate.swift in Sources */,
 			);

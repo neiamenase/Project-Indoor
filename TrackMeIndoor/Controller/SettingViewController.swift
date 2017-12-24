@@ -20,6 +20,8 @@ class SettingViewController: UIViewController {
     }
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         acValue.text = String(format: "%d", Int(Constants.v))
