@@ -66,12 +66,12 @@ class Constants{
          ["7",  "F9 Toilet", NodeType.Facility.rawValue,"9", "1"],
          ["8",  "Rm 904", NodeType.Clothing.rawValue,"9", "1"],
          ["9",  "Rm 913 Left Entrance", NodeType.Restaurant.rawValue,"9", "1"],
-         ["10", "Rm 901", "Clothing","9", "1"],
+         ["10", "Rm 901", NodeType.Clothing.rawValue,"9", "1"],
          ["11", "Rm 913 Right Entrance", NodeType.Restaurant.rawValue,"9", "1"],
-         ["12", "F9 Lift Lobby", NodeType.Facility.rawValue,"9", "1"],
-         ["13", "Corridor", NodeType.Facility.rawValue,"9", "0"],
-         ["14", "F9 Cargo Lift Lobby", NodeType.Facility.rawValue,"9", "1"],
-         ["15",  "F5 Lift Lobby", NodeType.Facility.rawValue,"5", "1"],
+         ["12", "F9 Lift Lobby", NodeType.None.rawValue,"9", "1"],
+         ["13", "Corridor", NodeType.None.rawValue,"9", "0"],
+         ["14", "F9 Cargo Lift Lobby", NodeType.None.rawValue,"9", "1"],
+         ["15",  "F5 Lift Lobby", NodeType.None.rawValue,"5", "1"],
          ["16",  "Corridor", NodeType.None.rawValue,"5", "0"],
          ["17",  "Rm 503", NodeType.Clothing.rawValue,"5", "1"],
          ["18",  "Rm 504", NodeType.Restaurant.rawValue,"5", "1"],
@@ -79,7 +79,7 @@ class Constants{
          ["20",  "Covered Terrace Entrance", NodeType.None.rawValue,"5", "0"],
          ["21",  "Covered Treace", NodeType.Facility.rawValue,"5", "1"],
          ["22",  "Covered Terrace Entrance", NodeType.None.rawValue,"5", "0"],
-         ["23",  "Foyer", "Facility","5", "1"],
+         ["23",  "Foyer", NodeType.Facility.rawValue,"5", "1"],
          ["24",  "Foyer Entrance", NodeType.None.rawValue,"5", "0"],
          ["25",  "Corner", NodeType.None.rawValue,"5", "0"],
          ["26",  "Stair Entrance", NodeType.None.rawValue,"5", "0"],
@@ -88,17 +88,17 @@ class Constants{
          ["29",  "Rm 508", NodeType.Restaurant.rawValue,"5", "1"],
          ["30",  "Rm 508 Inner Right Entrance", NodeType.Restaurant.rawValue,"5", "0"],
          ["31",  "Foyer to Rm 508", NodeType.None.rawValue,"5", "0"],
-         ["32",  "F5 Cargo Lift Lobby", NodeType.Facility.rawValue,"5", "1"],
-         ["33",  "GF Lift Lobby", NodeType.Facility.rawValue,"0", "1"],
+         ["32",  "F5 Cargo Lift Lobby", NodeType.None.rawValue,"5", "1"],
+         ["33",  "GF Lift Lobby", NodeType.None.rawValue,"0", "1"],
          ["34",  "GF Entrance Lobby", NodeType.Facility.rawValue,"0", "1"],
          ["35",  "Cargo Lift Lobby Entrance", NodeType.None.rawValue,"0", "0"],
-         ["36",  "Cargo Lift Lobby", NodeType.Facility.rawValue,"0", "1"],
+         ["36",  "Cargo Lift Lobby", NodeType.None.rawValue,"0", "1"],
          ["37",  "Car Park", NodeType.Facility.rawValue,"0", "1"],
          ["38",  "Car Entrance", NodeType.Facility.rawValue,"0", "1"],
          ["39",  "ERB 4F Entrance", NodeType.Facility.rawValue,"0", "1"]]
     
-    static let storeTypeImage = [UIImage(named:"Default"), UIImage(named:"Restaurant"), UIImage(named:"Clothing"), UIImage(named:"Facility")]
-    static let filterType = ["All", "Restaurant", "Clothing", "Facility"]
+    static let storeTypeImage = [UIImage(named:"Default"), UIImage(named:"Restaurant"), UIImage(named:"Clothing"), UIImage(named:"Facility"), UIImage(named:"Default")]
+    static let filterType = ["All", "Restaurant", "Clothing", "Facility", "None"]
     
     static let floorPlanImage = [UIImage(named:"floorPlanGF"), UIImage(named:"floorPlanF5"), UIImage(named:"floorPlanF9")]
     static let floorPlanIndex = [0,5,9]

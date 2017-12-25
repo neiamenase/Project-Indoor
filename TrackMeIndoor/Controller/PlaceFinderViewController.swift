@@ -19,7 +19,9 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var currentLocationLabel: UILabel!
     @IBOutlet weak var pathDetailsTextView: UITextView!
     var floorPlan = Constants.floorPlanImage
+    var floorPlanWithCurrent = Constants.floorPlanImage
     var currentLocationNodeID = -1
+    var lastCurrentLocationNodeID = -1
     var destinationNodeID = -1
     
     var items = [Item]()
@@ -33,7 +35,12 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
     
     
     @IBAction func planPath(_ sender: Any) {
-        let (cost, noOfNode, path) = SearchPath.SearchPathByNodeType(type: targetType, currentLoctionNodeID: 31)
+        if currentLocationNodeID < 0 {
+            currentLocationNodeID = 31
+            lastCurrentLocationNodeID = currentLocationNodeID
+        }
+        let (cost, noOfNode, path) = SearchPath.SearchPathByNodeType(type: targetType, currentLoctionNodeID: currentLocationNodeID)
+        
         print(cost, noOfNode, path)
         if !path.isEmpty{
             drawPath(path: path)
@@ -60,61 +67,26 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
     
     func drawPath(path: [Int]) -> Void{
         var floor = Constants.floorPlanIndex.index(of:Int( Constants.storesDB[path[0]][3])!)
-        var startIndex = 0
-        var endIndex = 0
+        var index = 0
+        //draw Start Point
+        floorPlan[floor!] = DrawImage().drawPointOnFloorPlan(startingImage: floorPlan[floor!]!, x: SearchPath.coordinates[path[0]-1][0], y: SearchPath.coordinates[path[0]-1][1], color: UIColor.green.cgColor)
         for i in 0..<path.count{
-            if floor != Constants.floorPlanIndex.index(of:Int( Constants.storesDB[path[i]][3])!){
-                endIndex = i - 1
-                let subPath = Array(path[startIndex..<endIndex])
+            if floor != Constants.floorPlanIndex.index(of:Int( Constants.storesDB[path[i]-1][3])!){
+                let subPath = Array(path[index..<i])
+                print(floor, subPath)
                 self.drawPathForEachFloor(floor: floor!, path: subPath)
+                floorPlan = DrawImage().drawLiftPointFloorPlan(floorPlanImages: floorPlan as! [UIImage], startNode: path[i-1], endNode: path[i])
                 floor = Constants.floorPlanIndex.index(of:Int( Constants.storesDB[path[i]][3])!)
-                startIndex = i
+                index = i
             }
         }
-        let subPath = Array(path[endIndex...])
+        let subPath = Array(path[index...])
         self.drawPathForEachFloor(floor: floor!, path: subPath)
+        //draw end point
         floorPlan[floor!] = DrawImage().drawPointOnFloorPlan(startingImage: floorPlan[floor!]!, x: SearchPath.coordinates[path[path.count-1]-1][0], y: SearchPath.coordinates[path[path.count-1]-1][1], color: UIColor.red.cgColor)
-        
+        floorPlanWithCurrent = floorPlan
         drawCurrentLocation()
         
-//        var startFloor = 0
-//        var endFloor = 0
-//        for i in 0..<SearchPath.nodeInfoOnEachFloor.nodeRange.count{
-//            if path[0] >= SearchPath.nodeInfoOnEachFloor.nodeRange[i][0] && path[0] <= SearchPath.nodeInfoOnEachFloor.nodeRange[i][1]{
-//                startFloor = i
-//                floorSegmentedControl.selectedSegmentIndex = i
-//            }
-//            if path[path.count-1] >= SearchPath.nodeInfoOnEachFloor.nodeRange[i][0] && path[path.count-1] <= SearchPath.nodeInfoOnEachFloor.nodeRange[i][1]{
-//                endFloor = i
-//            }
-//        }
-//
-//        if startFloor != endFloor{
-//            for liftNum in 0..<SearchPath.nodeInfoOnEachFloor.floorChangedNodes[0].count{
-//                let liftStartNode = path.index(of: SearchPath.nodeInfoOnEachFloor.floorChangedNodes[startFloor][liftNum])
-//                let liftEndNode = path.index(of: SearchPath.nodeInfoOnEachFloor.floorChangedNodes[endFloor][liftNum])
-//                if liftStartNode != nil && liftEndNode != nil{
-//                    if liftStartNode == liftEndNode! - 1{
-//                        let firstPath = Array(path[0..<liftEndNode!])
-//                        drawPathForEachFloor(floor: startFloor, path: firstPath)
-//                        let secondPath = Array(path[liftEndNode!...])
-//                        drawPathForEachFloor(floor: endFloor, path: secondPath)
-//                        break
-//                    }
-//                }
-//            }
-//
-//
-//        }else{
-//            drawPathForEachFloor(floor: startFloor, path: path)
-//        }
-        
-//        floorPlan[startFloor] = DrawImage().drawPointOnFloorPlan(startingImage: floorPlan[startFloor]!, x: SearchPath.coordinates[path[0]-1][0], y: SearchPath.coordinates[path[0]-1][1], color: UIColor.green.cgColor)
-
-        
-      //  pathDescription()
-//        imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]
-//
         if items.isEmpty{
             loadItems()
             
@@ -127,11 +99,13 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func drawCurrentLocation() -> Void {
-        if currentLocationNodeID != -1{
-        floorSegmentedControl.selectedSegmentIndex = Constants.floorPlanIndex.index(of: Int(Constants.storesDB[currentLocationNodeID-1][3])!)!
-        imageView.image = DrawImage().drawPointOnFloorPlan(startingImage: floorPlan[floorSegmentedControl.selectedSegmentIndex]!, x: SearchPath.coordinates[currentLocationNodeID-1][0], y: SearchPath.coordinates[currentLocationNodeID-1][1], color: UIColor.green.cgColor)
+        if currentLocationNodeID >= 0 {
+            floorSegmentedControl.selectedSegmentIndex = Constants.floorPlanIndex.index(of: Int(Constants.storesDB[currentLocationNodeID-1][3])!)!
+            floorPlanWithCurrent[floorSegmentedControl.selectedSegmentIndex] = DrawImage().drawPointOnFloorPlan(startingImage: floorPlanWithCurrent[floorSegmentedControl.selectedSegmentIndex]!, x: SearchPath.coordinates[currentLocationNodeID-1][0], y: SearchPath.coordinates[currentLocationNodeID-1][1], color: UIColor.blue.cgColor)
+            imageView.image = floorPlanWithCurrent[floorSegmentedControl.selectedSegmentIndex]
         }
     }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -157,6 +131,7 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
                 floorPlan[i] = DrawImage().drawPointOnFloorPlan(startingImage: floorPlan[i]!, x: c[0], y: c[1], color: UIColor.red.cgColor)
             }
         }
+        floorPlanWithCurrent = floorPlan
         
     }
     
@@ -170,7 +145,7 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
     // MARK: - Navigation
     */
     @IBAction func floorChanged(_ sender: UISegmentedControl) {
-        imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]
+        imageView.image = floorPlanWithCurrent[floorSegmentedControl.selectedSegmentIndex]
         
     }
     // MARK: - Moitoring iBeacon
@@ -215,9 +190,15 @@ extension PlaceFinderViewController: CLLocationManagerDelegate{
         for item in items {
             switch item.beacon?.proximity{
             case .immediate?:
-                currentLocationLabel.text = "Current Location: \(item.name)"
                 currentLocationNodeID = Constants.beaconsInfo.nodeID[Constants.beaconsInfo.minor.index(of: Int(item.minorValue))!]
-                drawCurrentLocation()
+                
+                if currentLocationNodeID != lastCurrentLocationNodeID{
+                    print(lastCurrentLocationNodeID, currentLocationNodeID)
+                    currentLocationLabel.text = "Current Location: \(item.name)"
+                    floorPlanWithCurrent = floorPlan
+                    drawCurrentLocation()
+                    lastCurrentLocationNodeID = currentLocationNodeID
+                }
                 
             default: break
             }
@@ -243,7 +224,8 @@ extension PlaceFinderViewController:  UIPickerViewDataSource, UIPickerViewDelega
         // high all pts with targetTypex
         floorPlan = Constants.floorPlanImage
         drawAllStoreOnFloorPlan()
-        imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]!
+        lastCurrentLocationNodeID = -1
+        imageView.image = floorPlanWithCurrent[floorSegmentedControl.selectedSegmentIndex]!
         
         
     }
