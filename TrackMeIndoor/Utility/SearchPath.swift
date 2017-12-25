@@ -101,85 +101,55 @@ class SearchPath{
         //print("3: minCostSoFar3 \(minCostSoFarV)  minPath \(minPath) nodes:\(nodes)")
         return (minCostSoFarV, minPath)
     }
-    
     static var totalCount = 0;
     
-    static func SearchPathByNodeType(type: Constants.NodeType ,currentLoctionNodeID: Int)-> (Int, [Int]){
-        
+    static func SearchPathByNodeType(type: Constants.NodeType ,currentLoctionNodeID: Int)-> (Int, Int, [Int]){
         if type == Constants.NodeType.None{
-            return (0, [])
+            return (0, 0, [])
         }
-        
         self.totalCount = Constants.storesDB.filter({$0[2] == type.rawValue}).count
-        
-//
-//        searchPathByType(type: type, currentLoctionNodeID: currentLoctionNodeID, )
-        
-        return (0, [])
+        searchPathByType(type: type, currentCount: 0, currentLoctionNodeID: currentLoctionNodeID,
+                         searchedPath: [], costSoFar: 0)
+        return (bestResult.cost, bestResult.nodeMatched, bestResult.path)
     }
     
-    struct bestResult{
-        var minCost : Int
+    struct searchResult{
+        var cost : Int
         var nodeMatched : Int
+        var path: [Int]
         init() {
             self.nodeMatched = 0
-            self.minCost = -1
+            self.cost = -1
+            self.path = []
         }
     }
     
-    static var bestResult_Distance = bestResult(); // consider: to end of the tree, smallest path
-    static var bestResult_Nodes = bestResult(); // consider: getAllPoints,
+    static var bestResult = searchResult(); // consider: getAllPoints,
     
-    
-    private static func searchPathByType (type: Constants.NodeType, currentCount: Int, currentLoctionNodeID: Int, searchedPath: [Int], costSoFar: Int, lastPointWithTarget: Int)
-        -> (Int, [Int]){
+    private static func searchPathByType (type: Constants.NodeType, currentCount: Int, currentLoctionNodeID: Int, searchedPath: [Int], costSoFar: Int)-> Void{
         let subNodes = connects.filter({$0[0] == currentLoctionNodeID})
         var currentCountV = currentCount
-        var lastPointWithTargetV = lastPointWithTarget
+        var searchedPathV = searchedPath
         for subNode in subNodes{
             let subNodeDetails = Constants.storesDB.filter({Int($0[0]) == currentLoctionNodeID}).first!
             let costSoFarV = costSoFar + subNode[2]
+            
+            if searchedPath.contains(subNode[1]){
+                continue // Avoid re-loop
+            }
+            searchedPathV.append(subNode[1])
             if subNodeDetails[2] == type.rawValue {
                 currentCountV = currentCountV + 1
-                lastPointWithTargetV = currentLoctionNodeID
-            }
-            if currentCountV == self.totalCount {
-                if self.bestResult_Nodes.minCost < -1 || self.bestResult_Nodes.minCost > costSoFarV {
-                    self.bestResult_Nodes.minCost = costSoFarV
-                    self.bestResult_Nodes.nodeMatched = self.totalCount
+                if bestResult.cost == -1 || currentCountV > bestResult.nodeMatched || (currentCountV == bestResult.nodeMatched && costSoFarV < bestResult.cost) {
+                    // replace the best Result by current result
+                    bestResult.cost = costSoFarV
+                    bestResult.nodeMatched = currentCountV
+                    bestResult.path = searchedPath
                 }
             }
-            
-//            if costSoFarV < self.minCost || self.minCost < 0{
-//                var searchedPathV = searchedPath
-//                if searchedPath.contains(subNode[1]){
-//                    continue // Avoid re-loop
-//                }
-//
-//                searchedPathV.append(subNode[1])
-//                if subNode[2]
-//
-//
-//                if destinationNodeID == subNode[1]{
-//                    return (costSoFarV, searchedPathV) // Base case
-//                }
-//                let (minCost, tempPath ) = search(currentLoctionNodeID: subNode[1], destinationNodeID: destinationNodeID,
-//                                                  searchedPath: searchedPathV, costSoFar: costSoFarV, minCostSoFar: minCostSoFarV)
-//
-//                if (minCost < minCostSoFarV ){
-//                    minCostSoFarV = minCost
-//                    minPath = tempPath
-//                    //print("2: cost \(cost), minCost \(minCost) minCostSoFar \(minCostSoFarV) minPath:\(minPath) searched \(searchedPathV)")
-//                }else if (minCost > 0 ){
-//                    minCostSoFarV = minCost
-//                    minPath = tempPath
-//                    //print("1: cost \(cost), minCost \(minCost) minCostSoFar \(minCostSoFarV) minPath:\(minPath) searched \(searchedPathV)")
-//                }
-//
-//            }
+            searchPathByType(type: type, currentCount: currentCount, currentLoctionNodeID: subNode[1],
+                                              searchedPath: searchedPathV, costSoFar: costSoFarV)
         }
-        //print("3: minCostSoFar \(minCostSoFarV)  minPath \(minPath) nodes:\(nodes)")
-        return (costSoFar, minPath)
     }
 
    
