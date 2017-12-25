@@ -55,7 +55,7 @@ class Constants{
     }
     
     
-    //0:nodeID, 1:name, 2:category, 3: floor, 4:is feature point?
+    //0:nodeID, 1:name, 2:category, 3: floor, 4:is feature point? 
     static let storesDB =
         [["1",  "Rm 924B", NodeType.Restaurant.rawValue,"9", "1"],
          ["2",  "Terrace Right Entrance", NodeType.Facility.rawValue,"9", "1"],

@@ -237,10 +237,10 @@
             </objects>
             <point key="canvasLocation" x="1359" y="148"/>
         </scene>
-        <!--Suggestion Table View Controller-->
+        <!--Suggestion-->
         <scene sceneID="xnW-le-KCk">
             <objects>
-                <tableViewController id="zzU-Vn-rgA" customClass="SuggestionTableViewController" customModule="TrackMeIndoor" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Suggestion" id="zzU-Vn-rgA" customClass="SuggestionTableViewController" customModule="TrackMeIndoor" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="XOK-Qz-E1g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -331,13 +331,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance of AC and BD in Meter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qi-5p-chr">
-                                <rect key="frame" x="52" y="84" width="248" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Trf-4M-TGn">
                                 <rect key="frame" x="154" y="164" width="45" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -356,6 +349,13 @@
                                     <action selector="backToDefault:" destination="cyB-Ge-bZF" eventType="touchUpInside" id="vpX-N6-dpF"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance of AC and BD in Meter (2-10)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qi-5p-chr">
+                                <rect key="frame" x="23" y="84" width="307" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
@@ -373,7 +373,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SQY-wM-Om3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-182" y="1176"/>
+            <point key="canvasLocation" x="-182.5" y="1175.5"/>
         </scene>
         <!--Find My Location-->
         <scene sceneID="eAA-zL-OLV">
@@ -397,7 +397,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="A: " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="m2M-zL-8RS">
                                 <rect key="frame" x="0.0" y="499" width="375" height="168"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="0.13160851883561644" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -455,8 +455,8 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="540"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="F9Terrace" translatesAutoresizingMaskIntoConstraints="NO" id="YaB-Yt-RM8">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="530"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="F9Terrace" translatesAutoresizingMaskIntoConstraints="NO" id="YaB-Yt-RM8">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="540"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
@@ -648,10 +648,17 @@
                                     <action selector="planPath:" destination="ecH-JF-ar5" eventType="touchUpInside" id="0BI-6s-boe"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="store address and infomation" translatesAutoresizingMaskIntoConstraints="NO" id="iSF-aV-N3W">
-                                <rect key="frame" x="7" y="484" width="360" height="183"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSF-aV-N3W">
+                                <rect key="frame" x="100" y="484" width="275" height="183"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="0.14033069349315069" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Shop: 924A" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="At4-DC-ebd">
+                                <rect key="frame" x="0.0" y="484" width="100" height="183"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="0.68359375" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -676,8 +683,9 @@
                         <outlet property="floorSegmentedControl" destination="gP4-ga-Hjz" id="mR6-5p-f5S"/>
                         <outlet property="goButton" destination="B9x-Jq-DZT" id="nDX-fY-jOE"/>
                         <outlet property="imageView" destination="0Bp-v6-0cJ" id="bSs-aO-wlY"/>
+                        <outlet property="pathDetailsTextView" destination="iSF-aV-N3W" id="qyI-gr-QfZ"/>
                         <outlet property="scrollView" destination="FIH-ud-X0z" id="LWT-aa-XGm"/>
-                        <outlet property="storeDetailsTextView" destination="iSF-aV-N3W" id="qyI-gr-QfZ"/>
+                        <outlet property="storeDetailsTextView" destination="At4-DC-ebd" id="rN9-FN-rlr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jnz-uz-P98" userLabel="First Responder" sceneMemberID="firstResponder"/>

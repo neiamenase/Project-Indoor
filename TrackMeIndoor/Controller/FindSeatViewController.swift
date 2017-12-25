@@ -17,9 +17,13 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
     
     @IBOutlet weak var trackingButton: UIButton!
 
+    let floorPlanUnit = [14, 70] //x , y
+    let unitSize = 0.254 // in meter ~ 25.4cm = 10 inch
     
     var motionManager = CMMotionManager()
-    var currentCoordinates = Coordinates(100,100)
+    let startPoint = [5,9]
+    var currentLocation = [5,9]
+    
     
     var isTracking = false
     
@@ -44,8 +48,8 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
                 print(accelerometerLog)
                 let coordinates = Coordinates(accelerometerLog.acceleration.x, accelerometerLog.acceleration.y)
                 print("\(coordinates.x)  \(coordinates.y)")
-                self.currentCoordinates.x += coordinates.x * 100
-                self.currentCoordinates.y += coordinates.y * 100
+                //self.currentCoordinates.x += coordinates.x * 100
+                //self.currentCoordinates.y += coordinates.y * 100
             }
         }
 
