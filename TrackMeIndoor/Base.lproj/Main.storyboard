@@ -97,7 +97,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="297.5" y="147.5"/>
+            <point key="canvasLocation" x="809" y="-170"/>
         </scene>
         <!--Find Path-->
         <scene sceneID="XIS-Ay-ewu">
@@ -162,7 +162,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gFH-LM-aUh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1791" y="40"/>
+            <point key="canvasLocation" x="2567" y="-1493"/>
         </scene>
         <!--Place Finder View Controller-->
         <scene sceneID="m07-l0-MBA">
@@ -201,22 +201,44 @@
                                     <outlet property="delegate" destination="VEO-a5-qWM" id="CvD-Wz-9NX"/>
                                 </connections>
                             </scrollView>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fpj-bA-Oil">
+                                <rect key="frame" x="0.0" y="64" width="375" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="VEO-a5-qWM" id="mbZ-3C-sw3"/>
+                                    <outlet property="delegate" destination="VEO-a5-qWM" id="rdk-3J-BDz"/>
+                                </connections>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hp5-eA-CPG">
+                                <rect key="frame" x="29" y="253" width="330" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="9Ho-nP-CXN">
                         <nil key="title"/>
-                        <barButtonItem key="rightBarButtonItem" title="Plan" id="jzk-xu-HZa"/>
+                        <barButtonItem key="rightBarButtonItem" title="Plan" id="jzk-xu-HZa">
+                            <connections>
+                                <action selector="planPath:" destination="VEO-a5-qWM" id="lUE-mz-r6f"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="currentLocationLabel" destination="Hp5-eA-CPG" id="y0I-tT-gPt"/>
                         <outlet property="floorSegmentedControl" destination="0AR-JN-Muj" id="5nD-UK-1wa"/>
                         <outlet property="imageView" destination="JF8-av-mtA" id="db9-Ng-Ls0"/>
+                        <outlet property="pickerView" destination="Fpj-bA-Oil" id="ZiZ-7h-V8f"/>
+                        <outlet property="planPathButton" destination="jzk-xu-HZa" id="LIr-4W-aN7"/>
                         <outlet property="scrollView" destination="xmw-0o-mFQ" id="3VZ-iE-Mkv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEd-Wy-nFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="825.5" y="181.5"/>
+            <point key="canvasLocation" x="1786.5" y="-1492.5"/>
         </scene>
         <!--Suggestion-->
         <scene sceneID="xnW-le-KCk">
@@ -287,7 +309,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="826" y="-683"/>
+            <point key="canvasLocation" x="1404" y="1098"/>
         </scene>
         <!--Setting-->
         <scene sceneID="97g-kb-RPy">
@@ -354,7 +376,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SQY-wM-Om3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-182.5" y="1175.5"/>
+            <point key="canvasLocation" x="1787" y="157"/>
         </scene>
         <!--Find My Location-->
         <scene sceneID="eAA-zL-OLV">
@@ -410,7 +432,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gga-Ix-8Uj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="297.5" y="1175.5"/>
+            <point key="canvasLocation" x="246" y="1098"/>
         </scene>
         <!--Find Seat-->
         <scene sceneID="lSA-jt-nDF">
@@ -465,7 +487,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W0Z-b9-Uej" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="825.5" y="1175.5"/>
+            <point key="canvasLocation" x="809" y="1098"/>
         </scene>
         <!--Track Others-->
         <scene sceneID="zjT-vI-0dw">
@@ -530,7 +552,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h6S-Rb-Ivu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1942" y="1176"/>
+            <point key="canvasLocation" x="2567" y="-678"/>
         </scene>
         <!--Receiver-->
         <scene sceneID="w9X-FT-6nx">
@@ -586,7 +608,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O3O-7b-F7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1942" y="2040"/>
+            <point key="canvasLocation" x="2567" y="157"/>
         </scene>
         <!--Store Details View Controller-->
         <scene sceneID="Eow-9e-6ED">
@@ -671,7 +693,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jnz-uz-P98" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1358.5" y="-684.5"/>
+            <point key="canvasLocation" x="1404" y="1947"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="APz-Vr-nLM">
@@ -689,7 +711,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dq0-oa-Rue" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-181.25" y="147.85166666666666"/>
+            <point key="canvasLocation" x="-70" y="-171"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="WWk-WT-Fhz">
@@ -709,7 +731,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="27U-OO-sLh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1359" y="1176"/>
+            <point key="canvasLocation" x="1787" y="-677"/>
         </scene>
     </scenes>
     <resources>

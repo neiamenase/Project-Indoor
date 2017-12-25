@@ -16,8 +16,11 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
     //@IBOutlet weak var infoMessageLabel: UILabel!
     //@IBOutlet weak var pathDescriptionTextView: UITextView!
     @IBOutlet weak var floorSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var planPathButton: UIBarButtonItem!
     
-
+    @IBOutlet weak var pickerView: UIPickerView!
+    
+    @IBOutlet weak var currentLocationLabel: UILabel!
     
     var floorPlan = Constants.floorPlanImage
     var currentLocationNodeID = -1
@@ -28,66 +31,63 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
     var timeCost = 0
     var startFloor = 0
     var endFloor = 0
-    
+    var pickerDataSource = Constants.NodeType.allValues;
+    var targetType : Constants.NodeType = Constants.NodeType(rawValue: "Restaurant")!
     var locationManager = CLLocationManager()
     
+    @IBAction func planPath(_ sender: Any) {
+        let (cost, noOfNode, path) = SearchPath.SearchPathByNodeType(type: targetType, currentLoctionNodeID: 31)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-       locationManager.delegate = self
         
-
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        
+        locationManager.delegate = self
+        
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 6.0
-        //infoMessageLabel.text = "curr:\(currentLocationNodeID) dest:\(destinationNodeID)"
         
-
-        (timeCost, path ) = SearchPath.search(currentLoctionNodeID: currentLocationNodeID, destinationNodeID: destinationNodeID,
-                                            searchedPath: [currentLocationNodeID], costSoFar: 0, minCostSoFar: -1)
-        
-        if !path.isEmpty {
-            print ("Finish -- time: \(timeCost) path:\(path)\n\n")
-
-            for i in 0..<SearchPath.nodeInfoOnEachFloor.nodeRange.count{
-                if path[0] >= SearchPath.nodeInfoOnEachFloor.nodeRange[i][0] && path[0] <= SearchPath.nodeInfoOnEachFloor.nodeRange[i][1]{
-                    startFloor = i
-                    floorSegmentedControl.selectedSegmentIndex = i
-                }
-                if path[path.count-1] >= SearchPath.nodeInfoOnEachFloor.nodeRange[i][0] && path[path.count-1] <= SearchPath.nodeInfoOnEachFloor.nodeRange[i][1]{
-                    endFloor = i
-                }
-            }
-            
-            if startFloor != endFloor{
-                for liftNum in 0..<SearchPath.nodeInfoOnEachFloor.floorChangedNodes[0].count{
-                    let liftStartNode = path.index(of: SearchPath.nodeInfoOnEachFloor.floorChangedNodes[startFloor][liftNum])
-                    let liftEndNode = path.index(of: SearchPath.nodeInfoOnEachFloor.floorChangedNodes[endFloor][liftNum])
-                    if liftStartNode != nil && liftEndNode != nil{
-                        if liftStartNode == liftEndNode! - 1{
-                            let firstPath = Array(path[0..<liftEndNode!])
-                            drawPath(floor: startFloor, path: firstPath)
-                            let secondPath = Array(path[liftEndNode!...])
-                            drawPath(floor: endFloor, path: secondPath)
-                            break
-                        }
-                    }
-                }
-//                let changeFloorAtIndex = path.index(of: SearchPath.nodeInfoOnEachFloor.nodeRange[endFloor][0])!
-                
-            }else{
-                drawPath(floor: startFloor, path: path)
-            }
-            pathDescription()
-            imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]
-            
-            if items.isEmpty{
-                loadItems()
-                
-            }
-            
-        }
+        loadItems()
+//        (timeCost, path ) = SearchPath.search(currentLoctionNodeID: currentLocationNodeID, destinationNodeID: destinationNodeID,
+//                                            searchedPath: [currentLocationNodeID], costSoFar: 0, minCostSoFar: -1)
+//        if !path.isEmpty {
+//            print ("Finish -- time: \(timeCost) path:\(path)\n\n")
+//            for i in 0..<SearchPath.nodeInfoOnEachFloor.nodeRange.count{
+//                if path[0] >= SearchPath.nodeInfoOnEachFloor.nodeRange[i][0] && path[0] <= SearchPath.nodeInfoOnEachFloor.nodeRange[i][1]{
+//                    startFloor = i
+//                    floorSegmentedControl.selectedSegmentIndex = i
+//                }
+//                if path[path.count-1] >= SearchPath.nodeInfoOnEachFloor.nodeRange[i][0] && path[path.count-1] <= SearchPath.nodeInfoOnEachFloor.nodeRange[i][1]{
+//                    endFloor = i
+//                }
+//            }
+//            if startFloor != endFloor{
+//                for liftNum in 0..<SearchPath.nodeInfoOnEachFloor.floorChangedNodes[0].count{
+//                    let liftStartNode = path.index(of: SearchPath.nodeInfoOnEachFloor.floorChangedNodes[startFloor][liftNum])
+//                    let liftEndNode = path.index(of: SearchPath.nodeInfoOnEachFloor.floorChangedNodes[endFloor][liftNum])
+//                    if liftStartNode != nil && liftEndNode != nil{
+//                        if liftStartNode == liftEndNode! - 1{
+//                            let firstPath = Array(path[0..<liftEndNode!])
+//                            drawPath(floor: startFloor, path: firstPath)
+//                            let secondPath = Array(path[liftEndNode!...])
+//                            drawPath(floor: endFloor, path: secondPath)
+//                            break
+//                        }
+//                    }
+//                }
+//            }else{
+//                drawPath(floor: startFloor, path: path)
+//            }
+//            imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]
+//            if items.isEmpty{
+//                loadItems()
+//            }
+//
+//        }
 
     }
     func drawPath(floor: Int, path: [Int]) -> Void{
@@ -95,43 +95,19 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
 
     }
     
-    func pathDescription() -> Void{
-   //     pathDescriptionTextView.text = ""
-        
-        var terraceEnterFlag : Int = 0
-        let actionWord = ["Enter", "Leave"]
-        for i in 1..<path.count-1{
-            if path.contains(2) && path.contains(6){
-                if path[i] == 2 || path[i] == 6 {
-     //               pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(i). \(actionWord[terraceEnterFlag]) Terrace\n"
-                    terraceEnterFlag += 1
-                }else{
-   //                 pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(i). Pass through \(Constants.storesDB[path[i]-1][1])\n"
-                }
-            }else{
-  //              pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(i). Pass through \(Constants.storesDB[path[i]-1][1])\n"
-            }
-            
-        }
-    //    pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(path.count-1). Arrival \(Constants.storesDB[path.last!-1][1])\n"
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+   
+    
+    
     func viewForZooming(in scrollview: UIScrollView) -> UIView? {
         return self.imageView
     }
 
     /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
     */
     @IBAction func floorChanged(_ sender: UISegmentedControl) {
         imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]
@@ -160,7 +136,7 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 }
-//
+// MARK: - iBeacon Extension
 extension PlaceFinderViewController: CLLocationManagerDelegate{
 
     func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
@@ -183,10 +159,12 @@ extension PlaceFinderViewController: CLLocationManagerDelegate{
                 }
             }
         }
+        
         for item in items {
             switch item.beacon?.proximity{
             case .immediate?:
                 let i = Constants.beaconsInfo.name.index(of: item.name)
+                currentLocationLabel.text = item.name
 //                for j in 0 ..< SearchPath.nodeInfoOnEachFloor.nodeRange.count{
 //                    if SearchPath.nodeInfoOnEachFloor.nodeRange[j][0] <= i && SearchPath.nodeInfoOnEachFloor.nodeRange[j][1) >= Inti {
 //                        if j != floorSegmentedControl.selectedSegmentIndex {
@@ -211,5 +189,25 @@ extension PlaceFinderViewController: CLLocationManagerDelegate{
         }
     }
 }
+extension PlaceFinderViewController:  UIPickerViewDataSource, UIPickerViewDelegate{
+    // MARK: - Picker View
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerDataSource.count;
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerDataSource[row].rawValue
+    }
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+        targetType = Constants.NodeType.allValues[row]
+        // high all pts with targetTypex
+    }
+
+}
+
 
 
