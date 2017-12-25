@@ -47,13 +47,13 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
                     //print("\(coordinates.x)  \(coordinates.y)")
                     // s = ut + (1/2)(at²)
                     //     s   =      u       t              + 1/2                        a                          t^2
-                    var deltaZInMeter = self.zu * self.timeInterval + 1/2 * (data?.acceleration.z) * -1 * self.timeInterval * self.timeInterval * 9.8
+
+                    var deltaZInMeter = (self.zu * self.timeInterval) + (1/2 * (accelerometerLog.acceleration.z) * -1 * self.timeInterval * self.timeInterval * 9.8)
                     // now define +z => forward? seems match physical meaning. if not, please remove * -1
-                    var deltaYInMeter = self.yu * self.timeInterval + 1/2 * (data?.acceleration.y) * self.timeInterval * self.timeInterval * 9.8
+                    var deltaYInMeter = (self.yu * self.timeInterval) + (1/2 * (accelerometerLog.acceleration.y) * self.timeInterval * self.timeInterval * 9.8)
                     // -ve => left; +ve = Right
-                    
-                    self.zu = self.zu + (data?.acceleration.z) * -1 * timeInterval * 9.8
-                    self.yu = self.yu + (data?.acceleration.y) * timeInterval * 9.8
+                    self.zu = self.zu + (accelerometerLog.acceleration.z) * -1 * self.timeInterval * 9.8
+                    self.yu = self.yu + (accelerometerLog.acceleration.y) * self.timeInterval * 9.8
                     
                     /*
                     By Apple
