@@ -46,7 +46,7 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
                     let coordinates = Coordinates(accelerometerLog.acceleration.x, accelerometerLog.acceleration.y)
                     //print("\(coordinates.x)  \(coordinates.y)")
                     // s = ut + (1/2)(at²)
-                    //     s   =      u       t              + 1/2                        a                          t^2
+                    //            s   =      u       t              + 1/2                        a                          t^2
 
                     var deltaZInMeter = (self.zu * self.timeInterval) + (1/2 * (accelerometerLog.acceleration.z) * -1 * self.timeInterval * self.timeInterval * 9.8)
                     // now define +z => forward? seems match physical meaning. if not, please remove * -1
