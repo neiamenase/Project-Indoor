@@ -52,42 +52,6 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
         self.scrollView.maximumZoomScale = 6.0
         
         loadItems()
-//        (timeCost, path ) = SearchPath.search(currentLoctionNodeID: currentLocationNodeID, destinationNodeID: destinationNodeID,
-//                                            searchedPath: [currentLocationNodeID], costSoFar: 0, minCostSoFar: -1)
-//        if !path.isEmpty {
-//            print ("Finish -- time: \(timeCost) path:\(path)\n\n")
-//            for i in 0..<SearchPath.nodeInfoOnEachFloor.nodeRange.count{
-//                if path[0] >= SearchPath.nodeInfoOnEachFloor.nodeRange[i][0] && path[0] <= SearchPath.nodeInfoOnEachFloor.nodeRange[i][1]{
-//                    startFloor = i
-//                    floorSegmentedControl.selectedSegmentIndex = i
-//                }
-//                if path[path.count-1] >= SearchPath.nodeInfoOnEachFloor.nodeRange[i][0] && path[path.count-1] <= SearchPath.nodeInfoOnEachFloor.nodeRange[i][1]{
-//                    endFloor = i
-//                }
-//            }
-//            if startFloor != endFloor{
-//                for liftNum in 0..<SearchPath.nodeInfoOnEachFloor.floorChangedNodes[0].count{
-//                    let liftStartNode = path.index(of: SearchPath.nodeInfoOnEachFloor.floorChangedNodes[startFloor][liftNum])
-//                    let liftEndNode = path.index(of: SearchPath.nodeInfoOnEachFloor.floorChangedNodes[endFloor][liftNum])
-//                    if liftStartNode != nil && liftEndNode != nil{
-//                        if liftStartNode == liftEndNode! - 1{
-//                            let firstPath = Array(path[0..<liftEndNode!])
-//                            drawPath(floor: startFloor, path: firstPath)
-//                            let secondPath = Array(path[liftEndNode!...])
-//                            drawPath(floor: endFloor, path: secondPath)
-//                            break
-//                        }
-//                    }
-//                }
-//            }else{
-//                drawPath(floor: startFloor, path: path)
-//            }
-//            imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]
-//            if items.isEmpty{
-//                loadItems()
-//            }
-//
-//        }
 
     }
     func drawPath(floor: Int, path: [Int]) -> Void{
