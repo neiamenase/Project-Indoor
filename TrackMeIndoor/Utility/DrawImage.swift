@@ -143,7 +143,7 @@ class DrawImage{
         
 
         
-        var startPoint = CGPoint(x: SearchPath.coordinates[path[0]-1][0], y: SearchPath.coordinates[path[0]-1][1])
+        let startPoint = CGPoint(x: SearchPath.coordinates[path[0]-1][0], y: SearchPath.coordinates[path[0]-1][1])
         var endPoint = startPoint
         
         context.move(to: CGPoint(x: startPoint.x, y: startPoint.y))
@@ -155,7 +155,7 @@ class DrawImage{
             
         }
         context.strokePath()
-        var newImage = UIGraphicsGetImageFromCurrentImageContext()
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
 

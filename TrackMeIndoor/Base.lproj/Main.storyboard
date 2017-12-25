@@ -48,11 +48,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-7"/>
-                                <state key="normal" title="Path Finder" backgroundImage="pathFinder">
+                                <state key="normal" title="Stores and Facilities" backgroundImage="pathFinder">
                                     <color key="titleColor" red="0.0" green="0.4793452024" blue="0.99908632040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="fqz-JQ-Z2M" kind="push" id="fRT-Gd-q3Q"/>
+                                    <segue destination="VEO-a5-qWM" kind="push" id="0ul-Cr-IT2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ulj-p7-ZSM">
@@ -85,7 +85,7 @@
                                 <rect key="frame" x="16" y="477" width="158" height="135"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-155"/>
-                                <state key="normal" title="Suggestion" backgroundImage="suggestion"/>
+                                <state key="normal" title="Find Entities" backgroundImage="suggestion"/>
                                 <connections>
                                     <segue destination="zzU-Vn-rgA" kind="push" id="2Ap-Ov-5eC"/>
                                 </connections>
@@ -116,9 +116,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="Comfirm"/>
-                                <connections>
-                                    <segue destination="VEO-a5-qWM" kind="push" id="ors-sk-4q8"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Destination:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewc-kn-xPR">
                                 <rect key="frame" x="0.0" y="280" width="375" height="50"/>
@@ -165,7 +162,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gFH-LM-aUh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="826" y="148"/>
+            <point key="canvasLocation" x="1791" y="40"/>
         </scene>
         <!--Place Finder View Controller-->
         <scene sceneID="m07-l0-MBA">
@@ -179,12 +176,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="0AR-JN-Muj">
+                                <rect key="frame" x="112" y="631" width="150" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="GF" width="50"/>
+                                    <segment title="F5" width="50"/>
+                                    <segment title="F9" width="50"/>
+                                </segments>
+                                <connections>
+                                    <action selector="floorChanged:" destination="VEO-a5-qWM" eventType="valueChanged" id="8oE-Qs-jT4"/>
+                                </connections>
+                            </segmentedControl>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xmw-0o-mFQ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
+                                <rect key="frame" x="0.0" y="303" width="375" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="floorPlanF9" translatesAutoresizingMaskIntoConstraints="NO" id="JF8-av-mtA">
-                                        <rect key="frame" x="0.0" y="-4" width="375" height="340"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
@@ -192,50 +201,22 @@
                                     <outlet property="delegate" destination="VEO-a5-qWM" id="CvD-Wz-9NX"/>
                                 </connections>
                             </scrollView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You are in xxx now" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4x-jR-09T">
-                                <rect key="frame" x="0.0" y="408" width="375" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSf-o6-FXt">
-                                <rect key="frame" x="0.0" y="436" width="375" height="231"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="9Ho-nP-CXN">
                         <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" id="0AR-JN-Muj">
-                            <rect key="frame" x="140" y="7.5" width="95" height="29"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="GF"/>
-                                <segment title="F5"/>
-                                <segment title="F9"/>
-                            </segments>
-                            <connections>
-                                <action selector="floorChanged:" destination="VEO-a5-qWM" eventType="valueChanged" id="8oE-Qs-jT4"/>
-                            </connections>
-                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" title="Plan" id="jzk-xu-HZa"/>
                     </navigationItem>
                     <connections>
                         <outlet property="floorSegmentedControl" destination="0AR-JN-Muj" id="5nD-UK-1wa"/>
                         <outlet property="imageView" destination="JF8-av-mtA" id="db9-Ng-Ls0"/>
-                        <outlet property="infoMessageLabel" destination="c4x-jR-09T" id="Ln1-vd-ePQ"/>
-                        <outlet property="pathDescriptionTextView" destination="PSf-o6-FXt" id="aOq-ue-Izh"/>
                         <outlet property="scrollView" destination="xmw-0o-mFQ" id="3VZ-iE-Mkv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEd-Wy-nFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1359" y="148"/>
+            <point key="canvasLocation" x="825.5" y="181.5"/>
         </scene>
         <!--Suggestion-->
         <scene sceneID="xnW-le-KCk">
@@ -290,7 +271,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" id="M50-42-die"/>
+                    <navigationItem key="navigationItem" title="Find Entities" id="M50-42-die"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="00V-dx-Lsf" id="QvH-rw-4oQ"/>
                     </connections>
@@ -648,7 +629,7 @@
                                     <action selector="planPath:" destination="ecH-JF-ar5" eventType="touchUpInside" id="0BI-6s-boe"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSF-aV-N3W">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Please press the button to find the path." translatesAutoresizingMaskIntoConstraints="NO" id="iSF-aV-N3W">
                                 <rect key="frame" x="100" y="484" width="275" height="183"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="0.14033069349315069" colorSpace="custom" customColorSpace="sRGB"/>
