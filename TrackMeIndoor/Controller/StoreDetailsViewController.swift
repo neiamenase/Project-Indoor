@@ -109,7 +109,6 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
                         }
                     }
                 }
-                //                let changeFloorAtIndex = path.index(of: SearchPath.nodeInfoOnEachFloor.nodeRange[endFloor][0])!
                 
             }else{
                 drawPath(floor: startFloor, path: path)
@@ -155,6 +154,13 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
         }
         pathDetailsTextView.text = pathDetailsTextView.text! + "\(path.count-1). Arrival \(Constants.storesDB[path.last!-1][1])\n"
     }
+    
+    func drawCurrentLocation() -> Void {
+        floorSegmentedControl.selectedSegmentIndex = Constants.floorPlanIndex.index(of: Int(Constants.storesDB[currentLocationNodeID-1][3])!)!
+        imageView.image = DrawImage().drawPointOnFloorPlan(startingImage: floorPlan[floorSegmentedControl.selectedSegmentIndex]!, x: SearchPath.coordinates[currentLocationNodeID-1][0], y: SearchPath.coordinates[currentLocationNodeID-1][1], color: UIColor.green.cgColor)
+    }
+
+    
     /*
     // MARK: - Navigation
 
@@ -227,11 +233,13 @@ extension StoreDetailsViewController: CLLocationManagerDelegate{
                 if pathPlanned{
                     if destinationNodeID == Constants.beaconsInfo.nodeID[i!]{
                         currentLocationLabel.text = ("Arrivaled \(Constants.beaconsInfo.name[i!])")
+                        drawCurrentLocation()
                     }else if !path.contains(Constants.beaconsInfo.nodeID[i!]) {
                         currentLocationLabel.text = ("Wrong Direction! Please Plan Again!")
                     }else {
                         currentLocationLabel.text = ("Current Location: \(Constants.beaconsInfo.name[i!])")
                         currentLocationNodeID = Constants.beaconsInfo.nodeID[i!]
+                       drawCurrentLocation()
                     }
                 }else{
                     currentLocationLabel.text = ("Current Location: \(Constants.beaconsInfo.name[i!])")
@@ -241,5 +249,6 @@ extension StoreDetailsViewController: CLLocationManagerDelegate{
             }
         }
     }
+    
 }
 
