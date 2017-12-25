@@ -14,9 +14,11 @@ class SearchPath{
     
     struct nodeInfoOnEachFloor {
         static let nodeRange = [[33, 39], [15, 32], [1,14]]
-        static let floorName = [5,9]
+        static let floorName = [0,5,9]
         static let floorChangedNodes = [[33, 36],[15,32], [12,14]]
     }
+    
+    static let liftNodes = [33,36,15,32,12,14]
     
     
     static let coordinates = [[536, 552], [536, 464], [536, 386], [536, 496], [260, 528], [260, 464], [260, 498], [260, 350], [260, 266], [260, 406], [536, 266], [260, 552], [398, 552], [536, 602],
@@ -109,7 +111,7 @@ class SearchPath{
         }
         self.totalCount = Constants.storesDB.filter({$0[2] == type.rawValue}).count
         searchPathByType(type: type, currentCount: 0, currentLoctionNodeID: currentLoctionNodeID,
-                         searchedPath: [], costSoFar: 0)
+                         searchedPath: [], costSoFar: 0, revisitLift: 2)
         return (bestResult.cost, bestResult.nodeMatched, bestResult.path)
     }
     
@@ -126,16 +128,21 @@ class SearchPath{
     
     static var bestResult = searchResult(); // consider: getAllPoints,
     
-    private static func searchPathByType (type: Constants.NodeType, currentCount: Int, currentLoctionNodeID: Int, searchedPath: [Int], costSoFar: Int)-> Void{
+    private static func searchPathByType (type: Constants.NodeType, currentCount: Int, currentLoctionNodeID: Int, searchedPath: [Int], costSoFar: Int, revisitLift: Int)-> Void{
         let subNodes = connects.filter({$0[0] == currentLoctionNodeID})
-        var currentCountV = currentCount
-        var searchedPathV = searchedPath
         for subNode in subNodes{
+            var currentCountV = currentCount
+            var searchedPathV = searchedPath
+            var revisitLiftV = revisitLift
             let subNodeDetails = Constants.storesDB.filter({Int($0[0]) == currentLoctionNodeID}).first!
             let costSoFarV = costSoFar + subNode[2]
             
             if searchedPath.contains(subNode[1]){
-                continue // Avoid re-loop
+                if liftNodes.contains(subNode[1]) && revisitLiftV > 0{
+                    revisitLiftV = revisitLiftV - 1
+                }else{
+                    continue // Avoid re-loop
+                }
             }
             searchedPathV.append(subNode[1])
             if subNodeDetails[2] == type.rawValue {
@@ -144,13 +151,11 @@ class SearchPath{
                     // replace the best Result by current result
                     bestResult.cost = costSoFarV
                     bestResult.nodeMatched = currentCountV
-                    bestResult.path = searchedPath
+                    bestResult.path = searchedPathV
                 }
             }
-            searchPathByType(type: type, currentCount: currentCount, currentLoctionNodeID: subNode[1],
-                                              searchedPath: searchedPathV, costSoFar: costSoFarV)
+            searchPathByType(type: type, currentCount: currentCountV, currentLoctionNodeID: subNode[1],
+                             searchedPath: searchedPathV, costSoFar: costSoFarV, revisitLift: revisitLiftV)
         }
     }
-
-   
 }
