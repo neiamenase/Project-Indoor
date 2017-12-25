@@ -15,6 +15,7 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var currentLocationLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var storeDetailsTextView: UITextView!
+    @IBOutlet weak var pathDetailsTextView: UITextView!
     @IBOutlet weak var floorSegmentedControl: UISegmentedControl!
     @IBOutlet weak var goButton: UIButton!
     
@@ -58,10 +59,11 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
         currentLocationLabel.text = "Current Location: Searching..."
         destinationNodeID = (store?.nodeID)!
         floorSegmentedControl.selectedSegmentIndex = Constants.floorPlanIndex.index(of:(store?.floor)!)!
-        //var targetFloor : UIImage = floorPlan[floorSegmentedControl.selectedSegmentIndex]!
+
         floorPlan[floorSegmentedControl.selectedSegmentIndex]! = DrawImage().drawPointOnFloorPlan(startingImage: floorPlan[floorSegmentedControl.selectedSegmentIndex]!, x: SearchPath.coordinates[(store?.nodeID)!-1][0], y: SearchPath.coordinates[(store?.nodeID)!-1][1], color: UIColor.red.cgColor)
         imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]!
-        storeDetailsTextView.text = store?.category
+
+        storeDetailsTextView.text = "Category: \n\((store?.category)!)\n\nFloor: \n\((store?.floor)!)\n\nShop:\n\((store?.name)!)"
     }
     
     @IBAction func planPath(_ sender: Any) {
@@ -134,24 +136,24 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
         
     }
     func pathDescription() -> Void{
-        storeDetailsTextView.text = ""
+        pathDetailsTextView.text = ""
         
         var terraceEnterFlag : Int = 0
         let actionWord = ["Enter", "Leave"]
         for i in 1..<path.count-1{
             if path.contains(2) && path.contains(6){
                 if path[i] == 2 || path[i] == 6 {
-                    storeDetailsTextView.text = storeDetailsTextView.text! + "\(i). \(actionWord[terraceEnterFlag]) Terrace\n"
+                    pathDetailsTextView.text = pathDetailsTextView.text! + "\(i). \(actionWord[terraceEnterFlag]) Terrace\n"
                     terraceEnterFlag += 1
                 }else{
-                    storeDetailsTextView.text = storeDetailsTextView.text! + "\(i). Pass through \(Constants.storesDB[path[i]-1][1])\n"
+                    pathDetailsTextView.text = pathDetailsTextView.text! + "\(i). Pass through \(Constants.storesDB[path[i]-1][1])\n"
                 }
             }else{
-                storeDetailsTextView.text = storeDetailsTextView.text! + "\(i). Pass through \(Constants.storesDB[path[i]-1][1])\n"
+                pathDetailsTextView.text = pathDetailsTextView.text! + "\(i). Pass through \(Constants.storesDB[path[i]-1][1])\n"
             }
             
         }
-        storeDetailsTextView.text = storeDetailsTextView.text! + "\(path.count-1). Arrival \(Constants.storesDB[path.last!-1][1])\n"
+        pathDetailsTextView.text = pathDetailsTextView.text! + "\(path.count-1). Arrival \(Constants.storesDB[path.last!-1][1])\n"
     }
     /*
     // MARK: - Navigation

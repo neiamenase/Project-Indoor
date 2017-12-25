@@ -13,11 +13,12 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var infoMessageLabel: UILabel!
-    @IBOutlet weak var pathDescriptionTextView: UITextView!
+    //@IBOutlet weak var infoMessageLabel: UILabel!
+    //@IBOutlet weak var pathDescriptionTextView: UITextView!
     @IBOutlet weak var floorSegmentedControl: UISegmentedControl!
     
 
+    
     var floorPlan = Constants.floorPlanImage
     var currentLocationNodeID = -1
     var destinationNodeID = -1
@@ -40,7 +41,7 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
 
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 6.0
-        infoMessageLabel.text = "curr:\(currentLocationNodeID) dest:\(destinationNodeID)"
+        //infoMessageLabel.text = "curr:\(currentLocationNodeID) dest:\(destinationNodeID)"
         
 
         (timeCost, path ) = SearchPath.search(currentLoctionNodeID: currentLocationNodeID, destinationNodeID: destinationNodeID,
@@ -95,24 +96,24 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func pathDescription() -> Void{
-        pathDescriptionTextView.text = ""
+   //     pathDescriptionTextView.text = ""
         
         var terraceEnterFlag : Int = 0
         let actionWord = ["Enter", "Leave"]
         for i in 1..<path.count-1{
             if path.contains(2) && path.contains(6){
                 if path[i] == 2 || path[i] == 6 {
-                    pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(i). \(actionWord[terraceEnterFlag]) Terrace\n"
+     //               pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(i). \(actionWord[terraceEnterFlag]) Terrace\n"
                     terraceEnterFlag += 1
                 }else{
-                    pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(i). Pass through \(Constants.storesDB[path[i]-1][1])\n"
+   //                 pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(i). Pass through \(Constants.storesDB[path[i]-1][1])\n"
                 }
             }else{
-                pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(i). Pass through \(Constants.storesDB[path[i]-1][1])\n"
+  //              pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(i). Pass through \(Constants.storesDB[path[i]-1][1])\n"
             }
             
         }
-        pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(path.count-1). Arrival \(Constants.storesDB[path.last!-1][1])\n"
+    //    pathDescriptionTextView.text = pathDescriptionTextView.text! + "\t\(path.count-1). Arrival \(Constants.storesDB[path.last!-1][1])\n"
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -196,14 +197,14 @@ extension PlaceFinderViewController: CLLocationManagerDelegate{
 //                }
                 
                 if Constants.beaconsInfo.nodeID[i!] == destinationNodeID{
-                    infoMessageLabel.text = "Arrivaled \(Constants.beaconsInfo.name[i!])"
+//                    infoMessageLabel.text = "Arrivaled \(Constants.beaconsInfo.name[i!])"
                 }else if Constants.beaconsInfo.nodeID[i!] == currentLocationNodeID{
                     continue
                 }
                 else if path.contains(Constants.beaconsInfo.nodeID[i!]) {
-                    infoMessageLabel.text = "You are in \(Constants.beaconsInfo.name[i!])"
+//                    infoMessageLabel.text = "You are in \(Constants.beaconsInfo.name[i!])"
                 }else {
-                    infoMessageLabel.text = "Wrong Direction! "
+  //                  infoMessageLabel.text = "Wrong Direction! "
                 }
             default: break
             }

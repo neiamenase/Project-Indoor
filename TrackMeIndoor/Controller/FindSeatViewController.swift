@@ -17,10 +17,15 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
     
     @IBOutlet weak var trackingButton: UIButton!
 
+    let floorPlanUnit = [14, 70] //x , y
+    let unitSize = 0.254 // in meter ~ 25.4cm = 10 inch
     
     var motionManager = CMMotionManager()
-    var currentCoordinates = Coordinates(100,100)
+    let startPoint = [5,9]
+    var currentLocation = [5,9]
     
+    
+    var isTracking = false
     
 
     override func viewDidLoad() {
@@ -30,8 +35,7 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
        // startTrackingButton
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 6.0
-        self.trackingButton.layer.borderWidth = 2
-        self.trackingButton.layer.borderColor = UIColor.blue.cgColor
+        
         
 
     }
@@ -44,8 +48,8 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
                 print(accelerometerLog)
                 let coordinates = Coordinates(accelerometerLog.acceleration.x, accelerometerLog.acceleration.y)
                 print("\(coordinates.x)  \(coordinates.y)")
-                self.currentCoordinates.x += coordinates.x * 100
-                self.currentCoordinates.y += coordinates.y * 100
+                //self.currentCoordinates.x += coordinates.x * 100
+                //self.currentCoordinates.y += coordinates.y * 100
             }
         }
 
@@ -70,11 +74,23 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func startTracking(_ sender: Any) {
-        startTrackAccelerometer()
+    @IBAction func trackingAction(_ sender: Any) {
+        if !isTracking {
+            trackingButton.backgroundColor = self.view.tintColor
+            trackingButton.setTitleColor(UIColor.white, for: .normal)
+            trackingButton.setTitle("Stop Tracking", for: .normal)
+            startTrackAccelerometer()
+        }else{
+            trackingButton.backgroundColor = UIColor.white
+            trackingButton.setTitleColor(self.view.tintColor, for: .normal)
+            trackingButton.setTitle("Start Tracking", for: .normal)
+            stopTrackAccelerometer()
+        }
+        isTracking = !isTracking
+        
     }
     @IBAction func stopTracking(_ sender: Any) {
-        stopTrackAccelerometer()
+        
     }
 
 

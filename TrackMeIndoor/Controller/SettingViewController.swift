@@ -44,6 +44,13 @@ class SettingViewController: UIViewController {
     }
     
     private func saveSettings() {
+        
+//        if Double(bdValue.text!) > 10.0 || Double(bdValue.text!) < 1.0 || Double(acValue.text!) > 10.0 || Double(acValue.text!) < 1.0 {
+//            let alert = UIAlertController(title: "Input Error", message: "Range: 2-10", preferredStyle: UIAlertControllerStyle.alert)
+//            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+//            self.present(alert, animated: true, completion: nil)
+//            return
+//        }
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(
             SaveSetting(
                 u:Double(bdValue.text!)!,
@@ -51,9 +58,9 @@ class SettingViewController: UIViewController {
             ),
             toFile: Constants.SettingArchiveURL.path)
         if isSuccessfulSave {
-            os_log("Meals successfully saved.", log: OSLog.default, type: .debug)
+            os_log("u v successfully saved.", log: OSLog.default, type: .debug)
         } else {
-            os_log("Failed to save meals...", log: OSLog.default, type: .error)
+            os_log("Failed to save u v ...", log: OSLog.default, type: .error)
         }
     }
     /*
