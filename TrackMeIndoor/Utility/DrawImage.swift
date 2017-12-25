@@ -162,4 +162,52 @@ class DrawImage{
         // Return modified image
         return newImage!
     }
+    func drawLiftPointFloorPlan(floorPlanImages: [UIImage], startNode: Int, endNode: Int) -> [UIImage] {
+        var tempImages = floorPlanImages
+        let startFloor :Int =  Constants.floorPlanIndex.index(of:Int(Constants.storesDB[startNode-1][3])!)!
+        let endFloor :Int = Constants.floorPlanIndex.index(of:Int(Constants.storesDB[endNode-1][3])!)!
+        
+        if startFloor < endFloor{
+            tempImages[startFloor] = drawLiftTriangle(startingImage: tempImages[startFloor], x: SearchPath.coordinates[startNode-1][0], y: SearchPath.coordinates[startNode-1][1], up: 1)
+            tempImages[endFloor] = drawLiftTriangle(startingImage: tempImages[endFloor], x: SearchPath.coordinates[endNode-1][0], y: SearchPath.coordinates[endNode-1][1], up: 1)
+        }else{
+            tempImages[startFloor] = drawLiftTriangle(startingImage: tempImages[startFloor], x: SearchPath.coordinates[startNode-1][0], y: SearchPath.coordinates[startNode-1][1], up: -1)
+            tempImages[endFloor] = drawLiftTriangle(startingImage: tempImages[endFloor], x: SearchPath.coordinates[endNode-1][0], y: SearchPath.coordinates[endNode-1][1], up: -1)
+        }
+       
+        // Return modified image
+        return tempImages
+    }
+    func drawLiftTriangle(startingImage: UIImage, x: Int, y:Int, up: Int) -> UIImage {
+        UIGraphicsBeginImageContext(startingImage.size)
+
+        // Draw the starting image in the current context as background
+        startingImage.draw(at: CGPoint.zero)
+        let context = UIGraphicsGetCurrentContext()!
+        //context.setLineWidth(5.0)
+       
+        context.beginPath()
+        context.move(to: CGPoint(x: x , y: y - 20 * up))
+        context.addLine(to: CGPoint(x: x - 10, y: y))
+        context.addLine(to: CGPoint(x: x + 10, y: y))
+        context.closePath()
+        
+        if up > 0 {
+            context.setFillColor(UIColor.orange.cgColor)
+        }else{
+            context.setFillColor(UIColor.purple.cgColor)
+        }
+        context.fillPath()
+        
+        //context.strokePath()
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        
+        // Return modified image
+        return newImage!
+    }
+    
+    
+    
 }
