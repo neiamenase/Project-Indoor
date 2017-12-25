@@ -80,7 +80,6 @@ class SearchPath{
                 if searchedPath.contains(node[1]){
                     continue // Avoid re-loop
                 }
-                
                 searchedPathV.append(node[1])
                 if destinationNodeID == node[1]{
                     return (costSoFarV, searchedPathV) // Base case
@@ -111,7 +110,7 @@ class SearchPath{
         }
         self.totalCount = Constants.storesDB.filter({$0[2] == type.rawValue}).count
         searchPathByType(type: type, currentCount: 0, currentLoctionNodeID: currentLoctionNodeID,
-                         searchedPath: [], costSoFar: 0, revisitLift: 2)
+                         searchedPath: [currentLoctionNodeID], costSoFar: 0, revisitLift: 2)
         return (bestResult.cost, bestResult.nodeMatched, bestResult.path)
     }
     

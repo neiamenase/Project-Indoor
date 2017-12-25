@@ -461,14 +461,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWb-dN-REF">
-                                <rect key="frame" x="0.0" y="607" width="125" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Start Tracking"/>
-                                <connections>
-                                    <action selector="trackingAction:" destination="XKA-hL-g6D" eventType="touchUpInside" id="zag-u8-8AB"/>
-                                </connections>
-                            </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z9o-Zh-IJ7">
                                 <rect key="frame" x="0.0" y="64" width="375" height="540"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -483,7 +475,7 @@
                                 </connections>
                             </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Seat: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bas-1D-4A2">
-                                <rect key="frame" x="133" y="607" width="242" height="60"/>
+                                <rect key="frame" x="54" y="607" width="321" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
@@ -492,17 +484,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Find Seat" id="jEq-Ec-F0N"/>
+                    <navigationItem key="navigationItem" title="Find Seat" id="jEq-Ec-F0N">
+                        <barButtonItem key="rightBarButtonItem" title="Start" id="bzv-jI-QJI">
+                            <connections>
+                                <action selector="trackingAction:" destination="XKA-hL-g6D" id="C4I-0q-Cat"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="YaB-Yt-RM8" id="i7a-dt-aRi"/>
                         <outlet property="scrollView" destination="Z9o-Zh-IJ7" id="CqT-4Q-cZG"/>
                         <outlet property="statusLabel" destination="Bas-1D-4A2" id="7Zg-HQ-9Mn"/>
-                        <outlet property="trackingButton" destination="hWb-dN-REF" id="utM-jO-4tb"/>
+                        <outlet property="trackButton" destination="bzv-jI-QJI" id="TIa-Ew-Kdc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W0Z-b9-Uej" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="809" y="1098"/>
+            <point key="canvasLocation" x="808.5" y="1097.5"/>
         </scene>
         <!--Track Others-->
         <scene sceneID="zjT-vI-0dw">

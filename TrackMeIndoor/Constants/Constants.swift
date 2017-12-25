@@ -69,7 +69,7 @@ class Constants{
          ["10", "Rm 901", "Clothing","9", "1"],
          ["11", "Rm 913 Right Entrance", NodeType.Restaurant.rawValue,"9", "1"],
          ["12", "F9 Lift Lobby", NodeType.Facility.rawValue,"9", "1"],
-         ["13", "Corridor", NodeType.Facility.rawValue,"9", "0"],
+         ["13", "Corridor", NodeType.None.rawValue,"9", "0"],
          ["14", "F9 Cargo Lift Lobby", NodeType.Facility.rawValue,"9", "1"],
          ["15",  "F5 Lift Lobby", NodeType.Facility.rawValue,"5", "1"],
          ["16",  "Corridor", NodeType.None.rawValue,"5", "0"],
