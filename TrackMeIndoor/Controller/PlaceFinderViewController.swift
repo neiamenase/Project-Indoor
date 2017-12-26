@@ -61,7 +61,7 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
         self.scrollView.maximumZoomScale = 6.0
         
         loadItems()
-        pathDetailsTextView.text = "Blue: Start Point\nRed: Feature Point\nGreen: Current Point \nTriangle: Lift"
+        pathDetailsTextView.text = "Blue: Current Point\nGreen: Start Point \nRed: Feature Point\nTriangle: Lift"
 
     }
     
