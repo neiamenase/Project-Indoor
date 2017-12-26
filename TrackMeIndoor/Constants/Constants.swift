@@ -111,8 +111,11 @@ class Constants{
     
     static let findSeatFloorPlanUnit = [14.0, 70] //x , y
     static let findSeatUnitSize = 0.254 // in meter ~ 25.4cm = 10 inch
-    static let findSeatStartPoint = [5.0,35.0]
+    static let findSeatStartPoint = [5.0,69.0]
+    static let findSeatFloorPlanImage = UIImage(named:"F9Terrace")
     
+    static let widthUnit : Double = Double(findSeatFloorPlanImage!.size.width) / Constants.findSeatUnitSize / Constants.findSeatFloorPlanUnit[0]
+    static let heightUnit : Double = Double(findSeatFloorPlanImage!.size.height) / Constants.findSeatUnitSize / Constants.findSeatFloorPlanUnit[1]
     
 //    struct VU_Distance {
 //        var u: Double = 0.0

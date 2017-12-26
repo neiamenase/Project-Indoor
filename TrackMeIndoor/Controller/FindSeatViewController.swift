@@ -14,7 +14,7 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var trackButton: UIBarButtonItem!
+   // @IBOutlet weak var trackButton: UIBarButtonItem!
 
 
     var motionManager = CMMotionManager()
@@ -25,15 +25,17 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
     var zu : Double = 0.0 // in ms^-1
     var yu : Double = 0.0 // in ms
     var xu : Double = 0.0 // in ms
-    var ratio : Double = 1.0
-    var minValue = 0.0
-    
+    var ratio : Double = 1
+    var minValue = 0.1
+    var maxValue = 1.5
+    var cosineValue = 0.0
+    var _direction = ""
     
     var xborderMax: Double = Constants.findSeatFloorPlanUnit[0] * Constants.findSeatUnitSize
     var yborderMax: Double = Constants.findSeatFloorPlanUnit[1] * Constants.findSeatUnitSize
     
     
-    var timeInterval : Double = 0.5 // ∆T
+    var timeInterval : Double = 0.2 // ∆T
     
     var floorPlanImage = UIImage(named: "F9Terrace")
     
@@ -56,51 +58,57 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
                 if let accelerometerLog = data{
                     
                     //print(accelerometerLog)
-//                    print("x: \(String(format: "%.2f", accelerometerLog.acceleration.x))   y:\(String(format: "%.2f", accelerometerLog.acceleration.y))")
+                    print("x: \(String(format: "%.2f", accelerometerLog.acceleration.x))   y:\(String(format: "%.2f", accelerometerLog.acceleration.y))")
                     let coordinates = Coordinates(accelerometerLog.acceleration.x, accelerometerLog.acceleration.y)
                     //print("\(coordinates.x)  \(coordinates.y)")
                     // s = ut + (1/2)(at²)
                     //            s   =      u       t              + 1/2                        a                          t^2
-                    if abs(accelerometerLog.acceleration.y) > self.minValue && abs(accelerometerLog.acceleration.x) > self.minValue {
-                        let zValue = accelerometerLog.acceleration.z * -1
-                        print("x: \(String(format: "%.2f", accelerometerLog.acceleration.x))   y:\(String(format: "%.2f", accelerometerLog.acceleration.y)) z:\(String(format: "%.2f", zValue))")
+                    if abs(accelerometerLog.acceleration.y) > self.minValue && abs(accelerometerLog.acceleration.y) < self.maxValue
+                    {
+                        // now define +z => forward? seems match physical meaning. if not, please remove * -1
+                        let deltaYInMeter = (self.yu * self.timeInterval) + (1/2 * (accelerometerLog.acceleration.y) * self.timeInterval * self.timeInterval * self.ratio)
                         
-                        
-                        
-                    let deltaZInMeter = (self.zu * self.timeInterval) + (1/2 * zValue * self.timeInterval * self.timeInterval * self.ratio)
-                    // now define +z => forward? seems match physical meaning. if not, please remove * -1
-                    let deltaYInMeter = (self.yu * self.timeInterval) + (1/2 * (accelerometerLog.acceleration.y) * self.timeInterval * self.timeInterval * self.ratio)
-                    let deltaXInMeter = (self.xu * self.timeInterval) + (1/2 * (accelerometerLog.acceleration.x) * self.timeInterval * self.timeInterval * self.ratio)
-                    // -ve => left; +ve = Right
-                    self.zu = zValue * self.timeInterval * self.ratio
-                    self.yu = (accelerometerLog.acceleration.y) * self.timeInterval * self.ratio
-                    self.xu = self.xu  + (accelerometerLog.acceleration.x) * self.timeInterval * self.ratio
-                   print( "xu: \(String(format: "%.2f", self.xu))", "yu: \(String(format: "%.2f", self.yu))", "zu: \(String(format: "%.2f", self.zu))")
-                        
+                        // -ve => left; +ve = Right
+                        self.yu = (accelerometerLog.acceleration.y) * self.timeInterval * self.ratio
+                        //self.xu = self.xu + (accelerometerLog.acceleration.x) * self.timeInterval * self.ratio
                         
                         //print ("old: \(self.currentLocationX) , \(self.currentLocationY)")
+                            
+                            if abs(accelerometerLog.acceleration.x) > self.minValue && abs(accelerometerLog.acceleration.x) < self.maxValue{
+                                let deltaXInMeter = (self.xu * self.timeInterval) + (1/2 * (accelerometerLog.acceleration.x) * self.timeInterval * self.timeInterval * self.ratio)
+                                self.cosineValue = deltaYInMeter / sqrt(pow(deltaYInMeter,2) + pow(deltaXInMeter,2))
+                                if deltaXInMeter > 0 {
+                                    self._direction = "R"
+                                }else{
+                                    self._direction = "L"
+                                }
+                            }
                         
-                        var x_change = self.currentLocationX + deltaXInMeter
-                        var y_change = self.currentLocationY + deltaYInMeter
-                        
-                        if x_change < 0 {
-                            x_change = 0
+                        var newX = self.currentLocationX
+                        if self._direction != "" {
+                            if self._direction == "L"{
+                                newX = self.currentLocationX + (deltaYInMeter / self.cosineValue)
+                            }else if self._direction == "R"{
+                                newX = self.currentLocationX - (deltaYInMeter / self.cosineValue)
+                            }
                         }
-                        if y_change < 0 {
-                            y_change = 0
+                        var newY = self.currentLocationY + deltaYInMeter
+                        if newX < 0 {
+                            newX = 0
                         }
-                        
-                        if x_change > self.xborderMax {
-                            x_change = self.xborderMax
+                        if newY < 0 {
+                            newY = 0
                         }
-                        if y_change > self.yborderMax {
-                            y_change = self.yborderMax
+                        if newX > self.xborderMax {
+                            newX = self.xborderMax
                         }
-                        self.floorPlanImage = DrawImage().drawFlanSeatPath(startingImage: self.floorPlanImage!, startX: self.currentLocationX, startY: self.currentLocationY, stopX: sqrt((self.currentLocationX * self.currentLocationX) + (x_change * x_change)),
-                                                   stopY: sqrt((self.currentLocationY * self.currentLocationY) + (y_change * y_change)))
-                        self.imageView.image = self.floorPlanImage
-                        self.currentLocationX = x_change
-                        self.currentLocationY = y_change
+                        if newY > self.yborderMax {
+                            newY = self.yborderMax
+                        }
+                        self.floorPlanImage = DrawImage().drawFlanSeatPath(startingImage: self.floorPlanImage!, startX: self.currentLocationX, startY: self.currentLocationY, stopX: newX, stopY: newY)
+                        self.imageView.image = DrawImage().drawFlanSeatCurrentPoint(startingImage: self.floorPlanImage!, x: newX, y: newY)
+                        self.currentLocationX = newX
+                        self.currentLocationY = newY
                         //print ("new: \(self.currentLocationX) , \(self.currentLocationY)")
                     }else{
                         self.xu = 0

@@ -210,8 +210,7 @@ class DrawImage{
         // Draw the starting image in the current context as background
         startingImage.draw(at: CGPoint.zero)
         //print("width \(startingImage.size.width)   height \(startingImage.size.height)")
-        let widthUnit : Double = Double(startingImage.size.width) / Constants.findSeatUnitSize / Constants.findSeatFloorPlanUnit[0]
-        let heightUnit : Double = Double(startingImage.size.height) / Constants.findSeatUnitSize / Constants.findSeatFloorPlanUnit[1]
+         Constants.findSeatUnitSize / Constants.findSeatFloorPlanUnit[1]
         //print("width \(startingImage.size.width)   height \(startingImage.size.height) unit \(widthUnit, heightUnit)")
         // Get the current context
         let context = UIGraphicsGetCurrentContext()!
@@ -219,8 +218,8 @@ class DrawImage{
         context.setStrokeColor(UIColor.red.cgColor)
         
         
-        context.move(to: CGPoint(x: startX * widthUnit, y: startY * heightUnit))
-        context.addLine(to: CGPoint(x: stopX * widthUnit, y:stopY * heightUnit))
+        context.move(to: CGPoint(x: startX * Constants.widthUnit, y: startY * Constants.heightUnit))
+        context.addLine(to: CGPoint(x: stopX * Constants.widthUnit, y:stopY * Constants.heightUnit))
 
         context.strokePath()
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -230,6 +229,26 @@ class DrawImage{
         // Return modified image
         return newImage!
     }
+    
+    func drawFlanSeatCurrentPoint(startingImage: UIImage, x: Double, y: Double) -> UIImage {
+        UIGraphicsBeginImageContext(startingImage.size)
+        
+        // Draw the starting image in the current context as background
+        startingImage.draw(at: CGPoint.zero)
+
+        let context = UIGraphicsGetCurrentContext()!
+        context.setFillColor(UIColor.green.cgColor)
+        
+        context.addEllipse(in: CGRect(x: (x * Constants.widthUnit) - 10, y: (y * Constants.heightUnit) - 10 , width: 20, height: 20))
+        context.drawPath(using: .fillStroke)
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        // Return modified image
+        return newImage!
+    }
+    
     
     
     
