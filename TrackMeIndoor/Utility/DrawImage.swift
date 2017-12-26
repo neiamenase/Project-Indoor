@@ -129,9 +129,6 @@ class DrawImage{
     func drawFloorPlanPathLocation(startingImage: UIImage, path: [Int]) -> UIImage {
         UIGraphicsBeginImageContext(startingImage.size)
         
-
-        
-        
         // Draw the starting image in the current context as background
         startingImage.draw(at: CGPoint.zero)
         //print("width \(startingImage.size.width)   height \(startingImage.size.height)")
@@ -168,17 +165,18 @@ class DrawImage{
         let endFloor :Int = Constants.floorPlanIndex.index(of:Int(Constants.storesDB[endNode-1][3])!)!
         
         if startFloor < endFloor{
-            tempImages[startFloor] = drawLiftTriangle(startingImage: tempImages[startFloor], x: SearchPath.coordinates[startNode-1][0], y: SearchPath.coordinates[startNode-1][1], up: 1)
-            tempImages[endFloor] = drawLiftTriangle(startingImage: tempImages[endFloor], x: SearchPath.coordinates[endNode-1][0], y: SearchPath.coordinates[endNode-1][1], up: 1)
+            tempImages[startFloor] = drawLiftTriangle(startingImage: tempImages[startFloor], x: SearchPath.coordinates[startNode-1][0], y: SearchPath.coordinates[startNode-1][1], up: 1, color: UIColor.black.cgColor)
+            tempImages[endFloor] = drawPointOnFloorPlan(startingImage: tempImages[endFloor], x: SearchPath.coordinates[endNode-1][0], y: SearchPath.coordinates[endNode-1][1], color: UIColor.black.cgColor)
+
         }else{
-            tempImages[startFloor] = drawLiftTriangle(startingImage: tempImages[startFloor], x: SearchPath.coordinates[startNode-1][0], y: SearchPath.coordinates[startNode-1][1], up: -1)
-            tempImages[endFloor] = drawLiftTriangle(startingImage: tempImages[endFloor], x: SearchPath.coordinates[endNode-1][0], y: SearchPath.coordinates[endNode-1][1], up: -1)
+            tempImages[startFloor] = drawLiftTriangle(startingImage: tempImages[startFloor], x: SearchPath.coordinates[startNode-1][0], y: SearchPath.coordinates[startNode-1][1], up: -1,  color: UIColor.purple.cgColor)
+            tempImages[endFloor] = drawPointOnFloorPlan(startingImage: tempImages[endFloor], x: SearchPath.coordinates[endNode-1][0], y: SearchPath.coordinates[endNode-1][1], color: UIColor.purple.cgColor)
         }
        
         // Return modified image
         return tempImages
     }
-    func drawLiftTriangle(startingImage: UIImage, x: Int, y:Int, up: Int) -> UIImage {
+    func drawLiftTriangle(startingImage: UIImage, x: Int, y:Int, up: Int, color:CGColor) -> UIImage {
         UIGraphicsBeginImageContext(startingImage.size)
 
         // Draw the starting image in the current context as background
@@ -192,14 +190,39 @@ class DrawImage{
         context.addLine(to: CGPoint(x: x + 10, y: y))
         context.closePath()
         
-        if up > 0 {
-            context.setFillColor(UIColor.orange.cgColor)
-        }else{
-            context.setFillColor(UIColor.purple.cgColor)
-        }
+ 
+            context.setFillColor(color)
+    
         context.fillPath()
         
         //context.strokePath()
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        
+        // Return modified image
+        return newImage!
+    }
+    
+    func drawFlanSeatPath(startingImage: UIImage, startX: Double,startY: Double, stopX: Double,stopY: Double) -> UIImage {
+        UIGraphicsBeginImageContext(startingImage.size)
+        
+        // Draw the starting image in the current context as background
+        startingImage.draw(at: CGPoint.zero)
+        //print("width \(startingImage.size.width)   height \(startingImage.size.height)")
+        let widthUnit : Double = Double(startingImage.size.width) / Constants.findSeatUnitSize / Constants.findSeatFloorPlanUnit[0]
+        let heightUnit : Double = Double(startingImage.size.height) / Constants.findSeatUnitSize / Constants.findSeatFloorPlanUnit[1]
+        //print("width \(startingImage.size.width)   height \(startingImage.size.height) unit \(widthUnit, heightUnit)")
+        // Get the current context
+        let context = UIGraphicsGetCurrentContext()!
+        context.setLineWidth(10.0)
+        context.setStrokeColor(UIColor.red.cgColor)
+        
+        
+        context.move(to: CGPoint(x: startX * widthUnit, y: startY * heightUnit))
+        context.addLine(to: CGPoint(x: stopX * widthUnit, y:stopY * heightUnit))
+
+        context.strokePath()
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         

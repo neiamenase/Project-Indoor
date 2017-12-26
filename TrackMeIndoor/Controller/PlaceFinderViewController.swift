@@ -70,10 +70,11 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
         var index = 0
         //draw Start Point
         floorPlan[floor!] = DrawImage().drawPointOnFloorPlan(startingImage: floorPlan[floor!]!, x: SearchPath.coordinates[path[0]-1][0], y: SearchPath.coordinates[path[0]-1][1], color: UIColor.green.cgColor)
-        for i in 0..<path.count{
+        for i in 1..<path.count{
+            print("test: i: \(i)  node:\(path[i])  per:\(floor!)  now:\(Constants.floorPlanIndex.index(of:Int(Constants.storesDB[path[i]-1][3])!)!)")
             if floor != Constants.floorPlanIndex.index(of:Int( Constants.storesDB[path[i]-1][3])!){
                 let subPath = Array(path[index..<i])
-                print(floor, subPath)
+                print(floor!, subPath)
                 self.drawPathForEachFloor(floor: floor!, path: subPath)
                 floorPlan = DrawImage().drawLiftPointFloorPlan(floorPlanImages: floorPlan as! [UIImage], startNode: path[i-1], endNode: path[i])
                 floor = Constants.floorPlanIndex.index(of:Int( Constants.storesDB[path[i]][3])!)
@@ -82,6 +83,7 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
         }
         let subPath = Array(path[index...])
         self.drawPathForEachFloor(floor: floor!, path: subPath)
+        print(floor!, subPath)
         //draw end point
         floorPlan[floor!] = DrawImage().drawPointOnFloorPlan(startingImage: floorPlan[floor!]!, x: SearchPath.coordinates[path[path.count-1]-1][0], y: SearchPath.coordinates[path[path.count-1]-1][1], color: UIColor.red.cgColor)
         floorPlanWithCurrent = floorPlan

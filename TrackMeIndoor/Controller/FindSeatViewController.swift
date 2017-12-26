@@ -16,20 +16,24 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var trackButton: UIBarButtonItem!
 
-    let floorPlanUnit = [14, 70] //x , y
-    let unitSize = 0.254 // in meter ~ 25.4cm = 10 inch
+
     var motionManager = CMMotionManager()
-    let startPoint = [5,9]
-    var currentLocation = [5,9]
+    
+    var currentLocationX = Constants.findSeatStartPoint[0] * Constants.findSeatUnitSize
+    var currentLocationY = Constants.findSeatStartPoint[1] * Constants.findSeatUnitSize
     var isTracking = false
     var zu : Double = 0.0 // in ms^-1
     var yu : Double = 0.0 // in ms
+    var xu : Double = 0.0 // in ms
     var timeInterval : Double = 0.5 // ∆T
+    
+    var floorPlanImage = UIImage(named: "F9Terrace")
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
+        print (currentLocationX, currentLocationY)
         // Do any additional setup after loading the view.
        // startTrackingButton
         self.scrollView.minimumZoomScale = 1.0
@@ -42,18 +46,34 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
             motionManager.accelerometerUpdateInterval = timeInterval
             motionManager.startAccelerometerUpdates(to: OperationQueue.current!){ (data, error) in
                 if let accelerometerLog = data{
-                    print(accelerometerLog)
+                    
+                    //print(accelerometerLog)
+                    //print("x: \(String(format: "%.2f", accelerometerLog.acceleration.x))   y:\(String(format: "%.2f", accelerometerLog.acceleration.y))")
                     let coordinates = Coordinates(accelerometerLog.acceleration.x, accelerometerLog.acceleration.y)
                     //print("\(coordinates.x)  \(coordinates.y)")
                     // s = ut + (1/2)(at²)
                     //            s   =      u       t              + 1/2                        a                          t^2
-
+                    if abs(accelerometerLog.acceleration.y) > 0.01 && abs(accelerometerLog.acceleration.x) > 0.01 {
+                        print("x: \(String(format: "%.2f", accelerometerLog.acceleration.x))   y:\(String(format: "%.2f", accelerometerLog.acceleration.y))")
                     var deltaZInMeter = (self.zu * self.timeInterval) + (1/2 * (accelerometerLog.acceleration.z) * -1 * self.timeInterval * self.timeInterval * 9.8)
                     // now define +z => forward? seems match physical meaning. if not, please remove * -1
                     var deltaYInMeter = (self.yu * self.timeInterval) + (1/2 * (accelerometerLog.acceleration.y) * self.timeInterval * self.timeInterval * 9.8)
+                    var deltaXInMeter = (self.xu * self.timeInterval) + (1/2 * (accelerometerLog.acceleration.x) * self.timeInterval * self.timeInterval * 9.8)
                     // -ve => left; +ve = Right
                     self.zu = self.zu + (accelerometerLog.acceleration.z) * -1 * self.timeInterval * 9.8
                     self.yu = self.yu + (accelerometerLog.acceleration.y) * self.timeInterval * 9.8
+                    self.xu = self.xu + (accelerometerLog.acceleration.x) * self.timeInterval * 9.8
+                   // print(deltaZInMeter, deltaYInMeter, deltaXInMeter)
+                        
+                        
+                        //print ("old: \(self.currentLocationX) , \(self.currentLocationY)")
+                        self.floorPlanImage = DrawImage().drawFlanSeatPath(startingImage: self.floorPlanImage!, startX: self.currentLocationX, startY: self.currentLocationY, stopX: self.currentLocationX , stopY: self.currentLocationY + deltaXInMeter)
+                        self.imageView.image = self.floorPlanImage
+                       // self.currentLocationX += deltaXInMeter
+                        self.currentLocationY += deltaXInMeter
+                        //print ("new: \(self.currentLocationX) , \(self.currentLocationY)")
+                    }
+                    
                     
                     /*
                     By Apple
@@ -92,6 +112,8 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
                      where a belongs to (-z, y)
                     */
                     
+                    
+                    
                 }
             }
         }
@@ -114,6 +136,8 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
         if !isTracking {
             self.zu = 0.0
             self.yu = 0.0
+            self.xu = 0.0
+
             self.navigationItem.rightBarButtonItem =  UIBarButtonItem(title: "Stop", style: .plain, target: self, action: #selector(trackingAction))
             startTrackAccelerometer()
         }else{

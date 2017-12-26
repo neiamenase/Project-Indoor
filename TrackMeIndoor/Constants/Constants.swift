@@ -109,8 +109,9 @@ class Constants{
     static let findSeatBeaconCoordinate = [[0.0, u/2], [v/2,0.0], [v,u/2], [v/2,u]]
     
     
-    
-    
+    static let findSeatFloorPlanUnit = [14.0, 70] //x , y
+    static let findSeatUnitSize = 0.254 // in meter ~ 25.4cm = 10 inch
+    static let findSeatStartPoint = [5.0,35.0]
     
     
 //    struct VU_Distance {

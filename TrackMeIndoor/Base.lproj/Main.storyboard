@@ -85,7 +85,7 @@
                                 <rect key="frame" x="16" y="477" width="158" height="135"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-155"/>
-                                <state key="normal" title="Find Entities" backgroundImage="suggestion"/>
+                                <state key="normal" title="Find Entity" backgroundImage="suggestion"/>
                                 <connections>
                                     <segue destination="zzU-Vn-rgA" kind="push" id="2Ap-Ov-5eC"/>
                                 </connections>
@@ -475,7 +475,7 @@
                                 </connections>
                             </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Seat: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bas-1D-4A2">
-                                <rect key="frame" x="54" y="607" width="321" height="60"/>
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
@@ -484,10 +484,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Find Seat" id="jEq-Ec-F0N">
-                        <barButtonItem key="rightBarButtonItem" title="Start" id="bzv-jI-QJI">
+                    <navigationItem key="navigationItem" title="Find Seat" id="ILB-KJ-IpV">
+                        <barButtonItem key="rightBarButtonItem" title="Start" id="rnY-Il-Qfm">
                             <connections>
-                                <action selector="trackingAction:" destination="XKA-hL-g6D" id="C4I-0q-Cat"/>
+                                <action selector="trackingAction:" destination="XKA-hL-g6D" id="ppk-4d-xxh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -495,7 +495,6 @@
                         <outlet property="imageView" destination="YaB-Yt-RM8" id="i7a-dt-aRi"/>
                         <outlet property="scrollView" destination="Z9o-Zh-IJ7" id="CqT-4Q-cZG"/>
                         <outlet property="statusLabel" destination="Bas-1D-4A2" id="7Zg-HQ-9Mn"/>
-                        <outlet property="trackButton" destination="bzv-jI-QJI" id="TIa-Ew-Kdc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W0Z-b9-Uej" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -690,6 +689,13 @@
                                     <action selector="floorChanged:" destination="ecH-JF-ar5" eventType="valueChanged" id="9HR-gB-Ijk"/>
                                 </connections>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="G: Start Point     R: Stop Point" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BAP-wm-lTq">
+                                <rect key="frame" x="281" y="448" width="78" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
@@ -706,7 +712,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jnz-uz-P98" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1404" y="1947"/>
+            <point key="canvasLocation" x="1403.5" y="1946.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="APz-Vr-nLM">
