@@ -23,7 +23,9 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
     var store : Store? = nil
     
     var floorPlan = Constants.floorPlanImage
+    var floorPlanWithCurrent = Constants.floorPlanImage
     var currentLocationNodeID = -1
+    var lastCurrentLocationNodeID = -1
     var destinationNodeID = -1
     var pathPlanned = false
     
@@ -62,7 +64,7 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
 
         floorPlan[floorSegmentedControl.selectedSegmentIndex]! = DrawImage().drawPointOnFloorPlan(startingImage: floorPlan[floorSegmentedControl.selectedSegmentIndex]!, x: SearchPath.coordinates[(store?.nodeID)!-1][0], y: SearchPath.coordinates[(store?.nodeID)!-1][1], color: UIColor.red.cgColor)
         imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]!
-
+        floorPlanWithCurrent = floorPlan
         storeDetailsTextView.text = "Category: \n\((store?.category)!)\n\nFloor: \n\((store?.floor)!)\n\nShop:\n\((store?.name)!)"
     }
     
@@ -74,6 +76,7 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
             self.present(alert, animated: true, completion: nil)
             
             currentLocationNodeID = 39
+            lastCurrentLocationNodeID = currentLocationNodeID
         }
 //            return
 //        }else{
@@ -119,7 +122,7 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
             
             pathDescription()
             imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]
-            
+            floorPlanWithCurrent = floorPlan
             if items.isEmpty{
                 loadItems()
                 
@@ -157,7 +160,8 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
     
     func drawCurrentLocation() -> Void {
         floorSegmentedControl.selectedSegmentIndex = Constants.floorPlanIndex.index(of: Int(Constants.storesDB[currentLocationNodeID-1][3])!)!
-        imageView.image = DrawImage().drawPointOnFloorPlan(startingImage: floorPlan[floorSegmentedControl.selectedSegmentIndex]!, x: SearchPath.coordinates[currentLocationNodeID-1][0], y: SearchPath.coordinates[currentLocationNodeID-1][1], color: UIColor.green.cgColor)
+        floorPlanWithCurrent[floorSegmentedControl.selectedSegmentIndex] = DrawImage().drawPointOnFloorPlan(startingImage: floorPlan[floorSegmentedControl.selectedSegmentIndex]!, x: SearchPath.coordinates[currentLocationNodeID-1][0], y: SearchPath.coordinates[currentLocationNodeID-1][1], color: UIColor.blue.cgColor)
+        imageView.image = floorPlanWithCurrent[floorSegmentedControl.selectedSegmentIndex]
     }
 
     
@@ -173,7 +177,7 @@ class StoreDetailsViewController: UIViewController, UIScrollViewDelegate {
     
     
     @IBAction func floorChanged(_ sender: UISegmentedControl) {
-        imageView.image = floorPlan[floorSegmentedControl.selectedSegmentIndex]
+        imageView.image = floorPlanWithCurrent[floorSegmentedControl.selectedSegmentIndex]
         
     }
     func viewForZooming(in scrollview: UIScrollView) -> UIView? {
@@ -230,20 +234,23 @@ extension StoreDetailsViewController: CLLocationManagerDelegate{
             switch item.beacon?.proximity{
             case .immediate?:
                 let i = Constants.beaconsInfo.name.index(of: item.name)
-                if pathPlanned{
-                    if destinationNodeID == Constants.beaconsInfo.nodeID[i!]{
-                        currentLocationLabel.text = ("Arrivaled \(Constants.beaconsInfo.name[i!])")
-                        drawCurrentLocation()
-                    }else if !path.contains(Constants.beaconsInfo.nodeID[i!]) {
-                        currentLocationLabel.text = ("Wrong Direction! Please Plan Again!")
-                    }else {
+                currentLocationNodeID = Constants.beaconsInfo.nodeID[i!]
+                if currentLocationNodeID != lastCurrentLocationNodeID  {
+                    if pathPlanned{
+                        if destinationNodeID == Constants.beaconsInfo.nodeID[i!]{
+                            currentLocationLabel.text = ("Arrivaled \(Constants.beaconsInfo.name[i!])")
+                            
+                        }else if !path.contains(Constants.beaconsInfo.nodeID[i!]) {
+                            currentLocationLabel.text = ("Wrong Direction! Please Plan Again!")
+                        }else {
+                            currentLocationLabel.text = ("Current Location: \(Constants.beaconsInfo.name[i!])")
+                        }
+                    }else{
                         currentLocationLabel.text = ("Current Location: \(Constants.beaconsInfo.name[i!])")
-                        currentLocationNodeID = Constants.beaconsInfo.nodeID[i!]
-                       drawCurrentLocation()
+                        //currentLocationNodeID = Constants.beaconsInfo.nodeID[i!]
                     }
-                }else{
-                    currentLocationLabel.text = ("Current Location: \(Constants.beaconsInfo.name[i!])")
-                    currentLocationNodeID = Constants.beaconsInfo.nodeID[i!]
+                    drawCurrentLocation()
+                    lastCurrentLocationNodeID = currentLocationNodeID
                 }
             default: break
             }

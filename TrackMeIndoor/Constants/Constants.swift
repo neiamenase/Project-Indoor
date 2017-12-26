@@ -41,7 +41,7 @@ class Constants{
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let SettingArchiveURL = DocumentsDirectory.appendingPathComponent("setting")
     struct beaconsInfo {
-        //static let nodeDescription = ["A", "B", "C", "D", "E", "F", "G", "H", "I","J","K",]
+        static let nodeDescription = ["A", "B", "C", "D", "E", "F", "G", "H", "I","J","K",]
         static let minor = [58633, 59655, 53000, 47625, 1, 2, 3, 4, 5, 6, 7]
         static let color = [UIColor.green.cgColor, UIColor.yellow.cgColor, UIColor.red.cgColor, UIColor.orange.cgColor, UIColor.brown.cgColor]
         static let nodeID = [1, 19, 7, 10, 15, 3, 23, 29, 34, 37, 39]
