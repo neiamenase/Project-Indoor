@@ -59,10 +59,6 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
                     
                     //print(accelerometerLog)
                     print("x: \(String(format: "%.2f", accelerometerLog.acceleration.x))   y:\(String(format: "%.2f", accelerometerLog.acceleration.y))")
-                    let coordinates = Coordinates(accelerometerLog.acceleration.x, accelerometerLog.acceleration.y)
-                    //print("\(coordinates.x)  \(coordinates.y)")
-                    // s = ut + (1/2)(at²)
-                    //            s   =      u       t              + 1/2                        a                          t^2
                     if abs(accelerometerLog.acceleration.y) > self.minValue && abs(accelerometerLog.acceleration.y) < self.maxValue
                     {
                         // now define +z => forward? seems match physical meaning. if not, please remove * -1
@@ -76,11 +72,11 @@ class FindSeatViewController: UIViewController,UIScrollViewDelegate {
                             
                             if abs(accelerometerLog.acceleration.x) > self.minValue && abs(accelerometerLog.acceleration.x) < self.maxValue{
                                 let deltaXInMeter = (self.xu * self.timeInterval) + (1/2 * (accelerometerLog.acceleration.x) * self.timeInterval * self.timeInterval * self.ratio)
-                                self.cosineValue = deltaYInMeter / sqrt(pow(deltaYInMeter,2) + pow(deltaXInMeter,2))
+                                self.cosineValue = deltaYInMeter / sqrt(pow(abs(deltaYInMeter),2) + pow(abs(deltaXInMeter),2))
                                 if deltaXInMeter > 0 {
-                                    self._direction = "R"
-                                }else{
                                     self._direction = "L"
+                                }else{
+                                    self._direction = "R"
                                 }
                             }
                         

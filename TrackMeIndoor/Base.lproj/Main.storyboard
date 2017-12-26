@@ -308,7 +308,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Find Entities" id="M50-42-die"/>
+                    <navigationItem key="navigationItem" title="Find Entity" id="M50-42-die"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="00V-dx-Lsf" id="QvH-rw-4oQ"/>
                     </connections>
@@ -367,7 +367,7 @@
                                     <action selector="backToDefault:" destination="cyB-Ge-bZF" eventType="touchUpInside" id="vpX-N6-dpF"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance of AC and BD in Meter (2-10)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qi-5p-chr">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance of AC and BD in Meter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qi-5p-chr">
                                 <rect key="frame" x="23" y="84" width="307" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
