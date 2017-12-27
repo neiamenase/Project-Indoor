@@ -16,7 +16,7 @@ class FindMyLocationViewController: UIViewController , UIScrollViewDelegate {
     @IBOutlet weak var floorPlanImageView: UIImageView!
     @IBOutlet weak var displayMessage: UILabel!
     
-    @IBOutlet weak var defaultValueButton: UIBarButtonItem!
+    @IBOutlet weak var defaultValueButton: UIButton!
     let locationManager = CLLocationManager()
     var items = [Item]()
     var count = 0
@@ -79,7 +79,14 @@ class FindMyLocationViewController: UIViewController , UIScrollViewDelegate {
     }
  
     @IBAction func defaultValueAction(_ sender: Any) {
-
+        if useDefaultValue {
+            defaultValueButton.backgroundColor = UIColor.white
+            defaultValueButton.setTitleColor(self.view.tintColor, for: .normal)
+        }else{
+            defaultValueButton.backgroundColor = self.view.tintColor
+            defaultValueButton.setTitleColor(UIColor.white, for: .normal)
+            
+        }
         useDefaultValue = !useDefaultValue
     }
     

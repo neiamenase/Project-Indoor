@@ -414,18 +414,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="A: " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="m2M-zL-8RS">
-                                <rect key="frame" x="0.0" y="485" width="375" height="182"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="0.13160851883561644" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w5g-Z2-yNt">
-                                <rect key="frame" x="0.0" y="64" width="375" height="375"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="439"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BHk-ab-4wP">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BHk-ab-4wP">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -434,26 +427,36 @@
                                     <outlet property="delegate" destination="2v9-r8-hGm" id="g05-Ys-TBb"/>
                                 </connections>
                             </scrollView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="A: " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="m2M-zL-8RS">
+                                <rect key="frame" x="0.0" y="478" width="375" height="189"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="0.13160851883561644" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZ3-f4-T6S">
-                                <rect key="frame" x="13" y="439" width="349" height="38"/>
+                                <rect key="frame" x="0.0" y="439" width="306" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2SR-qw-29l">
+                                <rect key="frame" x="314" y="439" width="61" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Default"/>
+                                <connections>
+                                    <action selector="defaultValueAction:" destination="2v9-r8-hGm" eventType="touchUpInside" id="b6O-wo-dLi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" title="Find My Location" id="7cv-c7-wGf">
                         <barButtonItem key="backBarButtonItem" title="Back" id="2hN-9S-lqT"/>
-                        <barButtonItem key="rightBarButtonItem" title="Default" id="WdL-cA-ELA">
-                            <connections>
-                                <action selector="defaultValueAction:" destination="2v9-r8-hGm" id="VQ2-uU-hjK"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="defaultValueButton" destination="WdL-cA-ELA" id="Djk-fc-N0I"/>
+                        <outlet property="defaultValueButton" destination="2SR-qw-29l" id="eew-aS-guU"/>
                         <outlet property="displayMessage" destination="qZ3-f4-T6S" id="sYO-pw-zUm"/>
                         <outlet property="floorPlanImageView" destination="BHk-ab-4wP" id="aWw-Zv-ocP"/>
                         <outlet property="scrollView" destination="w5g-Z2-yNt" id="Upg-f5-aGH"/>
