@@ -7,6 +7,11 @@ class Constants{
     static var u : Double = 2.0
     static var v : Double = 2.0
     static let distanceUnit : Double = 0.5
+    
+    
+    static let n : Double = 5.647277761
+    static let dZero : Int = -69
+    
 
     
     //     a

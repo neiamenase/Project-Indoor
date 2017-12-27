@@ -103,6 +103,7 @@ class PlaceFinderViewController: UIViewController, UIScrollViewDelegate {
     func drawCurrentLocation() -> Void {
         if currentLocationNodeID >= 0 {
             floorSegmentedControl.selectedSegmentIndex = Constants.floorPlanIndex.index(of: Int(Constants.storesDB[currentLocationNodeID-1][3])!)!
+            floorPlanWithCurrent = floorPlan
             floorPlanWithCurrent[floorSegmentedControl.selectedSegmentIndex] = DrawImage().drawPointOnFloorPlan(startingImage: floorPlanWithCurrent[floorSegmentedControl.selectedSegmentIndex]!, x: SearchPath.coordinates[currentLocationNodeID-1][0], y: SearchPath.coordinates[currentLocationNodeID-1][1], color: UIColor.blue.cgColor)
             imageView.image = floorPlanWithCurrent[floorSegmentedControl.selectedSegmentIndex]
         }

@@ -25,13 +25,14 @@ class Item: NSObject, NSCoding {
     var distance: Double
     var count: Int = 0
     var beacon: CLBeacon?
+
     func asBeaconRegion() -> CLBeaconRegion {
         return CLBeaconRegion(proximityUUID: uuid,
                               major: majorValue,
                               minor: minorValue,
                               identifier: name)
     }
-    init(name: String, icon: Int, uuid: UUID, majorValue: Int, minorValue: Int, distance: Double) {
+    init(name: String, icon: Int, uuid: UUID, majorValue: Int, minorValue: Int, distance: Double ) {
         self.name = name
         self.icon = icon
         self.uuid = uuid

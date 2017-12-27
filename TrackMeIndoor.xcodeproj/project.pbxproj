@@ -24,7 +24,7 @@
 		CA062EBE1FE7B6B800891387 /* EmitterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EBD1FE7B6B800891387 /* EmitterViewController.swift */; };
 		CA062ED81FE8014000891387 /* SearchPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062ED71FE8014000891387 /* SearchPath.swift */; };
 		CA062EDA1FE8065100891387 /* PlaceFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062ED91FE8065100891387 /* PlaceFinderViewController.swift */; };
-		CA062EDE1FE828E400891387 /* PlaceFinderFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EDD1FE828E400891387 /* PlaceFinderFirstViewController.swift */; };
+		CA062EDE1FE828E400891387 /* CalibrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA062EDD1FE828E400891387 /* CalibrationViewController.swift */; };
 		CAFA50421FE938570083C7E9 /* ReceiverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFA50411FE938570083C7E9 /* ReceiverViewController.swift */; };
 		CAFA50441FEE027A0083C7E9 /* SuggestionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFA50431FEE027A0083C7E9 /* SuggestionTableViewController.swift */; };
 		CAFA50461FEE02AA0083C7E9 /* SuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFA50451FEE02AA0083C7E9 /* SuggestionTableViewCell.swift */; };
@@ -51,7 +51,7 @@
 		CA062EBD1FE7B6B800891387 /* EmitterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmitterViewController.swift; sourceTree = "<group>"; };
 		CA062ED71FE8014000891387 /* SearchPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPath.swift; sourceTree = "<group>"; };
 		CA062ED91FE8065100891387 /* PlaceFinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFinderViewController.swift; sourceTree = "<group>"; };
-		CA062EDD1FE828E400891387 /* PlaceFinderFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFinderFirstViewController.swift; sourceTree = "<group>"; };
+		CA062EDD1FE828E400891387 /* CalibrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationViewController.swift; sourceTree = "<group>"; };
 		CAFA50411FE938570083C7E9 /* ReceiverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverViewController.swift; sourceTree = "<group>"; };
 		CAFA50431FEE027A0083C7E9 /* SuggestionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionTableViewController.swift; sourceTree = "<group>"; };
 		CAFA50451FEE02AA0083C7E9 /* SuggestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionTableViewCell.swift; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 				CA062EAF1FE66B3100891387 /* FindMyLocationViewController.swift */,
 				CA062EBD1FE7B6B800891387 /* EmitterViewController.swift */,
 				CAFA50411FE938570083C7E9 /* ReceiverViewController.swift */,
-				CA062EDD1FE828E400891387 /* PlaceFinderFirstViewController.swift */,
+				CA062EDD1FE828E400891387 /* CalibrationViewController.swift */,
 				CA062ED91FE8065100891387 /* PlaceFinderViewController.swift */,
 				CA062EB91FE7814E00891387 /* FindSeatViewController.swift */,
 				1866A8DE1FEE911400212E13 /* SettingViewController.swift */,
@@ -222,7 +222,7 @@
 				1866A8DF1FEE911400212E13 /* SettingViewController.swift in Sources */,
 				CAFA50441FEE027A0083C7E9 /* SuggestionTableViewController.swift in Sources */,
 				CAFA50421FE938570083C7E9 /* ReceiverViewController.swift in Sources */,
-				CA062EDE1FE828E400891387 /* PlaceFinderFirstViewController.swift in Sources */,
+				CA062EDE1FE828E400891387 /* CalibrationViewController.swift in Sources */,
 				CA062EBA1FE7814E00891387 /* FindSeatViewController.swift in Sources */,
 				1803513C1FE6797D001A60B3 /* Coordinates.swift in Sources */,
 				CA062EB41FE6CF8A00891387 /* DrawImage.swift in Sources */,
