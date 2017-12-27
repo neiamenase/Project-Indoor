@@ -13,9 +13,13 @@ class SettingViewController: UIViewController {
 
     @IBOutlet weak var acValue: UITextField!
     @IBOutlet weak var bdValue: UITextField!
+    @IBOutlet weak var d0Value: UITextField!
+    @IBOutlet weak var nValue: UITextField!
     @IBAction func barSaveButton(_ sender: Any) {
         Constants.v = acValue.text != nil ? Double(acValue.text!)!:2
         Constants.u = bdValue.text != nil ? Double(bdValue.text!)!:2
+        Constants.dZero = d0Value.text != nil ? Double(d0Value.text!)!:2
+        Constants.n = nValue.text != nil ? Double(nValue.text!)!:2
         saveSettings();
         _ = navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
@@ -25,6 +29,8 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
         acValue.text = String(format: "%d", Int(Constants.v))
         bdValue.text = String(format: "%d", Int(Constants.u))
+        d0Value.text = String(format: "%d", Int(Constants.dZero))
+        nValue.text = String(format: "%d", Int(Constants.n))
         // Do any additional setup after loading the view.
     }
 
@@ -38,6 +44,10 @@ class SettingViewController: UIViewController {
             Constants.v = 2
             acValue.text = String(format: "%d", Int(Constants.v))
             bdValue.text = String(format: "%d", Int(Constants.u))
+        Constants.dZero = -69
+        Constants.n = 5.647277761
+        acValue.text = String(format: "%d", Int(Constants.v))
+        bdValue.text = String(format: "%d", Int(Constants.u))
             saveSettings();
             _ = navigationController?.popViewController(animated: true)
             self.dismiss(animated: true, completion: nil)

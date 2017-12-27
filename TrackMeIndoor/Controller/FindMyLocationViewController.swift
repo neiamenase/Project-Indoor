@@ -16,11 +16,14 @@ class FindMyLocationViewController: UIViewController , UIScrollViewDelegate {
     @IBOutlet weak var floorPlanImageView: UIImageView!
     @IBOutlet weak var displayMessage: UILabel!
     
+    @IBOutlet weak var defaultValueButton: UIBarButtonItem!
     let locationManager = CLLocationManager()
     var items = [Item]()
     var count = 0
     
     var floorPlan : UIImage = UIImage(named: "Grid")!
+    
+    var useDefaultValue = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +78,10 @@ class FindMyLocationViewController: UIViewController , UIScrollViewDelegate {
         }
     }
  
+    @IBAction func defaultValueAction(_ sender: Any) {
+
+        useDefaultValue = !useDefaultValue
+    }
     
 }
 
@@ -93,44 +100,80 @@ extension FindMyLocationViewController: CLLocationManagerDelegate{
         
         
        // var indexPaths = [IndexPath]()
+//        for beacon in beacons {
+//            for row in 0..<items.count {
+//                // TODO: Determine if item is equal to ranged beacon
+//                if items[row] == beacon {
+//
+//                    items[row].beacon = beacon
+//                    items[row].distance = (items[row].distance * Double(items[row].count) + beacon.accuracy) / (Double(items[row].count) + 1)
+//                    items[row].count += 1
+//
+//                    count += 1
+//                }
+//            }
+//        }
+//
+//        if count == 8{
+//
+//            count = 0
+//            let coordinate = getCoordinate(items)
+//            testText.text = "x:\(String(format: "%.2f",coordinate!.x))   y:\(String(format: "%.2f",coordinate!.y))\n"
+//            floorPlanImageView.image = DrawImage().drawMyLocation(startingImage: floorPlan, x: coordinate!.x, y: coordinate!.y)
+//            displayMessage.text = " "
+//            for item in items {
+//                print("minor: \(item.minorValue), name: \(item.name), distance: \(item.distance)")
+//                item.distance = 0.0
+//                item.count = 0
+//
+//                testText.text = testText.text + "Name: \(item.name) \n" + item.locationString() + "\t\t\((item.beacon?.rssi)!)" + "\n"
+//
+//                switch item.beacon?.proximity{
+//                case .immediate?:
+//                    displayMessage.text = "You are in Location \(item.name)"
+//                default: break
+//
+//                }
+//            }
         for beacon in beacons {
             for row in 0..<items.count {
-                // TODO: Determine if item is equal to ranged beacon
+                    // TODO: Determine if item is equal to ranged beacon
                 if items[row] == beacon {
-                    
                     items[row].beacon = beacon
-                    items[row].distance = (items[row].distance * Double(items[row].count) + beacon.accuracy) / (Double(items[row].count) + 1)
-                    items[row].count += 1
-
-                    count += 1
                 }
             }
         }
+
         
-        if count == 8{
-            
-            count = 0
-            let coordinate = getCoordinate(items)
-            testText.text = "x:\(String(format: "%.2f",coordinate!.x))   y:\(String(format: "%.2f",coordinate!.y))\n"
-            floorPlanImageView.image = DrawImage().drawMyLocation(startingImage: floorPlan, x: coordinate!.x, y: coordinate!.y)
-            displayMessage.text = " "
-            for item in items {
-                print("minor: \(item.minorValue), name: \(item.name), distance: \(item.distance)")
-                item.distance = 0.0
-                item.count = 0
-                
-                testText.text = testText.text + "Name: \(item.name) \n" + item.locationString() + "\n"
-
-                switch item.beacon?.proximity{
-                case .immediate?:
-                    displayMessage.text = "You are in Location \(item.name)"
-                default: break
-                    
-                }
-            }
-            
-
+        displayMessage.text = " "
+        if useDefaultValue{
+            testText.text = "Default:\n"
+        }else{
+            testText.text = "Calibrataion:\n"
         }
+        for item in items {
+            //d = do * 10 ^ (Pr(d0) - Pr(d) ]  / 10n)
+            if item.beacon != nil{
+                if useDefaultValue{
+
+                    item.distance = (item.beacon?.accuracy)!
+                }else{
+                    item.distance = (1.0 * pow(10.0, (Double(Constants.dZero) - Double((item.beacon?.rssi)!) ) / 10.0 / Double(Constants.n)))
+                }
+                testText.text = testText.text + "Name: \(item.name) \n RSSI: \((item.beacon?.rssi)!)\tDistance: \(String(format: "%.4f",(item.distance)))" + "\n"
+            }
+                    switch item.beacon?.proximity{
+                    case .immediate?:
+                        displayMessage.text = "You are in Location \(item.name)"
+                    default: break
+                        
+                    }
+        }
+
+        
+        let coordinate = getCoordinate(items)
+        testText.text = testText.text +  "x:\(String(format: "%.2f",coordinate!.x))   y:\(String(format: "%.2f",coordinate!.y))\n"
+        floorPlanImageView.image = DrawImage().drawMyLocation(startingImage: floorPlan, x: coordinate!.x, y: coordinate!.y)
     }
     
     func getCoordinate (_ items: [Item]) -> Coordinates?{
