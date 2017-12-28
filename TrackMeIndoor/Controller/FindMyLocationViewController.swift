@@ -70,7 +70,7 @@ class FindMyLocationViewController: UIViewController , UIScrollViewDelegate {
 
     func loadItems() {
         for i in 0..<4 {
-        items.append(Item(name: Constants.beaconsInfo.name[i], icon: 0, uuid: Constants.uuid, majorValue: Constants.iBeaconMajor, minorValue: Constants.beaconsInfo.minor[i], distance: 0.0))
+        items.append(Item(name: Constants.beaconsInfo.nodeDescription[i], icon: 0, uuid: Constants.uuid, majorValue: Constants.iBeaconMajor, minorValue: Constants.beaconsInfo.minor[i], distance: 0.0))
         }
         
         for item in items{
