@@ -10,8 +10,14 @@ class Constants{
     
     static var _n : Double = 3.010299957
     static var _dZero : Int = -71
-    static var n : Double = 3.010299957
-    static var dZero : Int = -71
+    static var nA : Double = 3.010299957
+    static var dZeroA : Int = -71
+    static var nB : Double = 3.010299957
+    static var dZeroB : Int = -71
+    static var nC : Double = 3.010299957
+    static var dZeroC : Int = -71
+    static var nD : Double = 3.010299957
+    static var dZeroD : Int = -71
 //    static var n : [Double] = [3.010299957, 3.010299957, 3.010299957, 3.010299957]
 //    static var dZero : [Int] = [-71, -71,-71, -71]
     

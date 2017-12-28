@@ -158,7 +158,7 @@ extension FindMyLocationViewController: CLLocationManagerDelegate{
         }else{
             testText.text = "Calibrataion:\n"
         }
-        for item in items {
+        var item = items[0]
             //d = do * 10 ^ (Pr(d0) - Pr(d) ]  / 10n)
             if item.beacon != nil{
                 if useDefaultValue{
@@ -166,7 +166,7 @@ extension FindMyLocationViewController: CLLocationManagerDelegate{
                     item.distance = (item.beacon?.accuracy)!
                 }else{
                     //let i = Constants.beaconsInfo.minor.index(of: Int(item.minorValue))
-                    item.distance = (1.0 * pow(10.0, (Double(Constants.dZero) - Double((item.beacon?.rssi)!) ) / 10.0 / Double(Constants.n)))
+                    item.distance = (1.0 * pow(10.0, (Double(Constants.dZeroA) - Double((item.beacon?.rssi)!) ) / 10.0 / Double(Constants.nA)))
                 }
                 testText.text = testText.text + "Name: \(item.name) \n RSSI: \((item.beacon?.rssi)!)\tDistance: \(String(format: "%.4f",(item.distance)))" + "\n"
             }
@@ -176,7 +176,60 @@ extension FindMyLocationViewController: CLLocationManagerDelegate{
                     default: break
                         
                     }
-        }
+            //d = do * 10 ^ (Pr(d0) - Pr(d) ]  / 10n)
+            item = items[1]
+            if item.beacon != nil{
+                if useDefaultValue{
+                    
+                    item.distance = (item.beacon?.accuracy)!
+                }else{
+                    //let i = Constants.beaconsInfo.minor.index(of: Int(item.minorValue))
+                    item.distance = (1.0 * pow(10.0, (Double(Constants.dZeroB) - Double((item.beacon?.rssi)!) ) / 10.0 / Double(Constants.nB)))
+                }
+                testText.text = testText.text + "Name: \(item.name) \n RSSI: \((item.beacon?.rssi)!)\tDistance: \(String(format: "%.4f",(item.distance)))" + "\n"
+            }
+            switch item.beacon?.proximity{
+            case .immediate?:
+                displayMessage.text = "You are in Location \(item.name)"
+            default: break
+                
+            }
+            //d = do * 10 ^ (Pr(d0) - Pr(d) ]  / 10n)
+            item = items[2]
+            if item.beacon != nil{
+                if useDefaultValue{
+                    
+                    item.distance = (item.beacon?.accuracy)!
+                }else{
+                    //let i = Constants.beaconsInfo.minor.index(of: Int(item.minorValue))
+                    item.distance = (1.0 * pow(10.0, (Double(Constants.dZeroC) - Double((item.beacon?.rssi)!) ) / 10.0 / Double(Constants.nC)))
+                }
+                testText.text = testText.text + "Name: \(item.name) \n RSSI: \((item.beacon?.rssi)!)\tDistance: \(String(format: "%.4f",(item.distance)))" + "\n"
+            }
+            switch item.beacon?.proximity{
+            case .immediate?:
+                displayMessage.text = "You are in Location \(item.name)"
+            default: break
+                
+            }
+            //d = do * 10 ^ (Pr(d0) - Pr(d) ]  / 10n)
+            item = items[3]
+            if item.beacon != nil{
+                if useDefaultValue{
+                    
+                    item.distance = (item.beacon?.accuracy)!
+                }else{
+                    //let i = Constants.beaconsInfo.minor.index(of: Int(item.minorValue))
+                    item.distance = (1.0 * pow(10.0, (Double(Constants.dZeroD) - Double((item.beacon?.rssi)!) ) / 10.0 / Double(Constants.nD)))
+                }
+                testText.text = testText.text + "Name: \(item.name) \n RSSI: \((item.beacon?.rssi)!)\tDistance: \(String(format: "%.4f",(item.distance)))" + "\n"
+            }
+            switch item.beacon?.proximity{
+            case .immediate?:
+                displayMessage.text = "You are in Location \(item.name)"
+            default: break
+                
+            }
 
         
         let coordinate = getCoordinate(items)
