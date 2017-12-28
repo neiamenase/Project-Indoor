@@ -70,7 +70,7 @@ class FindMyLocationViewController: UIViewController , UIScrollViewDelegate {
 
     func loadItems() {
         for i in 0..<4 {
-        items.append(Item(name: Constants.beaconsInfo.name[i], icon: 0, uuid: Constants.uuid, majorValue: Constants.iBeaconMajor, minorValue: Constants.beaconsInfo.minor[i], distance: 0.0))
+        items.append(Item(name: Constants.beaconsInfo.nodeDescription[i], icon: 0, uuid: Constants.uuid, majorValue: Constants.iBeaconMajor, minorValue: Constants.beaconsInfo.minor[i], distance: 0.0))
         }
         
         for item in items{
@@ -165,7 +165,8 @@ extension FindMyLocationViewController: CLLocationManagerDelegate{
 
                     item.distance = (item.beacon?.accuracy)!
                 }else{
-                    item.distance = (1.0 * pow(10.0, (Double(Constants.dZero) - Double((item.beacon?.rssi)!) ) / 10.0 / Double(Constants.n)))
+                    let i = Constants.beaconsInfo.minor.index(of: Int(item.minorValue))
+                    item.distance = (1.0 * pow(10.0, (Double(Constants.dZero[i!]) - Double((item.beacon?.rssi)!) ) / 10.0 / Double(Constants.n[i!])))
                 }
                 testText.text = testText.text + "Name: \(item.name) \n RSSI: \((item.beacon?.rssi)!)\tDistance: \(String(format: "%.4f",(item.distance)))" + "\n"
             }
