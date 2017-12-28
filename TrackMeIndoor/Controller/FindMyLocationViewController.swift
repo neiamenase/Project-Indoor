@@ -165,8 +165,8 @@ extension FindMyLocationViewController: CLLocationManagerDelegate{
 
                     item.distance = (item.beacon?.accuracy)!
                 }else{
-                    let i = Constants.beaconsInfo.minor.index(of: Int(item.minorValue))
-                    item.distance = (1.0 * pow(10.0, (Double(Constants.dZero[i!]) - Double((item.beacon?.rssi)!) ) / 10.0 / Double(Constants.n[i!])))
+                    //let i = Constants.beaconsInfo.minor.index(of: Int(item.minorValue))
+                    item.distance = (1.0 * pow(10.0, (Double(Constants.dZero) - Double((item.beacon?.rssi)!) ) / 10.0 / Double(Constants.n)))
                 }
                 testText.text = testText.text + "Name: \(item.name) \n RSSI: \((item.beacon?.rssi)!)\tDistance: \(String(format: "%.4f",(item.distance)))" + "\n"
             }
