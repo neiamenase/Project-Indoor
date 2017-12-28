@@ -20,7 +20,7 @@ class CalibrationViewController: UIViewController, UIPickerViewDataSource, UIPic
     let locationManager = CLLocationManager()
     
     var items = [Item]()
-    var pickerDataSource = Constants.beaconsInfo.name[..<4];
+    var pickerDataSource = Constants.beaconsInfo.nodeDescription[..<4];
     
     var targetBeacon : String = ""
     
