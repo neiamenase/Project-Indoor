@@ -21,6 +21,8 @@ class ViewController: UIViewController {
             if setting.u > 0 && setting.v > 0 {
                 Constants.u = setting.u
                 Constants.v = setting.v
+                Constants.n = setting.n
+                Constants.dZero = setting.dZero
 
             }
         }

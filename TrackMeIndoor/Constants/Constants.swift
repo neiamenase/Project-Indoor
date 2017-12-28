@@ -8,6 +8,8 @@ class Constants{
     static var v : Double = 2.0
     static let distanceUnit : Double = 0.5
     
+    static var n : Double = 3.010299957
+    static var dZero : Int = -71
     
     static let n : [Double] = [3.010299957, 3.010299957, 3.010299957, 3.010299957]
     static let dZero : [Int] = [-71, -71,-71, -71]
