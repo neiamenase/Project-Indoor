@@ -8,9 +8,11 @@ class Constants{
     static var v : Double = 2.0
     static let distanceUnit : Double = 0.5
     
+    static var n : Double = 3.010299957
+    static var dZero : Int = -71
     
-    static let n : Double = 5.647277761
-    static let dZero : Int = -69
+    static let _n : Double = 3.010299957
+    static let _dZero : Int = -71
     
 
     
