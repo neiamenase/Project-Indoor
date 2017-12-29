@@ -26,6 +26,33 @@ class SettingViewController: UIViewController {
     @IBAction func barSaveButton(_ sender: Any) {
         Constants.v = acValue.text != nil ? Double(acValue.text!)!:2
         Constants.u = bdValue.text != nil ? Double(bdValue.text!)!:2
+        if nAValue.text != nil{
+            Constants.nA = Double(nAValue.text!)!
+        }
+        if nBValue.text != nil{
+            Constants.nB = Double(nBValue.text!)!
+        }
+        if nCValue.text != nil{
+            Constants.nC = Double(nCValue.text!)!
+        }
+        if nDValue.text != nil{
+            Constants.nD = Double(nDValue.text!)!
+        }
+        if pdZeroAValue.text != nil{
+            Constants.dZeroA = Int(pdZeroAValue.text!)!
+        }
+        if pdZeroBValue.text != nil{
+            Constants.dZeroB = Int(pdZeroBValue.text!)!
+        }
+        if pdZeroCValue.text != nil{
+            Constants.dZeroC = Int(pdZeroCValue.text!)!
+        }
+        if pdZeroDValue.text != nil{
+            Constants.dZeroD = Int(pdZeroDValue.text!)!
+        }
+        
+        
+        
         saveSettings();
         _ = navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
@@ -40,14 +67,14 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
         acValue.text = String(format: "%.2f", Double(Constants.v))
         bdValue.text = String(format: "%.2f", Double(Constants.u))
-        nAValue.text = String(format: "%f", Double(Constants.n))
-        pdZeroAValue.text = String(format: "%d", Int(Constants.dZero))
-        nBValue.text = String(format: "%f", Double(Constants.n))
-        pdZeroBValue.text = String(format: "%d", Int(Constants.dZero))
-        nCValue.text = String(format: "%f", Double(Constants.n))
-        pdZeroCValue.text = String(format: "%d", Int(Constants.dZero))
-        nDValue.text = String(format: "%f", Double(Constants.n))
-        pdZeroDValue.text = String(format: "%d", Int(Constants.dZero))
+        nAValue.text = String(format: "%f", Double(Constants.nA))
+        pdZeroAValue.text = String(format: "%d", Int(Constants.dZeroA))
+        nBValue.text = String(format: "%f", Double(Constants.nB))
+        pdZeroBValue.text = String(format: "%d", Int(Constants.dZeroB))
+        nCValue.text = String(format: "%f", Double(Constants.nC))
+        pdZeroCValue.text = String(format: "%d", Int(Constants.dZeroC))
+        nDValue.text = String(format: "%f", Double(Constants.nD))
+        pdZeroDValue.text = String(format: "%d", Int(Constants.dZeroD))
         
         // Do any additional setup after loading the view.
     }
@@ -60,17 +87,24 @@ class SettingViewController: UIViewController {
     @IBAction func backToDefault(_ sender: Any) {
             Constants.u = 2
             Constants.v = 2
-            Constants.n = Constants._n
-            Constants.dZero = Constants._dZero
+            Constants.nA = Constants._n
+            Constants.dZeroA = Constants._dZero
+            Constants.nB = Constants._n
+            Constants.dZeroB = Constants._dZero
+            Constants.nC = Constants._n
+            Constants.dZeroC = Constants._dZero
+            Constants.nD = Constants._n
+            Constants.dZeroD = Constants._dZero
             acValue.text = String(format: "%.2f", Int(Constants.v))
             bdValue.text = String(format: "%.2f", Int(Constants.u))
-            pdZeroAValue.text = String(format: "%d", Int(Constants.dZero))
-            nBValue.text = String(format: "%f", Double(Constants.n))
-            pdZeroBValue.text = String(format: "%d", Int(Constants.dZero))
-            nCValue.text = String(format: "%f", Double(Constants.n))
-            pdZeroCValue.text = String(format: "%d", Int(Constants.dZero))
-            nDValue.text = String(format: "%f", Double(Constants.n))
-            pdZeroDValue.text = String(format: "%d", Int(Constants.dZero))
+            nAValue.text = String(format: "%f", Double(Constants.nA))
+            pdZeroAValue.text = String(format: "%d", Int(Constants.dZeroA))
+            nBValue.text = String(format: "%f", Double(Constants.nB))
+            pdZeroBValue.text = String(format: "%d", Int(Constants.dZeroB))
+            nCValue.text = String(format: "%f", Double(Constants.nC))
+            pdZeroCValue.text = String(format: "%d", Int(Constants.dZeroC))
+            nDValue.text = String(format: "%f", Double(Constants.nD))
+            pdZeroDValue.text = String(format: "%d", Int(Constants.dZeroD))
             saveSettings();
             _ = navigationController?.popViewController(animated: true)
             self.dismiss(animated: true, completion: nil)

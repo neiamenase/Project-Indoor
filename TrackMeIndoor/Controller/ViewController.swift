@@ -21,14 +21,14 @@ class ViewController: UIViewController {
             if setting.u > 0 && setting.v > 0 {
                 Constants.u = setting.u
                 Constants.v = setting.v
-//                Constants.nA = setting.nA
-//                Constants.dZeroA = setting.dZeroA
-//                Constants.nB = setting.nB
-//                Constants.dZeroB = setting.dZeroB
-//                Constants.nC = setting.nC
-//                Constants.dZeroC = setting.dZeroC
-//                Constants.nD = setting.nD
-//                Constants.dZeroD = setting.dZeroD
+                Constants.nA = setting.nA
+                Constants.dZeroA = setting.dZeroA
+                Constants.nB = setting.nB
+                Constants.dZeroB = setting.dZeroB
+                Constants.nC = setting.nC
+                Constants.dZeroC = setting.dZeroC
+                Constants.nD = setting.nD
+                Constants.dZeroD = setting.dZeroD
 
             }
         }
